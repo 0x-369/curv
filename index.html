@@ -51,6 +51,32 @@
             filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
         }
 
+        .liberty-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #4a1942;
+            font-weight: 600;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 12px 24px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 105, 180, 0.3);
+        }
+
+        .liberty-link:hover {
+            background: rgba(255, 182, 193, 0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
+        }
+
+        .liberty-logo {
+            width: 30px;
+            height: 30px;
+        }
+
         .hero {
             text-align: center;
             padding: 100px 0;
@@ -188,6 +214,16 @@
                 padding: 15px 40px;
                 font-size: 18px;
             }
+
+            nav {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .liberty-link {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
         }
     </style>
 </head>
@@ -219,6 +255,9 @@
                     </svg>
                     <span>CURV</span>
                 </div>
+                <a href="https://libertyswap.finance/" class="liberty-link" target="_blank">
+                    Buy CURV From Liberty Swap
+                </a>
             </nav>
         </div>
     </header>
