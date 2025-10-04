@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CURV Token - The Future of Curves</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #ffeef8 0%, #ffc4e1 50%, #ffb5d8 100%);
+            color: #4a1942;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 30px 0;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 182, 193, 0.3);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
+        }
+
+        .hero {
+            text-align: center;
+            padding: 100px 0;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 72px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .subtitle {
+            font-size: 24px;
+            margin-bottom: 50px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .buy-button {
+            display: inline-block;
+            padding: 20px 60px;
+            background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 20px;
+            font-weight: 700;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .buy-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.6);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            padding: 80px 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+            border: 2px solid rgba(255, 182, 193, 0.5);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            padding: 60px 0;
+            background: rgba(255, 182, 193, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin: 40px 0;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 18px;
+            opacity: 0.8;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            opacity: 0.8;
+            margin-top: 80px;
+        }
+
+        .curve-decoration {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 48px;
+            }
+            
+            .subtitle {
+                font-size: 18px;
+            }
+            
+            .buy-button {
+                padding: 15px 40px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="curve-decoration">
+        <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 0 400 Q 300 200, 600 400 T 1200 400" stroke="white" fill="none" stroke-width="2"/>
+            <path d="M 0 500 Q 300 300, 600 500 T 1200 500" stroke="white" fill="none" stroke-width="2"/>
+        </svg>
+    </div>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <svg class="logo-img" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+                        <g fill="#4a1942">
+                            <!-- Left curve -->
+                            <path d="M 150 300 Q 150 200, 250 200 Q 350 200, 350 300 Q 350 400, 250 400 Q 150 400, 150 300 Z" stroke="#4a1942" stroke-width="30" fill="none"/>
+                            <circle cx="230" cy="300" r="25" fill="#4a1942"/>
+                            
+                            <!-- Right curve -->
+                            <path d="M 450 300 Q 450 200, 550 200 Q 650 200, 650 300 Q 650 400, 550 400 Q 450 400, 450 300 Z" stroke="#4a1942" stroke-width="30" fill="none"/>
+                            <circle cx="530" cy="300" r="25" fill="#4a1942"/>
+                            
+                            <!-- Text CURV -->
+                            <text x="400" y="650" font-size="180" font-weight="bold" text-anchor="middle" font-family="Arial, sans-serif" fill="#4a1942">CURV</text>
+                        </g>
+                    </svg>
+                    <span>CURV</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Welcome to CURV</h1>
+                <p class="subtitle">The meme token that's all about those killer curves, juicy vibes, and zero-shame swagger!</p>
+                <a href="https://pulsex.mypinata.cloud/ipfs/bafybeiajyhfbf6evh4mdabassmbtsy73ci2gmcgh4ffmjkrgsea35vqxba/#/?inputCurrency=0xA1077a294dDE1B09bB078844df40758a5D0f9a27&outputCurrency=0x591c914BC5c878cC398AF67681C388FaC8bdaf4e" class="buy-button" target="_blank">Buy CURV Now</a>
+            </div>
+        </section>
+
+        <section class="container">
+            <div style="text-align: center; padding: 60px 20px; background: rgba(255, 255, 255, 0.6); border-radius: 20px; margin-bottom: 40px; border: 2px solid rgba(255, 182, 193, 0.5);">
+                <h2 style="font-size: 36px; margin-bottom: 20px; color: #ff1493;">About $CURV</h2>
+                <p style="font-size: 18px; line-height: 1.8; max-width: 900px; margin: 0 auto; color: #4a1942;">
+                    Drawing inspo from the mighty triple-D squad (you know, the ones that make gravity weep), this sassy beast on PulseChain is ready to inflate your wallet faster than a bad date's ego. With a fair launch that's cleaner than your grandma's china, token-burning hotter than a jalapeño mishap, and zero taxes (because who needs more deductions in life?), hop on this bouncy bandwagon and surf straight to PulseX paradise. Who's down to embrace the curves and laugh all the way to the moon? 🚀
+                </p>
+            </div>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">0%</div>
+                    <div class="stat-label">Taxes</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">🔥</div>
+                    <div class="stat-label">Token Burns</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">Fair</div>
+                    <div class="stat-label">Launch</div>
+                </div>
+            </div>
+
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🍑</div>
+                    <h3>Killer Curves</h3>
+                    <p>All about those juicy vibes and zero-shame swagger. Embrace the curves and ride the wave to success!</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔥</div>
+                    <h3>Token Burns</h3>
+                    <p>Hotter than a jalapeño mishap! Regular burns to keep the supply tight and the value right.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Zero Taxes</h3>
+                    <p>Because who needs more deductions in life? Buy and sell with 0% taxes. Keep all your gains!</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✨</div>
+                    <h3>Fair Launch</h3>
+                    <p>Cleaner than your grandma's china! No presale, no team tokens. Everyone starts equal.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>PulseChain Power</h3>
+                    <p>Built on PulseChain for lightning-fast transactions and minimal fees. Surf to PulseX paradise!</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌙</div>
+                    <h3>To The Moon</h3>
+                    <p>Hop on this bouncy bandwagon and laugh all the way to the moon with the squad!</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div style="margin-bottom: 20px;">
+                <p style="font-size: 14px; opacity: 0.7; margin-bottom: 10px;">Contract Address:</p>
+                <p style="font-family: 'Courier New', monospace; font-size: 16px; word-break: break-all; background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; cursor: pointer;" onclick="navigator.clipboard.writeText('0x591c914BC5c878cC398AF67681C388FaC8bdaf4e'); alert('Contract address copied to clipboard!');" title="Click to copy">0x591c914BC5c878cC398AF67681C388FaC8bdaf4e</p>
+            </div>
+            <p style="margin-top: 20px; font-size: 18px; font-weight: 600;">curvs.finance</p>
+            <p>&copy; 2025 CURV Token. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
