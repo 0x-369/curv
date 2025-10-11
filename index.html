@@ -177,6 +177,50 @@
             display: none;
         }
 
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(0, 0, 0, 0.95);
+            border: 1px solid rgba(12, 243, 201, 0.2);
+            border-radius: 10px;
+            padding: 10px 0;
+            min-width: 200px;
+            margin-top: 10px;
+            z-index: 1001;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 20px;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .dropdown-menu a:hover {
+            background: rgba(12, 243, 201, 0.1);
+            color: #0cf3c9;
+            padding-left: 25px;
+        }
+
+        .dropdown-menu a::after {
+            display: none;
+        }
+
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -460,11 +504,17 @@
 
             iframe {
                 height: 900px;
+                max-width: 100%;
             }
 
             .widget-wrapper {
-                padding: 15px;
+                padding: 10px;
                 max-width: 100%;
+                overflow: hidden;
+            }
+
+            .container {
+                padding: 10px;
             }
 
             .contract-address {
@@ -481,6 +531,15 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="#" data-page="home">Home</a></li>
                 <li><a href="#" data-page="about">About</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">Links</a>
+                    <div class="dropdown-menu">
+                        <a href="https://bridge.pulsechain.com/#/bridge" target="_blank" rel="noopener noreferrer">Pulse Bridge</a>
+                        <a href="https://ipfs.app.pulsex.com/" target="_blank" rel="noopener noreferrer">PulseX</a>
+                        <a href="https://pulsechain.com/" target="_blank" rel="noopener noreferrer">PulseChain</a>
+                        <a href="https://www.pulsechainstats.com/" target="_blank" rel="noopener noreferrer">PulseChain Stats</a>
+                    </div>
+                </li>
                 <li>
                     <a href="https://libertyswap.finance/curv" target="_blank" rel="noopener noreferrer" class="buy-btn">
                         Bridge & Buy $CURV
