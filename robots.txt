@@ -1,0 +1,1 @@
+User-agent: *Allow: /Sitemap: https://curv-finance.vercel.app/sitemap.xml

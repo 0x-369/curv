@@ -3,8 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CURV Token - The Future of Curves</title>
+    <title>CURV Powered by Switch | Premier DEX Aggregator</title>
+    <meta name="description" content="Switch is your gateway to seamless, efficient, and cost-effective decentralized trading. Access millions of crypto assets across leading DEXs with cutting-edge technology and deep liquidity pools.">
+    <meta name="keywords" content="DEX aggregator, decentralized exchange, crypto trading, DeFi, PulseChain, cryptocurrency, swap tokens, liquidity pools">
+    <meta name="author" content="Switch">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com/">
+    <meta property="og:title" content="Switch - The Premier DEX Aggregator">
+    <meta property="og:description" content="Access millions of crypto assets across leading decentralized exchanges with Switch's cutting-edge technology.">
+    <meta property="og:image" content="https://yourwebsite.com/og-image.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yourwebsite.com/">
+    <meta property="twitter:title" content="Switch - The Premier DEX Aggregator">
+    <meta property="twitter:description" content="Access millions of crypto assets across leading decentralized exchanges with Switch's cutting-edge technology.">
+    <meta property="twitter:image" content="https://yourwebsite.com/twitter-image.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://yourwebsite.com/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Switch",
+        "description": "The Premier DEX Aggregator for decentralized crypto trading",
+        "url": "https://yourwebsite.com",
+        "applicationCategory": "FinanceApplication",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+    
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
         * {
             margin: 0;
             padding: 0;
@@ -12,331 +59,571 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #ffeef8 0%, #ffc4e1 50%, #ffb5d8 100%);
-            color: #4a1942;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #000000;
+            position: relative;
+            min-height: 100vh;
+            padding: 0;
             overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        body::before {
+            content: '';
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            width: 60%;
+            height: 60%;
+            background: radial-gradient(ellipse at bottom right, 
+                rgba(128, 0, 0, 0.3) 0%,
+                rgba(128, 0, 64, 0.25) 20%,
+                rgba(64, 0, 128, 0.2) 40%,
+                rgba(0, 64, 128, 0.15) 60%,
+                rgba(0, 128, 128, 0.1) 80%,
+                transparent 100%);
+            pointer-events: none;
+            z-index: 0;
         }
 
         header {
-            padding: 30px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(10px);
-            background: rgba(255, 182, 193, 0.3);
+            border-bottom: 1px solid rgba(12, 243, 201, 0.1);
+            padding: 20px 40px;
+            z-index: 1000;
         }
 
         nav {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-size: 32px;
-            font-weight: 800;
-            letter-spacing: -1px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo-img {
-            width: 60px;
-            height: 60px;
-            filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
-        }
-
-        .liberty-link {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            color: #4a1942;
-            font-weight: 600;
-            font-size: 16px;
-            background: rgba(255, 255, 255, 0.8);
-            padding: 12px 24px;
-            border-radius: 30px;
-            transition: all 0.3s ease;
-            border: 2px solid rgba(255, 105, 180, 0.3);
-        }
-
-        .liberty-link:hover {
-            background: rgba(255, 182, 193, 0.9);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
-        }
-
-        .liberty-logo {
-            width: 30px;
-            height: 30px;
-        }
-
-        .hero {
-            text-align: center;
-            padding: 100px 0;
-            animation: fadeIn 1s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        h1 {
-            font-size: 72px;
-            font-weight: 800;
-            margin-bottom: 20px;
-            line-height: 1.1;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-
-        .subtitle {
-            font-size: 24px;
-            margin-bottom: 50px;
-            opacity: 0.95;
-            font-weight: 300;
-        }
-
-        .buy-button {
-            display: inline-block;
-            padding: 20px 60px;
-            background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 20px;
+            font-size: 1.5rem;
             font-weight: 700;
-            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4);
-            transition: all 0.3s ease;
-            text-transform: uppercase;
+            background: linear-gradient(135deg, #0cf3c9 0%, #00d4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             letter-spacing: 1px;
         }
 
-        .buy-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.6);
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            list-style: none;
         }
 
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            padding: 80px 0;
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
-        .feature-card {
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(10px);
-            padding: 40px;
-            border-radius: 20px;
-            transition: transform 0.3s ease;
-            border: 2px solid rgba(255, 182, 193, 0.5);
+        .nav-links a:hover {
+            color: #0cf3c9;
         }
 
-        .feature-card:hover {
-            transform: translateY(-10px);
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #0cf3c9, #00d4ff);
+            transition: width 0.3s ease;
         }
 
-        .feature-icon {
-            font-size: 48px;
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .buy-btn {
+            background: linear-gradient(135deg, #0cf3c9 0%, #00d4ff 100%);
+            color: #000;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(12, 243, 201, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .buy-btn img {
+            height: 24px;
+            width: auto;
+        }
+
+        .buy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(12, 243, 201, 0.5);
+        }
+
+        .buy-btn::after {
+            display: none;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #0cf3c9;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        main {
+            padding-top: 100px;
+            position: relative;
+            z-index: 1;
+        }
+
+        section {
+            display: none;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            background: linear-gradient(135deg, #0cf3c9 0%, #00d4ff 50%, #80cced 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.8rem;
+            text-align: center;
+            font-weight: 700;
+            letter-spacing: -0.5px;
             margin-bottom: 20px;
         }
 
-        .feature-card h3 {
-            font-size: 24px;
+        .description {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.1rem;
+            text-align: center;
+            line-height: 1.7;
+            max-width: 800px;
+            font-weight: 400;
+            margin: 0 auto 40px;
+        }
+
+        .widget-wrapper {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 212, 255, 0.1);
+            backdrop-filter: blur(10px);
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 500px;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .loading-message {
+            position: absolute;
+            color: #0cf3c9;
+            font-size: 1.1rem;
+            text-align: center;
+            display: none;
+        }
+
+        iframe:not([src]) + .loading-message {
+            display: block;
+        }
+
+        iframe {
+            border: none;
+            border-radius: 12px;
+            width: 100%;
+            height: 900px;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .about-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .about-title {
+            background: linear-gradient(135deg, #0cf3c9 0%, #00d4ff 50%, #80cced 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .about-intro {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.2rem;
+            line-height: 1.8;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(12, 243, 201, 0.15);
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(12, 243, 201, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(12, 243, 201, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            color: #0cf3c9;
+            font-size: 1.5rem;
+            font-weight: 600;
             margin-bottom: 15px;
         }
 
-        .feature-card p {
-            opacity: 0.9;
+        .feature-description {
+            color: rgba(255, 255, 255, 0.75);
             line-height: 1.6;
-        }
-
-        .stats {
-            display: flex;
-            justify-content: space-around;
-            padding: 60px 0;
-            background: rgba(255, 182, 193, 0.4);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            margin: 40px 0;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 48px;
-            font-weight: 800;
-            margin-bottom: 10px;
-        }
-
-        .stat-label {
-            font-size: 18px;
-            opacity: 0.8;
+            font-size: 1rem;
         }
 
         footer {
-            text-align: center;
-            padding: 40px 0;
-            opacity: 0.8;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(12, 243, 201, 0.1);
+            padding: 40px 20px;
             margin-top: 80px;
+            position: relative;
+            z-index: 1;
         }
 
-        .curve-decoration {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contract-section {
+            margin-bottom: 25px;
+        }
+
+        .contract-label {
+            color: #0cf3c9;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .contract-address {
+            background: rgba(12, 243, 201, 0.1);
+            border: 1px solid rgba(12, 243, 201, 0.3);
+            border-radius: 10px;
+            padding: 15px 20px;
+            color: rgba(255, 255, 255, 0.9);
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-block;
+            word-break: break-all;
+            max-width: 100%;
+            position: relative;
+        }
+
+        .contract-address:hover {
+            background: rgba(12, 243, 201, 0.15);
+            border-color: rgba(12, 243, 201, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .contract-address:active {
+            transform: translateY(0);
+        }
+
+        .copy-tooltip {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #0cf3c9;
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            opacity: 0;
             pointer-events: none;
-            z-index: -1;
-            opacity: 0.1;
+            transition: opacity 0.3s ease;
+        }
+
+        .copy-tooltip.show {
+            opacity: 1;
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            margin-top: 20px;
         }
 
         @media (max-width: 768px) {
-            h1 {
-                font-size: 48px;
-            }
-            
-            .subtitle {
-                font-size: 18px;
-            }
-            
-            .buy-button {
-                padding: 15px 40px;
-                font-size: 18px;
+            header {
+                padding: 15px 20px;
             }
 
-            nav {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
                 flex-direction: column;
+                background: rgba(0, 0, 0, 0.95);
+                width: 100%;
+                padding: 30px;
                 gap: 20px;
+                transition: left 0.3s ease;
+                border-bottom: 1px solid rgba(12, 243, 201, 0.1);
             }
 
-            .liberty-link {
-                font-size: 14px;
-                padding: 10px 20px;
+            .nav-links.active {
+                left: 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .about-title {
+                font-size: 2rem;
+            }
+
+            .about-intro {
+                font-size: 1rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            main {
+                padding-top: 80px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .description {
+                font-size: 1rem;
+                padding: 0 10px;
+            }
+
+            iframe {
+                height: 900px;
+            }
+
+            .contract-address {
+                font-size: 0.8rem;
+                padding: 12px 15px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="curve-decoration">
-        <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
-            <path d="M 0 400 Q 300 200, 600 400 T 1200 400" stroke="white" fill="none" stroke-width="2"/>
-            <path d="M 0 500 Q 300 300, 600 500 T 1200 500" stroke="white" fill="none" stroke-width="2"/>
-        </svg>
-    </div>
-
     <header>
-        <div class="container">
-            <nav>
-                <div class="logo">
-                    <svg class="logo-img" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
-                        <g fill="#4a1942">
-                            <!-- Left curve -->
-                            <path d="M 150 300 Q 150 200, 250 200 Q 350 200, 350 300 Q 350 400, 250 400 Q 150 400, 150 300 Z" stroke="#4a1942" stroke-width="30" fill="none"/>
-                            <circle cx="230" cy="300" r="25" fill="#4a1942"/>
-                            
-                            <!-- Right curve -->
-                            <path d="M 450 300 Q 450 200, 550 200 Q 650 200, 650 300 Q 650 400, 550 400 Q 450 400, 450 300 Z" stroke="#4a1942" stroke-width="30" fill="none"/>
-                            <circle cx="530" cy="300" r="25" fill="#4a1942"/>
-                            
-                            <!-- Text CURV -->
-                            <text x="400" y="650" font-size="180" font-weight="bold" text-anchor="middle" font-family="Arial, sans-serif" fill="#4a1942">CURV</text>
-                        </g>
-                    </svg>
-                    <span>CURV</span>
-                </div>
-                <a href="https://libertyswap.finance/" class="liberty-link" target="_blank">
-                    Buy CURV From Liberty Swap
-                </a>
-            </nav>
-        </div>
+        <nav>
+            <div class="logo">CURV</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" data-page="home">Home</a></li>
+                <li><a href="#" data-page="about">About</a></li>
+                <li>
+                    <a href="https://libertyswap.finance/curv" target="_blank" rel="noopener noreferrer" class="buy-btn">
+                        Bridge & Buy $CURV
+                        <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDUwMCA1MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWQxIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KPHN0b3Agb2Zmc2V0PSIwJSIgc3R5bGU9InN0b3AtY29sb3I6I0ZGNEMwMDtzdG9wLW9wYWNpdHk6MSIgLz4KPHN0b3Agb2Zmc2V0PSIzMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNGRjhDMDA7c3RvcC1vcGFjaXR5OjEiIC8+CjxzdG9wIG9mZnNldD0iNTAlIiBzdHlsZT0ic3RvcC1jb2xvcjojRkZENDAwO3N0b3Atb3BhY2l0eToxIiAvPgo8c3RvcCBvZmZzZXQ9IjcwJSIgc3R5bGU9InN0b3AtY29sb3I6I0ZGMDA5MjtzdG9wLW9wYWNpdHk6MSIgLz4KPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojQkIwMEZGO3N0b3Atb3BhY2l0eToxIiAvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+CjxwYXRoIGQ9Ik0yMzAgMTIwQzIzMCAxMjAgMjgwIDE1MCAzNTAgMTgwQzM4MCAxOTUgNDEwIDIxMCA0MjAgMjQwQzQzMCAyNzAgNDI1IDMwMCA0MTAgMzMwQzM5NSAzNjAgMzcwIDM4NSAzNDAgNDAwQzMxMCA0MTUgMjgwIDQyNSAyNTAgNDMwQzI1MCA0MzAgMjUwIDQ1MCAyNTAgNTAwQzI1MCA1MDAgMjMwIDQ4MCAyMTAgNDUwQzE5MCA0MjAgMTcwIDM4MCAxNTUgMzQwQzE0MCAzMDAgMTMwIDI1MCAxMzAgMjAwQzEzMCAxNTAgMTQwIDEwMCAxNjAgNzBDMTgwIDQwIDIxMCAyMCAyNDAgMTBDMjQwIDEwIDI0MCAxMjAgMjMwIDEyMFoiIGZpbGw9InVybCgjZ3JhZDEpIi8+Cjwvc3ZnPg==" alt="Liberty Swap Logo">
+                    </a>
+                </li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">☰</button>
+        </nav>
     </header>
 
     <main>
-        <section class="hero">
+        <section id="home" class="active">
             <div class="container">
-                <h1>Welcome to CURV</h1>
-                <p class="subtitle">The meme token that's all about those killer curves, juicy vibes, and zero-shame swagger!</p>
-                <a href="https://pulsex.mypinata.cloud/ipfs/bafybeiajyhfbf6evh4mdabassmbtsy73ci2gmcgh4ffmjkrgsea35vqxba/#/?inputCurrency=0xA1077a294dDE1B09bB078844df40758a5D0f9a27&outputCurrency=0x591c914BC5c878cC398AF67681C388FaC8bdaf4e" class="buy-button" target="_blank">Buy CURV Now</a>
+                <h1>The Premier DEX Aggregator</h1>
+                <p class="description">Switch is your gateway to a seamless, efficient, and cost-effective decentralized trading experience. With access to millions of crypto assets across leading decentralized exchanges, Switch brings the power of cutting-edge technology and deep liquidity pools directly to your fingertips.</p>
+                <div class="widget-wrapper">
+                    <iframe 
+                        src="https://switch.win/widget?network=pulsechain&background_color=000000&font_color=0cf3c9&secondary_font_color=7a7a7a&border_color=80cced&from=0xefD766cCb38EaF1dfd701853BFCe31359239F305&to=0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee" 
+                        allow="clipboard-read; clipboard-write" 
+                        width="100%" 
+                        height="900px"
+                        title="PulseChain Widget">
+                    </iframe>
+                    <div class="loading-message">Loading widget...</div>
+                </div>
             </div>
         </section>
 
-        <section class="container">
-            <div style="text-align: center; padding: 60px 20px; background: rgba(255, 255, 255, 0.6); border-radius: 20px; margin-bottom: 40px; border: 2px solid rgba(255, 182, 193, 0.5);">
-                <h2 style="font-size: 36px; margin-bottom: 20px; color: #ff1493;">About $CURV</h2>
-                <p style="font-size: 18px; line-height: 1.8; max-width: 900px; margin: 0 auto; color: #4a1942;">
-                    Drawing inspo from the mighty triple-D squad (you know, the ones that make gravity weep), this sassy beast on PulseChain is ready to inflate your wallet faster than a bad date's ego. With a fair launch that's cleaner than your grandma's china, token-burning hotter than a jalapeño mishap, and zero taxes (because who needs more deductions in life?), hop on this bouncy bandwagon and surf straight to PulseX paradise. Who's down to embrace the curves and laugh all the way to the moon? 🚀
-                </p>
-            </div>
-            <div class="stats">
-                <div class="stat">
-                    <div class="stat-number">0%</div>
-                    <div class="stat-label">Taxes</div>
+        <section id="about">
+            <div class="container">
+                <div class="about-header">
+                    <h2 class="about-title">About $CURV</h2>
+                    <p class="about-intro">
+                        The meme token that's all about those killer curves, juicy vibes, and zero-shame swagger! Drawing inspo from the mighty triple-D squad (you know, the ones that make gravity weep), this sassy beast on PulseChain is ready to inflate your wallet faster than a bad date's ego. With a fair launch that's cleaner than your grandma's china, token-burning hotter than a jalapeño mishap, and zero taxes (because who needs more deductions in life?), hop on this bouncy bandwagon and surf straight to PulseX paradise. Who's down to embrace the curves and laugh all the way to the moon? 🚀
+                    </p>
                 </div>
-                <div class="stat">
-                    <div class="stat-number">🔥</div>
-                    <div class="stat-label">Token Burns</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">Fair</div>
-                    <div class="stat-label">Launch</div>
-                </div>
-            </div>
 
-            <div class="features">
-                <div class="feature-card">
-                    <div class="feature-icon">🍑</div>
-                    <h3>Killer Curves</h3>
-                    <p>All about those juicy vibes and zero-shame swagger. Embrace the curves and ride the wave to success!</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔥</div>
-                    <h3>Token Burns</h3>
-                    <p>Hotter than a jalapeño mishap! Regular burns to keep the supply tight and the value right.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💰</div>
-                    <h3>Zero Taxes</h3>
-                    <p>Because who needs more deductions in life? Buy and sell with 0% taxes. Keep all your gains!</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">✨</div>
-                    <h3>Fair Launch</h3>
-                    <p>Cleaner than your grandma's china! No presale, no team tokens. Everyone starts equal.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🚀</div>
-                    <h3>PulseChain Power</h3>
-                    <p>Built on PulseChain for lightning-fast transactions and minimal fees. Surf to PulseX paradise!</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🌙</div>
-                    <h3>To The Moon</h3>
-                    <p>Hop on this bouncy bandwagon and laugh all the way to the moon with the squad!</p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">💎</div>
+                        <h3 class="feature-title">Killer Curves</h3>
+                        <p class="feature-description">All about those juicy vibes and zero-shame swagger. Embrace the curves and ride the wave to success!</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🔥</div>
+                        <h3 class="feature-title">Token Burns</h3>
+                        <p class="feature-description">Hotter than a jalapeño mishap! Regular burns to keep the supply tight and the value right.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">💰</div>
+                        <h3 class="feature-title">Zero Taxes</h3>
+                        <p class="feature-description">Because who needs more deductions in life? Buy and sell with 0% taxes. Keep all your gains!</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3 class="feature-title">Fair Launch</h3>
+                        <p class="feature-description">Cleaner than your grandma's china! No presale, no team tokens. Everyone starts equal.</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3 class="feature-title">PulseChain Power</h3>
+                        <p class="feature-description">Built on PulseChain for lightning-fast transactions and minimal fees. Surf to PulseX paradise!</p>
+                    </div>
+
+                    <div class="feature-card">
+                        <div class="feature-icon">🚀</div>
+                        <h3 class="feature-title">To The Moon</h3>
+                        <p class="feature-description">Hop on this bouncy bandwagon and laugh all the way to the moon with the squad!</p>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <div class="container">
-            <div style="margin-bottom: 20px;">
-                <p style="font-size: 14px; opacity: 0.7; margin-bottom: 10px;">Contract Address:</p>
-                <p style="font-family: 'Courier New', monospace; font-size: 16px; word-break: break-all; background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; cursor: pointer;" onclick="navigator.clipboard.writeText('0x591c914BC5c878cC398AF67681C388FaC8bdaf4e'); alert('Contract address copied to clipboard!');" title="Click to copy">0x591c914BC5c878cC398AF67681C388FaC8bdaf4e</p>
+        <div class="footer-content">
+            <div class="contract-section">
+                <div class="contract-label">$CURV Contract Address</div>
+                <div class="contract-address" id="contractAddress" title="Click to copy">
+                    0x591c914BC5c878cC398AF67681C388FaC8bdaf4e
+                    <span class="copy-tooltip" id="copyTooltip">Copied!</span>
+                </div>
             </div>
-            <p style="margin-top: 20px; font-size: 18px; font-weight: 600;">curvs.finance</p>
-            <p>&copy; 2025 CURV Token. All rights reserved.</p>
+            <div class="copyright">© 2025 CURV. All rights reserved.</div>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.getElementById('navLinks');
+            const sections = document.querySelectorAll('main section');
+            const navItems = document.querySelectorAll('.nav-links a[data-page]');
+
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                mobileMenuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+            });
+
+            // Page navigation
+            navItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetPage = item.getAttribute('data-page');
+                    
+                    // Hide all sections
+                    sections.forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    
+                    // Show target section
+                    const targetSection = document.getElementById(targetPage);
+                    if (targetSection) {
+                        targetSection.classList.add('active');
+                    }
+                    
+                    // Close mobile menu
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.textContent = '☰';
+                    
+                    // Scroll to top
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+
+            // Copy contract address to clipboard
+            const contractAddress = document.getElementById('contractAddress');
+            const copyTooltip = document.getElementById('copyTooltip');
+            
+            contractAddress.addEventListener('click', () => {
+                const address = '0x591c914BC5c878cC398AF67681C388FaC8bdaf4e';
+                
+                navigator.clipboard.writeText(address).then(() => {
+                    copyTooltip.classList.add('show');
+                    setTimeout(() => {
+                        copyTooltip.classList.remove('show');
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Failed to copy:', err);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
