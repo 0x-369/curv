@@ -493,6 +493,25 @@
             margin-bottom: 25px;
         }
 
+        .fee-message {
+            background: rgba(12, 243, 201, 0.05);
+            border: 1px solid rgba(12, 243, 201, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 40px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .fee-message p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            text-align: center;
+            margin: 0;
+        }
+
         .contract-label {
             color: #0cf3c9;
             font-size: 1.1rem;
@@ -741,13 +760,13 @@
             
             <div class="collective-gallery">
                 <div class="gallery-grid">
-                    <div class="gallery-item" onclick="openModal('gallery1.jpeg')">
+                    <div class="gallery-item" onclick="openModal('https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/gallery1.jpeg')">
                         <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/gallery1.jpeg" alt="CURV Collective 1">
                     </div>
-                    <div class="gallery-item" onclick="openModal('gallery2.jpeg')">
+                    <div class="gallery-item" onclick="openModal('https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/gallery2.jpeg')">
                         <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/gallery2.jpeg" alt="CURV Collective 2">
                     </div>
-                    <div class="gallery-item" onclick="openModal('gallery3.jpeg')">
+                    <div class="gallery-item" onclick="openModal('https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/gallery3.jpeg')">
                         <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/gallery3.jpeg" alt="CURV Collective 3">
                     </div>
                 </div>
@@ -762,6 +781,9 @@
 
     <footer>
         <div class="footer-content">
+            <div class="fee-message">
+                <p>*Once the official team from Switch turn on fee's for PulseChain within this aggregator, 50% of those fee's will go to CURV to support the $CURV token and marketing. THERE IS NO EXTRA COST TO THE USER! Fee's are ONLY generated for CURV if the Switch aggregator is used via CURV.</p>
+            </div>
             <div class="contract-section">
                 <div class="contract-label">$CURV Contract Address</div>
                 <div class="contract-address" id="contractAddress" title="Click to copy">
