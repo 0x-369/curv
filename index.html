@@ -672,9 +672,9 @@
         <nav>
             <div class="logo">CURV</div>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#" data-page="home">Home</a></li>
-                <li><a href="#" data-page="about">About</a></li>
-                <li><a href="#" data-page="collective">CURV Collective</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#collective">CURV Collective</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle">Links</a>
                     <div class="dropdown-menu">
@@ -822,7 +822,31 @@
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
             const navLinks = document.getElementById('navLinks');
             const sections = document.querySelectorAll('main section');
-            const navItems = document.querySelectorAll('.nav-links a[data-page]');
+            const navItems = document.querySelectorAll('.nav-links a[href^="#"]');
+
+            // Function to show section based on hash
+            function showSection(hash) {
+                const targetPage = hash.substring(1) || 'home';
+                
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                const targetSection = document.getElementById(targetPage);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                }
+                
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Handle hash changes
+            window.addEventListener('hashchange', () => {
+                showSection(window.location.hash);
+            });
+
+            // Handle initial load
+            showSection(window.location.hash || '#home');
 
             // Mobile menu toggle
             mobileMenuBtn.addEventListener('click', () => {
@@ -833,26 +857,12 @@
             // Page navigation
             navItems.forEach(item => {
                 item.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const targetPage = item.getAttribute('data-page');
-                    
-                    // Hide all sections
-                    sections.forEach(section => {
-                        section.classList.remove('active');
-                    });
-                    
-                    // Show target section
-                    const targetSection = document.getElementById(targetPage);
-                    if (targetSection) {
-                        targetSection.classList.add('active');
+                    const href = item.getAttribute('href');
+                    if (href.startsWith('#')) {
+                        // Close mobile menu
+                        navLinks.classList.remove('active');
+                        mobileMenuBtn.textContent = '☰';
                     }
-                    
-                    // Close mobile menu
-                    navLinks.classList.remove('active');
-                    mobileMenuBtn.textContent = '☰';
-                    
-                    // Scroll to top
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 });
             });
 
