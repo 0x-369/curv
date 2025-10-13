@@ -133,9 +133,10 @@
         }
 
         .price-zeros {
-            font-size: 0.6rem;
+            font-size: 0.55rem;
             opacity: 0.7;
-            margin: 0 2px;
+            vertical-align: sub;
+            line-height: 0;
         }
 
         .price-change {
@@ -346,6 +347,18 @@
             max-width: 800px;
             font-weight: 400;
             margin: 0 auto 40px;
+        }
+
+        .switch-logo {
+            display: flex;
+            justify-content: center;
+            margin: 30px auto 40px;
+        }
+
+        .switch-logo img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
         }
 
         .widget-wrapper {
@@ -792,6 +805,9 @@
             <div class="container">
                 <h1>The Premier DEX Aggregator</h1>
                 <p class="description">Switch is your gateway to a seamless, efficient, and cost-effective decentralized trading experience. With access to millions of crypto assets across leading decentralized exchanges, Switch brings the power of cutting-edge technology and deep liquidity pools directly to your fingertips.</p>
+                <div class="switch-logo">
+                    <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/switch-logo.png" alt="Switch Logo">
+                </div>
                 <div class="widget-wrapper">
                     <iframe 
                         src="https://switch.win/widget?network=pulsechain&background_color=000000&font_color=0cf3c9&secondary_font_color=7a7a7a&border_color=80cced&from=0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee&to=0x591c914BC5c878cC398AF67681C388FaC8bdaf4e" 
