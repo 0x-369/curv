@@ -113,6 +113,45 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .price-display {
+            font-size: 0.9rem;
+            color: #0cf3c9;
+            font-weight: 600;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .price-value {
+            display: flex;
+            align-items: baseline;
+        }
+
+        .price-zeros {
+            font-size: 0.6rem;
+            opacity: 0.7;
+            margin: 0 2px;
+        }
+
+        .price-change {
+            font-size: 0.75rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .price-change.positive {
+            color: #00ff00;
+            background: rgba(0, 255, 0, 0.1);
+        }
+
+        .price-change.negative {
+            color: #ff0000;
+            background: rgba(255, 0, 0, 0.1);
         }
 
         .nav-links {
@@ -705,7 +744,13 @@
 <body>
     <header>
         <nav>
-            <div class="logo">CURV</div>
+            <div class="logo">
+                CURV
+                <div class="price-display">
+                    <span class="price-value" id="curvPrice">$0.00</span>
+                    <span id="priceChange" class="price-change">0%</span>
+                </div>
+            </div>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
@@ -885,6 +930,33 @@
             const navLinks = document.getElementById('navLinks');
             const sections = document.querySelectorAll('main section');
             const navItems = document.querySelectorAll('.nav-links a[href^="#"]');
+
+            // Fetch CURV price from DexScreener
+            async function fetchCurvPrice() {
+                try {
+                    const response = await fetch('https://api.dexscreener.com/latest/dex/pairs/pulsechain/0x1fcdcc8ec77CFba28D31556addA85358c3Af5873');
+                    const data = await response.json();
+                    
+                    if (data && data.pair) {
+                        const price = parseFloat(data.pair.priceUsd);
+                        const priceChange = parseFloat(data.pair.priceChange?.h24 || 0);
+                        
+                        document.getElementById('curvPrice').textContent = `${price.toFixed(6)}`;
+                        
+                        const priceChangeEl = document.getElementById('priceChange');
+                        priceChangeEl.textContent = `${priceChange >= 0 ? '+' : ''}${priceChange.toFixed(2)}%`;
+                        priceChangeEl.className = `price-change ${priceChange >= 0 ? 'positive' : 'negative'}`;
+                    }
+                } catch (error) {
+                    console.error('Error fetching price:', error);
+                }
+            }
+
+            // Fetch price on load
+            fetchCurvPrice();
+            
+            // Update price every 30 seconds
+            setInterval(fetchCurvPrice, 30000);
 
             // Function to show section based on hash
             function showSection(hash) {
