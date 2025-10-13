@@ -198,6 +198,20 @@
             display: block;
         }
 
+        .xgame-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .xgame-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
         .dropdown {
             position: relative;
         }
@@ -716,9 +730,12 @@
                     </a>
                 </li>
                 <li>
-                    <a href="https://xgame.io/" target="_blank" rel="noopener noreferrer" class="xgame-btn" title="XGame">
-                        <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/xgame-logo.png" alt="XGame">
-                    </a>
+                    <div class="xgame-container">
+                        <a href="https://xgame.io/" target="_blank" rel="noopener noreferrer" class="xgame-btn" title="XGame">
+                            <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/xgame-logo.png" alt="XGame">
+                        </a>
+                        <span class="xgame-label">XGAME</span>
+                    </div>
                 </li>
             </ul>
             <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">☰</button>
