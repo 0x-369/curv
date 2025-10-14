@@ -415,11 +415,58 @@
             border: 1px solid #0cf3c9;
             border-radius: 15px;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .info-link:hover {
             background: rgba(12, 243, 201, 0.1);
             box-shadow: 0 0 10px rgba(12, 243, 201, 0.3);
+        }
+
+        .info-modal {
+            display: none;
+            position: fixed;
+            z-index: 3000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info-modal.active {
+            display: flex;
+        }
+
+        .info-modal-content {
+            background: rgba(0, 0, 0, 0.95);
+            border: 2px solid #0cf3c9;
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 600px;
+            margin: 20px;
+            box-shadow: 0 0 30px rgba(12, 243, 201, 0.3);
+        }
+
+        .info-modal-content p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .info-modal-close {
+            float: right;
+            color: #0cf3c9;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 20px;
+        }
+
+        .info-modal-close:hover {
+            color: #fff;
         }
 
         .widget-wrapper {
@@ -881,7 +928,7 @@
                 <p class="description">Switch is your gateway to a seamless, efficient, and cost-effective decentralized trading experience. With access to millions of crypto assets across leading decentralized exchanges, Switch brings the power of cutting-edge technology and deep liquidity pools directly to your fingertips.</p>
                 <div class="fee-highlight">
                     <p>50% OF THE SWITCHING FEE'S SUPPORT CURV TOKEN</p>
-                    <a href="#fee-info" class="info-link">Info</a>
+                    <a href="#" class="info-link" onclick="openInfoModal(event)">Info</a>
                 </div>
                 <div class="widget-wrapper">
                     <iframe 
@@ -992,9 +1039,16 @@
         </section>
     </main>
 
+    <div id="infoModal" class="info-modal" onclick="closeInfoModal()">
+        <div class="info-modal-content" onclick="event.stopPropagation()">
+            <span class="info-modal-close" onclick="closeInfoModal()">&times;</span>
+            <p>*Once the official team from Switch turn on fee's for PulseChain within this aggregator, 50% of those fee's will go to CURV to support the $CURV token and marketing. THERE IS NO EXTRA COST TO THE USER! Fee's are ONLY generated for CURV if the Switch aggregator is used via CURV.</p>
+        </div>
+    </div>
+
     <footer>
         <div class="footer-content">
-            <div class="fee-message" id="fee-info">
+            <div class="fee-message">
                 <p>*Once the official team from Switch turn on fee's for PulseChain within this aggregator, 50% of those fee's will go to CURV to support the $CURV token and marketing. THERE IS NO EXTRA COST TO THE USER! Fee's are ONLY generated for CURV if the Switch aggregator is used via CURV.</p>
             </div>
             <div class="contract-section">
@@ -1144,6 +1198,16 @@
         function closeModal() {
             const modal = document.getElementById('imageModal');
             modal.classList.remove('active');
+        }
+
+        // Info modal functions
+        function openInfoModal(event) {
+            event.preventDefault();
+            document.getElementById('infoModal').classList.add('active');
+        }
+
+        function closeInfoModal() {
+            document.getElementById('infoModal').classList.remove('active');
         }
     </script>
 </body>
