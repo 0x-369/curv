@@ -268,6 +268,32 @@
             letter-spacing: 0.5px;
         }
 
+        .pulsechain-counter {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8px 16px;
+            background: rgba(12, 243, 201, 0.1);
+            border: 1px solid rgba(12, 243, 201, 0.3);
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(12, 243, 201, 0.2);
+        }
+
+        .counter-label {
+            font-size: 0.65rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 3px;
+        }
+
+        .counter-days {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #0cf3c9;
+            text-shadow: 0 0 10px rgba(12, 243, 201, 0.5);
+        }
+
         .dropdown {
             position: relative;
         }
@@ -362,7 +388,38 @@
             line-height: 1.7;
             max-width: 800px;
             font-weight: 400;
-            margin: 0 auto 40px;
+            margin: 0 auto 20px;
+        }
+
+        .fee-highlight {
+            text-align: center;
+            margin: 20px auto 10px;
+            max-width: 800px;
+        }
+
+        .fee-highlight p {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #0cf3c9;
+            text-shadow: 0 0 10px rgba(12, 243, 201, 0.3);
+            margin: 0;
+            display: inline;
+        }
+
+        .info-link {
+            color: #0cf3c9;
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-left: 10px;
+            padding: 4px 12px;
+            border: 1px solid #0cf3c9;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .info-link:hover {
+            background: rgba(12, 243, 201, 0.1);
+            box-shadow: 0 0 10px rgba(12, 243, 201, 0.3);
         }
 
         .widget-wrapper {
@@ -682,6 +739,12 @@
                 padding: 15px 20px;
             }
 
+            .pulsechain-counter {
+                order: -1;
+                margin-bottom: 15px;
+                width: 100%;
+            }
+
             .nav-links {
                 position: fixed;
                 top: 70px;
@@ -770,6 +833,10 @@
                 </div>
             </div>
             <ul class="nav-links" id="navLinks">
+                <div class="pulsechain-counter">
+                    <span class="counter-label">PulseChain</span>
+                    <span class="counter-days" id="pulseChainDays">0 Days</span>
+                </div>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#collective">CURV Collective</a></li>
@@ -812,6 +879,10 @@
             <div class="container">
                 <h1>The Premier DEX Aggregator</h1>
                 <p class="description">Switch is your gateway to a seamless, efficient, and cost-effective decentralized trading experience. With access to millions of crypto assets across leading decentralized exchanges, Switch brings the power of cutting-edge technology and deep liquidity pools directly to your fingertips.</p>
+                <div class="fee-highlight">
+                    <p>50% OF THE SWITCHING FEE'S SUPPORT CURV TOKEN</p>
+                    <a href="#fee-info" class="info-link">Info</a>
+                </div>
                 <div class="widget-wrapper">
                     <iframe 
                         src="https://switch.win/widget?network=pulsechain&background_color=000000&font_color=0cf3c9&secondary_font_color=7a7a7a&border_color=80cced&from=0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee&to=0x591c914BC5c878cC398AF67681C388FaC8bdaf4e" 
@@ -923,7 +994,7 @@
 
     <footer>
         <div class="footer-content">
-            <div class="fee-message">
+            <div class="fee-message" id="fee-info">
                 <p>*Once the official team from Switch turn on fee's for PulseChain within this aggregator, 50% of those fee's will go to CURV to support the $CURV token and marketing. THERE IS NO EXTRA COST TO THE USER! Fee's are ONLY generated for CURV if the Switch aggregator is used via CURV.</p>
             </div>
             <div class="contract-section">
@@ -977,6 +1048,30 @@
             
             // Update price every 30 seconds
             setInterval(fetchCurvPrice, 30000);
+
+            // PulseChain days counter
+            function updatePulseChainDays() {
+                const startDate = new Date('2023-05-13T18:00:00Z'); // May 13, 2023, 6pm UTC
+                const now = new Date();
+                const diffTime = Math.abs(now - startDate);
+                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                
+                document.getElementById('pulseChainDays').textContent = `${diffDays} Days`;
+            }
+
+            // Update days counter on load
+            updatePulseChainDays();
+            
+            // Update at midnight UTC every day
+            const now = new Date();
+            const tomorrow = new Date(now);
+            tomorrow.setUTCHours(24, 0, 0, 0);
+            const timeUntilMidnight = tomorrow - now;
+            
+            setTimeout(() => {
+                updatePulseChainDays();
+                setInterval(updatePulseChainDays, 24 * 60 * 60 * 1000); // Update every 24 hours
+            }, timeUntilMidnight);
 
             // Function to show section based on hash
             function showSection(hash) {
