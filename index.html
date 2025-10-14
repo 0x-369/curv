@@ -221,6 +221,20 @@
             display: none;
         }
 
+        .liberty-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .liberty-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
         .xgame-btn {
             display: flex;
             align-items: center;
@@ -775,9 +789,12 @@
                     </div>
                 </li>
                 <li>
-                    <a href="https://libertyswap.finance/curv" target="_blank" rel="noopener noreferrer" class="buy-btn" title="Bridge & Buy $CURV">
-                        <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/liberty.png" alt="Liberty Swap">
-                    </a>
+                    <div class="liberty-container">
+                        <a href="https://libertyswap.finance/curv" target="_blank" rel="noopener noreferrer" class="buy-btn" title="Bridge & Buy $CURV">
+                            <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/liberty.png" alt="Liberty Swap">
+                        </a>
+                        <span class="liberty-label">LibertySwap</span>
+                    </div>
                 </li>
                 <li>
                     <div class="xgame-container">
