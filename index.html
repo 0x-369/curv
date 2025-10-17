@@ -322,6 +322,7 @@
             border-radius: 12px;
             width: 100%;
             height: 900px;
+            display: block;
         }
 
         .about-title {
@@ -515,12 +516,19 @@
             font-family: 'Courier New', monospace;
             cursor: pointer;
             display: inline-block;
+            word-break: break-all;
+            max-width: 100%;
         }
 
         .copyright {
             color: rgba(255, 255, 255, 0.5);
             font-size: 0.9rem;
             margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
         .hamburger {
@@ -639,10 +647,27 @@
 
             iframe {
                 height: 650px;
+                margin: 0 auto;
             }
 
             .container {
                 padding: 15px;
+            }
+
+            footer {
+                padding: 30px 15px;
+                margin-top: 40px;
+            }
+
+            .contract-address {
+                font-size: 0.75rem;
+                padding: 12px 15px;
+                word-break: break-all;
+            }
+
+            .copyright {
+                font-size: 0.8rem;
+                gap: 10px;
             }
 
             .collective-hero-text h2 {
@@ -689,6 +714,15 @@
             .info-link {
                 font-size: 0.8rem;
                 padding: 3px 10px;
+            }
+
+            .contract-address {
+                font-size: 0.65rem;
+                padding: 10px 12px;
+            }
+
+            .copyright {
+                font-size: 0.75rem;
             }
         }
     </style>
@@ -858,8 +892,8 @@
             <h3 style="color: #0cf3c9; font-weight: 700; font-size: 1.3rem; margin-bottom: 20px; text-align: center;">$CURV Contract Address</h3>
             <div class="contract-address" onclick="copyAddress()" style="font-size: 1rem; padding: 20px; max-width: 800px; margin: 0 auto; text-align: center; border: 2px solid rgba(12, 243, 201, 0.3);">0x591c914BC5c878cC398AF67681C388FaC8bdaf4e</div>
         </div>
-        <div class="copyright" style="display: flex; align-items: center; justify-content: center; gap: 20px;">
-            © 2025 CURV. All rights reserved.
+        <div class="copyright">
+            <span>© 2025 CURV. All rights reserved.</span>
             <a href="https://x.com/0xCurv" target="_blank" rel="noopener noreferrer" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: all 0.3s ease;">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
