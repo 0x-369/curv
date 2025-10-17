@@ -264,20 +264,21 @@
             font-weight: 700;
             color: #0cf3c9;
             text-shadow: 0 0 10px rgba(12, 243, 201, 0.3);
-            margin: 0;
-            display: inline;
+            margin: 0 0 10px 0;
+            display: block;
         }
 
         .info-link {
             color: #0cf3c9;
             text-decoration: none;
             font-size: 0.9rem;
-            margin-left: 10px;
+            margin-left: 0;
             padding: 4px 12px;
             border: 1px solid #0cf3c9;
             border-radius: 15px;
             transition: all 0.3s ease;
             cursor: pointer;
+            display: inline-block;
         }
 
         .info-link:hover {
@@ -627,15 +628,21 @@
             }
 
             .fee-highlight p {
-                font-size: 1rem;
+                font-size: 0.95rem;
+                margin-bottom: 12px;
             }
 
             .widget-wrapper {
-                padding: 15px;
+                padding: 10px;
+                max-width: 100%;
             }
 
             iframe {
                 height: 650px;
+            }
+
+            .container {
+                padding: 15px;
             }
 
             .collective-hero-text h2 {
@@ -667,8 +674,21 @@
                 padding: 20px;
             }
 
+            .widget-wrapper {
+                padding: 5px;
+            }
+
             iframe {
                 height: 600px;
+            }
+
+            .fee-highlight p {
+                font-size: 0.85rem;
+            }
+
+            .info-link {
+                font-size: 0.8rem;
+                padding: 3px 10px;
             }
         }
     </style>
