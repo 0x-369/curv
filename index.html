@@ -522,15 +522,153 @@
             margin-top: 20px;
         }
 
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #0cf3c9;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 1024px) {
+            header {
+                padding: 15px 20px;
             }
+
+            nav {
+                flex-wrap: wrap;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+                gap: 10px;
+            }
+
+            .logo-icon {
+                width: 30px;
+                height: 30px;
+            }
+
+            .price-display {
+                font-size: 0.8rem;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 20px;
+                gap: 20px;
+                border-bottom: 1px solid rgba(12, 243, 201, 0.2);
+                max-height: calc(100vh - 80px);
+                overflow-y: auto;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .pulsechain-counter {
+                width: 100%;
+                padding: 15px;
+            }
+
+            .dropdown-menu {
+                position: static;
+                display: none;
+                background: rgba(12, 243, 201, 0.05);
+                margin-top: 10px;
+            }
+
+            .dropdown.active .dropdown-menu {
+                display: block;
+            }
+
+            .icon-button {
+                flex-direction: row;
+                gap: 10px;
+                padding: 10px;
+                border: 1px solid rgba(12, 243, 201, 0.3);
+                border-radius: 10px;
+                background: rgba(12, 243, 201, 0.05);
+            }
+
+            .icon-button img {
+                width: 30px;
+                height: 30px;
+            }
+
+            .icon-label {
+                font-size: 0.9rem;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .description {
+                font-size: 1rem;
+            }
+
+            .fee-highlight p {
+                font-size: 1rem;
+            }
+
+            .widget-wrapper {
+                padding: 15px;
+            }
+
+            iframe {
+                height: 650px;
+            }
+
+            .collective-hero-text h2 {
+                font-size: 1.8rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .logo {
+                font-size: 1rem;
+            }
+
+            .price-display {
+                font-size: 0.7rem;
+                flex-direction: column;
+                gap: 2px;
+            }
+
+            .collective-hero-text h2 {
+                font-size: 1.3rem;
+                padding: 20px;
+            }
+
             iframe {
                 height: 600px;
-            }
-            .collective-hero-text h2 {
-                font-size: 2rem;
             }
         }
     </style>
@@ -546,16 +684,21 @@
                     <span id="priceChange" class="price-change">0%</span>
                 </div>
             </div>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <ul class="nav-links" id="navLinks">
                 <div class="pulsechain-counter">
                     <span class="counter-label">PulseChain</span>
                     <span class="counter-days" id="pulseChainDays">0 Days</span>
                 </div>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#collective">CURV Collective</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle">Links</a>
+                <li><a href="#home" onclick="closeMenu()">Home</a></li>
+                <li><a href="#about" onclick="closeMenu()">About</a></li>
+                <li><a href="#collective" onclick="closeMenu()">CURV Collective</a></li>
+                <li class="dropdown" id="linksDropdown">
+                    <a href="#" class="dropdown-toggle" onclick="toggleDropdown(event)">Links</a>
                     <div class="dropdown-menu">
                         <a href="https://bridge.pulsechain.com/#/bridge" target="_blank">Pulse Bridge</a>
                         <a href="https://ipfs.app.pulsex.com/" target="_blank">PulseX</a>
@@ -855,6 +998,24 @@
             }).catch(err => {
                 console.error('Failed to copy:', err);
             });
+        }
+
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.remove('active');
+        }
+
+        function toggleDropdown(event) {
+            event.preventDefault();
+            if (window.innerWidth <= 1024) {
+                const dropdown = document.getElementById('linksDropdown');
+                dropdown.classList.toggle('active');
+            }
         }
     </script>
 </body>
