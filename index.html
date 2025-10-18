@@ -19,7 +19,205 @@
             position: relative;
             min-height: 100vh;
             padding: 0;
+            overflow: hidden;
+        }
+
+        body.intro-complete {
             overflow-x: hidden;
+        }
+
+        /* Intro Animation Styles */
+        #intro-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            z-index: 10000;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        #intro-container.fade-out {
+            animation: fadeOutIntro 0.8s ease forwards;
+        }
+
+        #intro-container.hidden {
+            display: none;
+        }
+
+        .ripple-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .ripple {
+            position: absolute;
+            border: 6px solid #0cf3c9;
+            border-radius: 50%;
+            animation: rippleEffect 2s ease-out infinite;
+            pointer-events: none;
+            box-shadow: 0 0 20px #0cf3c9, inset 0 0 20px #0cf3c9;
+        }
+
+        .ripple:nth-child(2) {
+            animation-delay: 0.5s;
+            border-color: #00d4ff;
+            box-shadow: 0 0 20px #00d4ff, inset 0 0 20px #00d4ff;
+        }
+
+        .ripple:nth-child(3) {
+            animation-delay: 1s;
+            border-color: #80cced;
+            box-shadow: 0 0 20px #80cced, inset 0 0 20px #80cced;
+        }
+
+        @keyframes rippleEffect {
+            0% {
+                width: 50px;
+                height: 50px;
+                opacity: 1;
+                transform: scale(1);
+            }
+            25% {
+                opacity: 0.9;
+            }
+            50% {
+                opacity: 0.6;
+            }
+            75% {
+                opacity: 0.3;
+            }
+            100% {
+                width: 1000px;
+                height: 1000px;
+                opacity: 0;
+                transform: scale(1.2);
+            }
+        }
+
+        .logo-wrapper {
+            position: relative;
+            z-index: 10;
+            animation: logoEntry 3s ease forwards;
+        }
+
+        .logo-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            border: 2px solid #0cf3c9;
+            border-radius: 50%;
+            opacity: 0;
+            animation: circlePulse 2s ease-in-out infinite 1s;
+        }
+
+        @keyframes circlePulse {
+            0% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+            50% {
+                opacity: 0.6;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+        }
+
+        .logo-wrapper img {
+            width: 500px;
+            height: auto;
+            filter: drop-shadow(0 0 30px #0cf3c9) drop-shadow(0 0 60px #00d4ff);
+            animation: hologramFlicker 0.8s ease, pulseGlow 2s ease-in-out infinite 0.8s;
+        }
+
+        @keyframes logoEntry {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            30% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+            50% {
+                transform: scale(0.95);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes hologramFlicker {
+            0%, 20%, 40%, 60%, 80%, 100% {
+                opacity: 1;
+            }
+            10%, 30%, 50%, 70%, 90% {
+                opacity: 0.3;
+            }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                filter: drop-shadow(0 0 30px #0cf3c9) drop-shadow(0 0 60px #00d4ff);
+            }
+            50% {
+                filter: drop-shadow(0 0 50px #0cf3c9) drop-shadow(0 0 100px #00d4ff);
+            }
+        }
+
+        @keyframes fadeOutIntro {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+
+        .skip-text {
+            position: absolute;
+            bottom: 40px;
+            color: #80cced;
+            font-size: 14px;
+            opacity: 0;
+            animation: fadeInText 1s ease 2s forwards;
+        }
+
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 0.6;
+            }
+        }
+
+        #main-website {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.8s ease, visibility 0s 0.8s;
+        }
+
+        #main-website.show {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.8s ease, visibility 0s 0s;
         }
 
         body::before {
@@ -680,6 +878,43 @@
             }
         }
 
+            @keyframes rippleEffect {
+                0% {
+                    width: 30px;
+                    height: 30px;
+                    opacity: 1;
+                    transform: scale(1);
+                }
+                100% {
+                    width: 600px;
+                    height: 600px;
+                    opacity: 0;
+                    transform: scale(1.2);
+                }
+            }
+
+            .logo-wrapper img {
+                width: 300px;
+            }
+
+            .logo-wrapper::before {
+                width: 400px;
+                height: 400px;
+            }
+
+            .ripple {
+                border: 4px solid #0cf3c9;
+            }
+
+            .ripple:nth-child(2) {
+                border-color: #00d4ff;
+            }
+
+            .ripple:nth-child(3) {
+                border-color: #80cced;
+            }
+        }
+
         @media (max-width: 480px) {
             h1 {
                 font-size: 1.5rem;
@@ -729,6 +964,21 @@
     </style>
 </head>
 <body>
+    <!-- Intro Animation -->
+    <div id="intro-container" onclick="skipIntro()">
+        <div class="ripple-container">
+            <div class="ripple"></div>
+            <div class="ripple"></div>
+            <div class="ripple"></div>
+        </div>
+        <div class="logo-wrapper">
+            <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/0xcurv-win-logo.png" alt="CURV Logo">
+        </div>
+        <div class="skip-text">Click anywhere to skip</div>
+    </div>
+
+    <!-- Main Website Content -->
+    <div id="main-website">
     <header>
         <nav>
             <div class="logo">
@@ -902,6 +1152,8 @@
             </a>
         </div>
     </footer>
+    </div>
+    <!-- End Main Website Content -->
 
     <div id="infoModal" class="modal" onclick="closeInfoModal()">
         <div class="modal-content-box" onclick="event.stopPropagation()">
@@ -947,6 +1199,27 @@
     </div>
 
     <script>
+        // Intro Animation Logic
+        // Auto-skip after 3.5 seconds
+        setTimeout(() => {
+            skipIntro();
+        }, 3500);
+
+        function skipIntro() {
+            const intro = document.getElementById('intro-container');
+            const mainWebsite = document.getElementById('main-website');
+            
+            intro.classList.add('fade-out');
+            
+            setTimeout(() => {
+                intro.classList.add('hidden');
+                mainWebsite.classList.add('show');
+                document.body.classList.add('intro-complete');
+                document.body.style.overflow = '';
+            }, 800);
+        }
+
+        // Main Website Logic
         document.addEventListener('DOMContentLoaded', () => {
             // Fetch CURV price
             async function fetchCurvPrice() {
