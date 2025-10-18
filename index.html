@@ -19,11 +19,15 @@
             position: relative;
             min-height: 100vh;
             padding: 0;
+        }
+
+        body.intro-active {
             overflow: hidden;
         }
 
         body.intro-complete {
             overflow-x: hidden;
+            overflow-y: auto;
         }
 
         /* Intro Animation Styles */
@@ -1200,6 +1204,9 @@
 
     <script>
         // Intro Animation Logic
+        // Set initial state
+        document.body.classList.add('intro-active');
+
         // Auto-skip after 3.5 seconds
         setTimeout(() => {
             skipIntro();
@@ -1214,8 +1221,8 @@
             setTimeout(() => {
                 intro.classList.add('hidden');
                 mainWebsite.classList.add('show');
+                document.body.classList.remove('intro-active');
                 document.body.classList.add('intro-complete');
-                document.body.style.overflow = '';
             }, 800);
         }
 
