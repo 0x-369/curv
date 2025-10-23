@@ -334,8 +334,45 @@
             background-clip: text;
             letter-spacing: 1px;
             display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .logo-top {
+            display: flex;
             align-items: center;
             gap: 15px;
+        }
+
+        .asset-trading-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8px 16px;
+            background: rgba(12, 243, 201, 0.1);
+            border: 1px solid rgba(12, 243, 201, 0.3);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .asset-trading-btn:hover {
+            background: rgba(12, 243, 201, 0.2);
+            border-color: rgba(12, 243, 201, 0.5);
+        }
+
+        .asset-trading-label {
+            font-size: 0.65rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .asset-trading-text {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #0cf3c9;
         }
 
         .logo-icon {
@@ -1067,11 +1104,17 @@
     <header>
         <nav>
             <div class="logo">
-                <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/curv-symbol.png" alt="CURV" class="logo-icon">
-                CURV
-                <div class="price-display">
-                    <span class="price-value" id="curvPrice">$0.00</span>
-                    <span id="priceChange" class="price-change">0%</span>
+                <div class="logo-top">
+                    <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/curv-symbol.png" alt="CURV" class="logo-icon">
+                    CURV
+                    <div class="price-display">
+                        <span class="price-value" id="curvPrice">$0.00</span>
+                        <span id="priceChange" class="price-change">0%</span>
+                    </div>
+                </div>
+                <div class="asset-trading-btn" onclick="openAssetTradingModal()">
+                    <span class="asset-trading-label">Preview</span>
+                    <span class="asset-trading-text">Asset Trading</span>
                 </div>
             </div>
             <div class="hamburger" onclick="toggleMenu()">
@@ -1283,6 +1326,11 @@
         </div>
     </div>
 
+    <div id="assetTradingModal" class="modal" onclick="closeAssetTradingModal()">
+        <span class="modal-close" onclick="closeAssetTradingModal()">&times;</span>
+        <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/p2m-preview.png" class="gallery-modal-img" id="assetTradingImg" alt="Asset Trading Preview">
+    </div>
+
     <script>
         // ===== SIMPLE ANALYTICS (No Third-Party Services) =====
         const analytics = {
@@ -1463,6 +1511,16 @@
         function closeGalleryModal() {
             document.getElementById('galleryModal').classList.remove('active');
             analytics.track('gallery_closed');
+        }
+
+        function openAssetTradingModal() {
+            document.getElementById('assetTradingModal').classList.add('active');
+            analytics.track('asset_trading_preview_opened');
+        }
+
+        function closeAssetTradingModal() {
+            document.getElementById('assetTradingModal').classList.remove('active');
+            analytics.track('asset_trading_preview_closed');
         }
 
         function copyAddress() {
