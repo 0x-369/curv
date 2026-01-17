@@ -1,43 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CURV Powered by Switch | Premier DEX Aggregator</title>
-    
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="CURV - The meme token with killer curves and zero taxes. Trade seamlessly on PulseChain with Switch DEX aggregator. Fair launch, token burns, and PulseChain power.">
-    <meta name="keywords" content="CURV, crypto, PulseChain, DEX, meme token, Switch, cryptocurrency, DeFi, decentralized exchange">
-    <meta name="author" content="CURV">
-    <link rel="canonical" href="https://www.0xcurv.win/">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.0xcurv.win/">
-    <meta property="og:title" content="CURV - Premier DEX Aggregator on PulseChain">
-    <meta property="og:description" content="The meme token with killer curves, juicy vibes, and zero-shame swagger! Trade with 0% taxes on PulseChain.">
-    <meta property="og:image" content="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/curv-symbol.png">
-    
-    <!-- Twitter / X -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://www.0xcurv.win/">
-    <meta property="twitter:title" content="CURV - Premier DEX Aggregator on PulseChain">
-    <meta property="twitter:description" content="The meme token with killer curves, juicy vibes, and zero-shame swagger! Trade with 0% taxes on PulseChain.">
-    <meta property="twitter:image" content="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/curv-symbol.png">
-    <meta property="twitter:site" content="@0xCurv">
-    
-    <!-- Structured Data (JSON-LD) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "CURV",
-      "description": "Premier DEX Aggregator on PulseChain",
-      "url": "https://www.0xcurv.win/",
-      "logo": "https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/curv-symbol.png",
-      "sameAs": [
-        "https://x.com/0xCurv"
-      ]
+        .tooltip-icon-wrapper {
+            text-align: center;
+            margin: 15px auto 15px;
+        }
     }
     </script>
     
@@ -320,15 +286,37 @@
         nav {
             max-width: 1200px;
             margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
             align-items: center;
+            gap: 16px;
+        }
+
+        .header-left {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .header-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .header-right {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 16px;
         }
 
         .logo {
             font-size: 1.5rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #0cf3c9 0%, #00d4ff 100%);
+            background: linear-gradient(135deg, #00ffd5 0%, #00b2ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -349,10 +337,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 8px 16px;
-            background: rgba(12, 243, 201, 0.1);
-            border: 1px solid rgba(12, 243, 201, 0.3);
-            border-radius: 12px;
+            padding: 0;
+            background: transparent;
+            border: none;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
@@ -360,15 +347,142 @@
             gap: 2px;
         }
 
-        .asset-trading-btn:hover {
-            background: rgba(12, 243, 201, 0.2);
-            border-color: rgba(12, 243, 201, 0.5);
+        .header-actions-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 6px;
         }
 
-        .asset-trading-text {
-            font-size: 0.9rem;
-            font-weight: 700;
+        .header-cta {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 0;
+        }
+
+        @media (max-width: 480px) {
+            .header-actions-row {
+                gap: 6px;
+            }
+
+            .header-btn {
+                padding: 7px 12px;
+                font-size: 0.85rem;
+                min-width: 68px;
+            }
+
+            .header-fee-banner {
+                order: 3;
+                width: 100%;
+                font-size: 0.72rem;
+                margin-top: 4px;
+            }
+        }
+
+        .asset-trading-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .header-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 7px 12px;
+            background: rgba(12, 243, 201, 0.08);
+            border: 1px solid rgba(12, 243, 201, 0.45);
+            border-radius: 12px;
             color: #0cf3c9;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.25px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            min-width: 68px;
+        }
+
+        .header-btn-switch {
+            background-image: linear-gradient(135deg, #00ffd5 0%, #00b2ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-btn-info {
+            background-image: linear-gradient(135deg, #00ffd5 0%, #00b2ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-btn-how {
+            background-image: linear-gradient(135deg, #00ffd5 0%, #00b2ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header-btn-otc {
+            background: linear-gradient(135deg, #00ffd5 0%, #00b2ff 100%);
+            border: none;
+            color: #000000;
+            -webkit-text-fill-color: #000000;
+            font-weight: 800;
+            letter-spacing: 0.05px;
+            box-shadow: none;
+            text-shadow: none;
+            -webkit-text-stroke: 0;
+            min-width: 90px;
+            justify-content: center;
+            transition: none;
+        }
+
+        .header-btn-otc:hover {
+            box-shadow: none;
+            transform: none;
+            background: linear-gradient(135deg, #00ffd5 0%, #00b2ff 100%);
+            color: #000000;
+        }
+
+        .header-btn-otc:active,
+        .header-btn-otc:visited {
+            color: #000000;
+        }
+
+        .header-btn:hover {
+            background: rgba(12, 243, 201, 0.16);
+            border-color: rgba(12, 243, 201, 0.6);
+            box-shadow: 0 0 0 2px rgba(12, 243, 201, 0.12);
+        }
+
+        .header-btn:active {
+            transform: translateY(1px);
+        }
+
+        .header-btn.header-btn-otc:hover,
+        .header-btn.header-btn-otc:active {
+            background: linear-gradient(135deg, #00ffd5 0%, #00b2ff 100%);
+            border: none;
+            box-shadow: none;
+            color: #000000;
+            -webkit-text-fill-color: #000000;
+            transform: none;
+        }
+
+        .header-fee-banner {
+            background: linear-gradient(135deg, #00ffd5 0%, #00b2ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            font-size: 0.78rem;
+            letter-spacing: 0.25px;
+            text-transform: uppercase;
+            text-align: center;
+            text-shadow: none;
+            padding: 2px 8px 0;
         }
 
         .logo-icon {
@@ -414,17 +528,29 @@
             list-style: none;
         }
 
-        .nav-links a {
-            color: rgba(255, 255, 255, 0.8);
+        .nav-links > li > a {
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
             font-size: 1rem;
             transition: all 0.3s ease;
             position: relative;
+            background: linear-gradient(135deg, #00ffd5 0%, #00b2ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .nav-links a:hover {
-            color: #0cf3c9;
+        .nav-links > li > a:hover {
+            background: linear-gradient(135deg, #00ffd5 0%, #00b2ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-link-center {
+            text-align: center;
+            display: inline-block;
+            line-height: 1.1;
         }
 
         .pulsechain-counter {
@@ -448,7 +574,10 @@
         .counter-days {
             font-size: 1.1rem;
             font-weight: 700;
-            color: #0cf3c9;
+            background: linear-gradient(135deg, #00ffd5 0%, #00b2ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .dropdown {
@@ -511,7 +640,7 @@
         }
 
         main {
-            padding-top: 140px;
+            padding-top: 100px;
             position: relative;
             z-index: 1;
         }
@@ -528,7 +657,7 @@
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 12px 20px 16px;
         }
 
         h1 {
@@ -536,7 +665,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            font-size: 2.8rem;
+            font-size: 2.4rem;
             text-align: center;
             font-weight: 700;
             margin-bottom: 20px;
@@ -553,16 +682,16 @@
 
         .fee-highlight {
             text-align: center;
-            margin: 20px auto 10px;
+            margin: 2px auto 2px;
             max-width: 800px;
         }
 
         .fee-highlight p {
-            font-size: 1.2rem;
+            font-size: 1.05rem;
             font-weight: 700;
             color: #0cf3c9;
             text-shadow: 0 0 10px rgba(12, 243, 201, 0.3);
-            margin: 0 0 10px 0;
+            margin: 0;
             display: block;
         }
 
@@ -578,6 +707,7 @@
             cursor: pointer;
             display: inline-block;
         }
+
 
         .info-link:hover {
             background: rgba(12, 243, 201, 0.1);
@@ -608,11 +738,11 @@
         .widget-wrapper {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 20px;
-            padding: 30px;
+            padding: 22px;
             box-shadow: 0 8px 32px rgba(0, 212, 255, 0.1);
             width: 100%;
             max-width: 900px;
-            margin: 0 auto;
+            margin: 4px auto 0;
         }
 
         iframe {
@@ -926,7 +1056,7 @@
             }
 
             h1 {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
             }
 
             .description {
@@ -1022,7 +1152,7 @@
 
         @media (max-width: 480px) {
             h1 {
-                font-size: 1.5rem;
+                font-size: 1.35rem;
             }
 
             .logo {
@@ -1098,69 +1228,71 @@
     <div id="main-website">
     <header>
         <nav>
-            <div class="logo">
-                <div class="logo-top">
-                    <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/curv-symbol.png" alt="CURV" class="logo-icon">
-                    CURV
-                    <div class="price-display">
-                        <span class="price-value" id="curvPrice">$0.00</span>
-                        <span id="priceChange" class="price-change">0%</span>
+            <div class="header-left">
+                <div class="logo">
+                    <div class="logo-top">
+                        <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/curv-symbol.png" alt="CURV" class="logo-icon">
+                        CURV
+                        <div class="price-display">
+                            <span class="price-value" id="curvPrice">$0.00</span>
+                            <span id="priceChange" class="price-change">0%</span>
+                        </div>
+                    </div>
+                    <div class="header-actions-row">
+                        <a class="header-btn header-btn-otc" href="https://app.0xcurv.win/" target="_blank" rel="noopener noreferrer">OTC</a>
+                        <div class="header-cta">
+                            <a href="#" class="header-btn header-btn-switch" onclick="openInfoModal(event)">SWITCH</a>
+                            <a href="#" class="header-btn header-btn-info" onclick="openInfoModal(event)">INFO</a>
+                            <button class="header-btn header-btn-how" onclick="openHowItWorksModal(event)">HOW IT WORKS</button>
+                        </div>
                     </div>
                 </div>
-                <a class="asset-trading-btn" href="https://app.0xcurv.win/" target="_blank" rel="noopener noreferrer">
-                    <span class="asset-trading-text">OTC</span>
-                </a>
             </div>
-            <div class="hamburger" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <ul class="nav-links" id="navLinks">
+
+            <div class="header-center">
                 <div class="pulsechain-counter">
                     <span class="counter-label">PulseChain</span>
                     <span class="counter-days" id="pulseChainDays">0 Days</span>
                 </div>
-                <li><a href="#home" onclick="closeMenu()">Home</a></li>
-                <li><a href="#about" onclick="closeMenu()">About</a></li>
-                <li><a href="#collective" onclick="closeMenu()">CURV Collective</a></li>
-                <li class="dropdown" id="linksDropdown">
-                    <a href="#" class="dropdown-toggle" onclick="toggleDropdown(event)">Links</a>
-                    <div class="dropdown-menu">
-                        <a href="https://bridge.pulsechain.com/#/bridge" target="_blank">Pulse Bridge</a>
-                        <a href="https://ipfs.app.pulsex.com/" target="_blank">PulseX</a>
-                        <a href="https://pulsechain.com/" target="_blank">PulseChain</a>
-                        <a href="https://www.pulsechainstats.com/" target="_blank">PulseChain Stats</a>
-                        <a href="https://scan.pulsechain.box/" target="_blank">Scan.PulseChain.box</a>
-                        <a href="https://scan.pulsechain.com/" target="_blank">Scan.PulseChain.com</a>
-                        <a href="https://pump.tires/" target="_blank">Pump Tires</a>
-                        <a href="https://www.buildthetech.com/" target="_blank">Build The Tech</a>
-                    </div>
-                </li>
-                <li>
-                    <a href="https://libertyswap.finance/curv" target="_blank" class="icon-button">
-                        <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/liberty.png" alt="Liberty Swap">
-                        <span class="icon-label">LibertySwap</span>
-                    </a>
-                </li>
-            </ul>
+                <div class="header-fee-banner">50% OF THE SWITCHING FEE'S SUPPORT CURV TOKEN</div>
+            </div>
+
+            <div class="header-right">
+                <div class="hamburger" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home" onclick="closeMenu()">Home</a></li>
+                    <li><a href="#about" onclick="closeMenu()">About</a></li>
+                    <li><a href="#collective" class="nav-link-center" onclick="closeMenu()">CURV Collective</a></li>
+                    <li class="dropdown" id="linksDropdown">
+                        <a href="#" class="dropdown-toggle" onclick="toggleDropdown(event)">Links</a>
+                        <div class="dropdown-menu">
+                            <a href="https://bridge.pulsechain.com/#/bridge" target="_blank">Pulse Bridge</a>
+                            <a href="https://ipfs.app.pulsex.com/" target="_blank">PulseX</a>
+                            <a href="https://pulsechain.com/" target="_blank">PulseChain</a>
+                            <a href="https://www.pulsechainstats.com/" target="_blank">PulseChain Stats</a>
+                            <a href="https://scan.pulsechain.com/" target="_blank">Scan.PulseChain.com</a>
+                            <a href="https://pump.tires/" target="_blank">Pump Tires</a>
+                            <a href="https://www.buildthetech.com/" target="_blank">Build The Tech</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="https://libertyswap.finance/curv" target="_blank" class="icon-button">
+                            <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/liberty.png" alt="Liberty Swap">
+                            <span class="icon-label">LibertySwap</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </nav>
     </header>
 
     <main>
         <section id="home" class="active">
             <div class="container">
-                <h1>The Premier DEX Aggregator</h1>
-                <p class="description">Switch is your gateway to seamless, efficient, and cost-effective decentralized trading. Access millions of crypto assets across leading DEXs with cutting-edge technology and deep liquidity pools.</p>
-                <div class="fee-highlight">
-                    <p>50% OF THE SWITCHING FEE'S SUPPORT CURV TOKEN</p>
-                    <a href="#" class="info-link" onclick="openInfoModal(event)">Info</a>
-                </div>
-
-                <div class="tooltip-icon-wrapper">
-                    <div class="tooltip-icon" onclick="openHowItWorksModal(event)">How It Works</div>
-                </div>
-
                 <div class="widget-wrapper">
                     <iframe src="https://switch.win/widget?network=pulsechain&background_color=000000&font_color=0cf3c9&secondary_font_color=7a7a7a&border_color=80cced&from=0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee&to=0x591c914BC5c878cC398AF67681C388FaC8bdaf4e" allow="clipboard-read; clipboard-write"></iframe>
                 </div>
@@ -1260,7 +1392,7 @@
             <div class="contract-address" onclick="copyAddress()" style="font-size: 1rem; padding: 20px; max-width: 800px; margin: 0 auto; text-align: center; border: 2px solid rgba(12, 243, 201, 0.3);">0x591c914BC5c878cC398AF67681C388FaC8bdaf4e</div>
         </div>
         <div class="copyright">
-            <span>© 2025 CURV. All rights reserved.</span>
+            <span>© 2026 CURV. All rights reserved.</span>
             <a href="https://x.com/0xCurv" target="_blank" rel="noopener noreferrer" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: all 0.3s ease;">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
@@ -1274,6 +1406,7 @@
     <div id="infoModal" class="modal" onclick="closeInfoModal()">
         <div class="modal-content-box" onclick="event.stopPropagation()">
             <span class="modal-close" onclick="closeInfoModal()">&times;</span>
+            <h2 style="background: linear-gradient(135deg, #0cf3c9 0%, #00d4ff 50%, #80cced 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 2rem; text-align: center; margin-bottom: 16px;">The Premier DEX Aggregator</h2>
             <p style="color: rgba(255, 255, 255, 0.9);">Once the official team from Switch turn on fees for PulseChain within this aggregator, 50% of those fees will go to CURV to support the $CURV token and marketing. THERE IS NO EXTRA COST TO THE USER! Fees are ONLY generated for CURV if the Switch aggregator is used via CURV.</p>
         </div>
     </div>
