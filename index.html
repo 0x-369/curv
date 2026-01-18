@@ -287,7 +287,7 @@
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: 1fr auto 1fr;
+            grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
             align-items: center;
             gap: 16px;
         }
@@ -297,6 +297,8 @@
             flex-direction: column;
             align-items: flex-start;
             gap: 10px;
+            justify-self: start;
+            min-width: 0;
         }
 
         .header-center {
@@ -304,13 +306,28 @@
             flex-direction: column;
             align-items: center;
             gap: 4px;
+            justify-self: center;
+            width: 100%;
+            max-width: 560px;
+        }
+
+        .header-counter-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            width: 100%;
         }
 
         .header-right {
             display: flex;
+            flex-direction: column;
             justify-content: flex-end;
-            align-items: center;
-            gap: 16px;
+            align-items: flex-end;
+            gap: 10px;
+            justify-self: end;
+            min-width: 0;
         }
 
         .logo {
@@ -352,6 +369,8 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 6px;
+            justify-content: center;
+            width: 100%;
         }
 
         .header-cta {
@@ -360,6 +379,7 @@
             flex-wrap: wrap;
             gap: 8px;
             margin-top: 0;
+            justify-content: flex-end;
         }
 
         @media (max-width: 480px) {
@@ -424,6 +444,18 @@
             background-clip: text;
         }
 
+        .header-btn-switch:hover,
+        .header-btn-info:hover,
+        .header-btn-how:hover {
+            background: transparent;
+            background-image: linear-gradient(135deg, #00ffd5 0%, #00b2ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            border-color: rgba(12, 243, 201, 0.45);
+            box-shadow: none;
+        }
+
         .header-btn-otc {
             background: linear-gradient(135deg, #00ffd5 0%, #00b2ff 100%);
             border: none;
@@ -455,6 +487,18 @@
             background: rgba(12, 243, 201, 0.16);
             border-color: rgba(12, 243, 201, 0.6);
             box-shadow: 0 0 0 2px rgba(12, 243, 201, 0.12);
+        }
+
+        .header-btn.header-btn-switch:hover,
+        .header-btn.header-btn-info:hover,
+        .header-btn.header-btn-how:hover {
+            background-image: linear-gradient(rgba(12, 243, 201, 0.08), rgba(12, 243, 201, 0.08)),
+                linear-gradient(135deg, #00ffd5 0%, #00b2ff 100%);
+            border-color: rgba(12, 243, 201, 0.45);
+            box-shadow: none;
+            -webkit-background-clip: padding-box, text;
+            -webkit-text-fill-color: transparent;
+            background-clip: padding-box, text;
         }
 
         .header-btn:active {
@@ -561,6 +605,10 @@
             background: rgba(12, 243, 201, 0.1);
             border: 1px solid rgba(12, 243, 201, 0.3);
             border-radius: 12px;
+            min-width: 220px;
+            min-height: 90px;
+            justify-content: center;
+            flex: 1;
         }
 
         .counter-label {
@@ -574,6 +622,15 @@
         .counter-days {
             font-size: 1.1rem;
             font-weight: 700;
+            background: linear-gradient(135deg, #00ffd5 0%, #00b2ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .counter-sub {
+            font-size: 0.75rem;
+            font-weight: 600;
             background: linear-gradient(135deg, #00ffd5 0%, #00b2ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -620,22 +677,21 @@
         }
 
         .icon-button {
-            display: flex;
-            flex-direction: column;
+            display: inline-flex;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
             text-decoration: none;
             cursor: pointer;
         }
 
         .icon-button img {
-            width: 40px;
-            height: 40px;
+            width: 28px;
+            height: 28px;
         }
 
         .icon-label {
             color: rgba(255, 255, 255, 0.8);
-            font-size: 0.7rem;
+            font-size: 1rem;
             font-weight: 600;
         }
 
@@ -972,6 +1028,24 @@
             background: #0cf3c9;
             border-radius: 3px;
             transition: all 0.3s ease;
+        }
+
+        @media (max-width: 1800px) {
+            nav {
+                grid-template-rows: auto auto;
+            }
+
+            .header-right {
+                grid-column: 1 / -1;
+                grid-row: 2;
+                justify-content: center;
+            }
+
+            .nav-links {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 18px;
+            }
         }
 
         @media (max-width: 1024px) {
@@ -1315,19 +1389,21 @@
                     </div>
                     <div class="header-actions-row">
                         <a class="header-btn header-btn-otc" href="https://app.0xcurv.win/" target="_blank" rel="noopener noreferrer">OTC</a>
-                        <div class="header-cta">
-                            <a href="#" class="header-btn header-btn-switch" onclick="openInfoModal(event)">SWITCH</a>
-                            <a href="#" class="header-btn header-btn-info" onclick="openInfoModal(event)">INFO</a>
-                            <button class="header-btn header-btn-how" onclick="openHowItWorksModal(event)">HOW IT WORKS</button>
-                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="header-center">
-                <div class="pulsechain-counter">
-                    <span class="counter-label">PulseChain</span>
-                    <span class="counter-days" id="pulseChainDays">0 Days</span>
+                <div class="header-counter-row">
+                    <div class="pulsechain-counter">
+                        <span class="counter-label">PulseChain</span>
+                        <span class="counter-days" id="pulseChainDays">0 Days</span>
+                    </div>
+                    <div class="pulsechain-counter">
+                        <span class="counter-label">Treasury</span>
+                        <span class="counter-days" id="treasuryAmount">-- CURV</span>
+                        <span class="counter-sub" id="treasuryPercent">--% of supply</span>
+                    </div>
                 </div>
                 <div class="header-fee-banner">50% OF THE SWITCHING FEE'S SUPPORT CURV TOKEN</div>
             </div>
@@ -1340,11 +1416,11 @@
                 </div>
                 <ul class="nav-links" id="navLinks">
                     <li><a href="#home" onclick="closeMenu()">Home</a></li>
-                    <li><a href="#about" onclick="closeMenu()">About</a></li>
-                    <li><a href="#collective" class="nav-link-center" onclick="closeMenu()">CURV Collective</a></li>
                     <li class="dropdown" id="linksDropdown">
                         <a href="#" class="dropdown-toggle" onclick="toggleDropdown(event)">Links</a>
                         <div class="dropdown-menu">
+                            <a href="#about" onclick="closeMenu()">About</a>
+                            <a href="#collective" onclick="closeMenu()">CURV Collective</a>
                             <a href="https://bridge.pulsechain.com/#/bridge" target="_blank">Pulse Bridge</a>
                             <a href="https://ipfs.app.pulsex.com/" target="_blank">PulseX</a>
                             <a href="https://pulsechain.com/" target="_blank">PulseChain</a>
@@ -1361,6 +1437,11 @@
                         </a>
                     </li>
                 </ul>
+                <div class="header-cta">
+                    <a href="#" class="header-btn header-btn-switch" onclick="openInfoModal(event)">SWITCH</a>
+                    <a href="#" class="header-btn header-btn-info" onclick="openInfoModal(event)">INFO</a>
+                    <button class="header-btn header-btn-how" onclick="openHowItWorksModal(event)">HOW IT WORKS</button>
+                </div>
             </div>
         </nav>
     </header>
@@ -1581,6 +1662,10 @@
 
         // Main Website Logic
         document.addEventListener('DOMContentLoaded', () => {
+            const PULSECHAIN_RPC = 'https://rpc.pulsechain.com';
+            const CURV_TOKEN = '0x591c914BC5c878cC398AF67681C388FaC8bdaf4e';
+            const TREASURY_WALLET = '0xd0AbBF095f446DD8F87701A307938B300366a488';
+
             // Lazy load images
             const lazyImages = document.querySelectorAll('img[loading="lazy"]');
             if ('IntersectionObserver' in window) {
@@ -1635,6 +1720,77 @@
 
             updatePulseChainDays();
             setInterval(updatePulseChainDays, 24 * 60 * 60 * 1000);
+
+            async function rpcCall(method, params) {
+                const response = await fetch(PULSECHAIN_RPC, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ jsonrpc: '2.0', id: 1, method, params })
+                });
+
+                const data = await response.json();
+                if (data.error) {
+                    throw new Error(data.error.message || 'RPC error');
+                }
+                return data.result;
+            }
+
+            function padAddress(address) {
+                return address.toLowerCase().replace(/^0x/, '').padStart(64, '0');
+            }
+
+            function formatUnits(value, decimals, displayDecimals = 0) {
+                const base = 10n ** BigInt(decimals);
+                const whole = value / base;
+                const fraction = value % base;
+
+                const wholeFormatted = whole.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                if (displayDecimals === 0) {
+                    return wholeFormatted;
+                }
+
+                const fracString = fraction.toString().padStart(decimals, '0').slice(0, displayDecimals);
+                return `${wholeFormatted}.${fracString}`;
+            }
+
+            function formatPercent(part, total) {
+                if (total === 0n) return '0.00';
+                const basisPoints = (part * 10000n) / total;
+                const whole = basisPoints / 100n;
+                const frac = (basisPoints % 100n).toString().padStart(2, '0');
+                return `${whole.toString()}.${frac}`;
+            }
+
+            async function fetchTreasuryData() {
+                try {
+                    const [decimalsHex, totalSupplyHex, balanceHex] = await Promise.all([
+                        rpcCall('eth_call', [{ to: CURV_TOKEN, data: '0x313ce567' }, 'latest']),
+                        rpcCall('eth_call', [{ to: CURV_TOKEN, data: '0x18160ddd' }, 'latest']),
+                        rpcCall('eth_call', [{
+                            to: CURV_TOKEN,
+                            data: `0x70a08231${padAddress(TREASURY_WALLET)}`
+                        }, 'latest'])
+                    ]);
+
+                    const decimals = Number(BigInt(decimalsHex));
+                    const totalSupply = BigInt(totalSupplyHex);
+                    const treasuryBalance = BigInt(balanceHex);
+
+                    const treasuryText = `${formatUnits(treasuryBalance, decimals, 0)} CURV`;
+                    const percentText = `${formatPercent(treasuryBalance, totalSupply)}% of supply`;
+
+                    const treasuryAmountEl = document.getElementById('treasuryAmount');
+                    const treasuryPercentEl = document.getElementById('treasuryPercent');
+
+                    if (treasuryAmountEl) treasuryAmountEl.textContent = treasuryText;
+                    if (treasuryPercentEl) treasuryPercentEl.textContent = percentText;
+                } catch (error) {
+                    console.error('Error fetching treasury data:', error);
+                }
+            }
+
+            fetchTreasuryData();
+            setInterval(fetchTreasuryData, 60000);
 
             // Handle URL hash navigation
             function showSection(hash) {
