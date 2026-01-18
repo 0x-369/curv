@@ -544,6 +544,17 @@
             gap: 8px;
         }
 
+        .price-zeros {
+            font-size: 0.6em;
+            vertical-align: super;
+            letter-spacing: 0.5px;
+            margin: 0 1px;
+        }
+
+        .price-tail {
+            letter-spacing: 0.5px;
+        }
+
         .price-value {
             display: flex;
             align-items: baseline;
@@ -1666,6 +1677,27 @@
             const CURV_TOKEN = '0x591c914BC5c878cC398AF67681C388FaC8bdaf4e';
             const TREASURY_WALLET = '0xd0AbBF095f446DD8F87701A307938B300366a488';
 
+            function formatPriceWithZeroCount(value, decimals = 7) {
+                const fixed = Number(value).toFixed(decimals);
+                const [intPart, decPart = ''] = fixed.split('.');
+
+                if (intPart !== '0') {
+                    return `${intPart}.${decPart}`;
+                }
+
+                let zeroCount = 0;
+                while (zeroCount < decPart.length && decPart[zeroCount] === '0') {
+                    zeroCount += 1;
+                }
+
+                if (zeroCount === 0) {
+                    return `${intPart}.${decPart}`;
+                }
+
+                const tail = decPart.slice(zeroCount) || '0';
+                return `${intPart}.0<span class="price-zeros">${zeroCount}</span><span class="price-tail">${tail}</span>`;
+            }
+
             // Lazy load images
             const lazyImages = document.querySelectorAll('img[loading="lazy"]');
             if ('IntersectionObserver' in window) {
@@ -1694,7 +1726,10 @@
                         const price = parseFloat(data.pair.priceUsd);
                         const priceChange = parseFloat(data.pair.priceChange?.h24 || 0);
                         
-                        document.getElementById('curvPrice').textContent = `${price.toFixed(7)}`;
+                        const curvPriceEl = document.getElementById('curvPrice');
+                        if (curvPriceEl) {
+                            curvPriceEl.innerHTML = formatPriceWithZeroCount(price, 8);
+                        }
                         
                         const priceChangeEl = document.getElementById('priceChange');
                         priceChangeEl.textContent = `${priceChange >= 0 ? '+' : ''}${priceChange.toFixed(2)}%`;
