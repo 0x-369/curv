@@ -1694,7 +1694,7 @@
                         const price = parseFloat(data.pair.priceUsd);
                         const priceChange = parseFloat(data.pair.priceChange?.h24 || 0);
                         
-                        document.getElementById('curvPrice').textContent = `${price.toFixed(6)}`;
+                        document.getElementById('curvPrice').textContent = `${price.toFixed(7)}`;
                         
                         const priceChangeEl = document.getElementById('priceChange');
                         priceChangeEl.textContent = `${priceChange >= 0 ? '+' : ''}${priceChange.toFixed(2)}%`;
