@@ -1262,6 +1262,7 @@
                 display: flex;
                 gap: 10px;
                 justify-content: center;
+                flex-wrap: wrap;
             }
 
             .mobile-cta-links .header-btn {
@@ -1269,6 +1270,14 @@
                 font-size: 0.95rem;
                 min-width: 80px;
                 border-radius: 10px;
+            }
+
+            .dropdown:hover .dropdown-menu {
+                display: none;
+            }
+
+            .dropdown.active .dropdown-menu {
+                display: block;
             }
 
             .icon-label {
@@ -2036,8 +2045,10 @@
             // Menu navigation
             document.querySelectorAll('nav a[href^="#"]').forEach(link => {
                 link.addEventListener('click', (e) => {
+                    // Skip dropdown toggles - they handle their own click
+                    if (link.classList.contains('dropdown-toggle')) return;
                     const href = link.getAttribute('href');
-                    if (href.startsWith('#')) {
+                    if (href.startsWith('#') && href.length > 1) {
                         e.preventDefault();
                         window.location.hash = href.substring(1);
                     }
@@ -2111,6 +2122,7 @@
 
         function toggleDropdown(event) {
             event.preventDefault();
+            event.stopPropagation();
             if (window.innerWidth <= 1024) {
                 const dropdown = document.getElementById('linksDropdown');
                 const isActive = dropdown.classList.toggle('active');
