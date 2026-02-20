@@ -620,6 +620,10 @@
             line-height: 1.1;
         }
 
+        .nav-mobile-label {
+            display: none;
+        }
+
         .pulsechain-counter {
             display: flex;
             flex-direction: column;
@@ -1203,11 +1207,26 @@
             }
 
             .nav-links > li > a {
-                display: block;
+                display: flex;
+                align-items: center;
                 padding: 18px 24px;
                 font-size: 1.15rem;
                 font-weight: 600;
                 letter-spacing: 0.5px;
+            }
+
+            .nav-mobile-label {
+                display: inline-block;
+                margin-left: 12px;
+                background: linear-gradient(135deg, #00ffd5 0%, #00b2ff 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+            }
+
+            /* Chevron sits after the label on the dropdown toggle */
+            .dropdown-toggle .nav-mobile-label {
+                flex: 1;
             }
 
             .nav-links > li:first-child {
@@ -1290,26 +1309,7 @@
             }
 
             .mobile-cta-links {
-                padding: 24px 20px;
-                border-bottom: none !important;
-            }
-
-            .mobile-cta-links .header-actions-row {
-                display: flex;
-                gap: 10px;
-                justify-content: center;
-                flex-wrap: wrap;
-                width: 100%;
-            }
-
-            .mobile-cta-links .header-btn {
-                padding: 12px 18px;
-                font-size: 0.9rem;
-                min-width: 0;
-                flex: 1 1 auto;
-                border-radius: 10px;
-                text-align: center;
-                white-space: nowrap;
+                display: none;
             }
 
             .dropdown:hover .dropdown-menu {
@@ -1623,7 +1623,7 @@
                         </div>
                     </div>
                     <div class="header-actions-row">
-                        <a class="header-btn header-btn-otc" href="https://app.0xcurv.win/" target="_blank" rel="noopener noreferrer">OTC</a>
+                        <a class="header-btn header-btn-otc" href="https://app.0xcurv.win/" target="_blank" rel="noopener noreferrer">LAUNCH P2M</a>
                     </div>
                 </div>
             </div>
@@ -1645,15 +1645,40 @@
 
             <div class="header-right">
                 <ul class="nav-links" id="navLinks">
-                    <li><a href="#home" onclick="closeMenu()">Home</a></li>
+                    <li><a href="#home" onclick="closeMenu()" aria-label="Home" style="display:flex;align-items:center;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#homeGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="-webkit-text-fill-color:initial;flex-shrink:0;">
+                            <defs>
+                                <linearGradient id="homeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#00ffd5"/>
+                                    <stop offset="100%" stop-color="#00b2ff"/>
+                                </linearGradient>
+                            </defs>
+                            <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9.5z"/>
+                            <polyline points="9 21 9 12 15 12 15 21"/>
+                        </svg>
+                        <span class="nav-mobile-label">Home</span>
+                    </a></li>
                     <li class="dropdown" id="linksDropdown">
-                        <a href="#" class="dropdown-toggle" onclick="toggleDropdown(event)">Links</a>
+                        <a href="#" class="dropdown-toggle" onclick="toggleDropdown(event)" aria-label="Links" style="display:flex;align-items:center;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#linkGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="-webkit-text-fill-color:initial;flex-shrink:0;">
+                                <defs>
+                                    <linearGradient id="linkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#00ffd5"/>
+                                        <stop offset="100%" stop-color="#00b2ff"/>
+                                    </linearGradient>
+                                </defs>
+                                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                            </svg>
+                            <span class="nav-mobile-label">Links</span>
+                        </a>
                         <div class="dropdown-menu">
                             <a href="#about" onclick="closeMenu()">About</a>
                             <a href="#collective" onclick="closeMenu()">CURV Collective</a>
                             <a href="https://bridge.pulsechain.com/#/bridge" target="_blank">Pulse Bridge</a>
                             <a href="https://ipfs.app.pulsex.com/" target="_blank">PulseX</a>
                             <a href="https://pulsechain.com/" target="_blank">PulseChain</a>
+                            <a href="https://app.provex.com/" target="_blank">ProveX</a>
                             <a href="https://www.pulsechainstats.com/" target="_blank">PulseChain Stats</a>
                             <a href="https://scan.pulsechain.com/" target="_blank">Scan.PulseChain.com</a>
                             <a href="https://pump.tires/" target="_blank">Pump Tires</a>
@@ -1661,16 +1686,26 @@
                         </div>
                     </li>
                     <li>
+                        <a href="#" onclick="openCombinedModal(event)" aria-label="Info & How It Works" style="display:flex;align-items:center;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#infoGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="-webkit-text-fill-color:initial;flex-shrink:0;">
+                                <defs>
+                                    <linearGradient id="infoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#00ffd5"/>
+                                        <stop offset="100%" stop-color="#00b2ff"/>
+                                    </linearGradient>
+                                </defs>
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                                <line x1="12" y1="17" x2="12.01" y2="17"/>
+                            </svg>
+                            <span class="nav-mobile-label">Info</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="https://libertyswap.finance/curv" target="_blank" class="icon-button">
                             <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/liberty.png" alt="Liberty Swap">
                             <span class="icon-label">LibertySwap</span>
                         </a>
-                    </li>
-                    <li class="mobile-cta-links">
-                        <div class="header-actions-row">
-                            <a href="#" class="header-btn header-btn-info" onclick="openInfoModal(event); closeMenu();">INFO</a>
-                            <button class="header-btn header-btn-how" onclick="openHowItWorksModal(event); closeMenu();">HOW IT WORKS</button>
-                        </div>
                     </li>
                 </ul>
                 <div class="hamburger" onclick="toggleMenu()" style="z-index: 10001; position: relative;">
@@ -1678,10 +1713,7 @@
                     <span></span>
                     <span></span>
                 </div>
-                <div class="header-cta">
-                    <a href="#" class="header-btn header-btn-info" onclick="openInfoModal(event)">INFO</a>
-                    <button class="header-btn header-btn-how" onclick="openHowItWorksModal(event)">HOW IT WORKS</button>
-                </div>
+
             </div>
         </nav>
     </header>
@@ -1799,17 +1831,18 @@
     </div>
     <!-- End Main Website Content -->
 
-    <div id="infoModal" class="modal" onclick="closeInfoModal()">
+    <div id="combinedModal" class="modal" onclick="closeCombinedModal()">
         <div class="modal-content-box" onclick="event.stopPropagation()">
-            <span class="modal-close" onclick="closeInfoModal()">&times;</span>
-            <h2 style="background: linear-gradient(135deg, #0cf3c9 0%, #00d4ff 50%, #80cced 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 2rem; text-align: center; margin-bottom: 16px;">The Premier DEX Aggregator</h2>
-            <p style="color: rgba(255, 255, 255, 0.9);">Switch controls the fee (0.3%) for PulseChain within this aggregator, 50% of those fees will go to CURV to support the $CURV token and marketing. THERE IS NO EXTRA COST TO THE USER! Fees are ONLY generated for CURV if the Switch aggregator is used via CURV.</p>
-        </div>
-    </div>
+            <span class="modal-close" onclick="closeCombinedModal()">&times;</span>
 
-    <div id="howItWorksModal" class="modal" onclick="closeHowItWorksModal()">
-        <div class="modal-content-box" onclick="event.stopPropagation()">
-            <span class="modal-close" onclick="closeHowItWorksModal()">&times;</span>
+            <!-- INFO SECTION -->
+            <h2 style="background: linear-gradient(135deg, #0cf3c9 0%, #00d4ff 50%, #80cced 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 2rem; text-align: center; margin-bottom: 16px;">The Premier DEX Aggregator</h2>
+            <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 36px;">Switch controls the fee (0.3%) for PulseChain within this aggregator, 50% of those fees will go to CURV to support the $CURV token and marketing. THERE IS NO EXTRA COST TO THE USER! Fees are ONLY generated for CURV if the Switch aggregator is used via CURV.</p>
+
+            <!-- DIVIDER -->
+            <hr style="border: none; border-top: 1px solid rgba(12, 243, 201, 0.25); margin-bottom: 32px;">
+
+            <!-- HOW IT WORKS SECTION -->
             <h2 style="background: linear-gradient(135deg, #0cf3c9 0%, #00d4ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 2rem; text-align: center; margin-bottom: 20px;">How It Works</h2>
             <p style="color: rgba(255, 255, 255, 0.85); text-align: center; margin-bottom: 30px;">Whether you're a seasoned trader or a newcomer, Switch offers an intuitive platform designed to make trading effortless.</p>
             
@@ -2093,27 +2126,22 @@
             });
         });
 
-        function openInfoModal(event) {
+        function openCombinedModal(event) {
             event.preventDefault();
-            document.getElementById('infoModal').classList.add('active');
-            analytics.track('modal_opened', { modal: 'info' });
+            document.getElementById('combinedModal').classList.add('active');
+            analytics.track('modal_opened', { modal: 'info_how_it_works' });
         }
 
-        function closeInfoModal() {
-            document.getElementById('infoModal').classList.remove('active');
-            analytics.track('modal_closed', { modal: 'info' });
+        function closeCombinedModal() {
+            document.getElementById('combinedModal').classList.remove('active');
+            analytics.track('modal_closed', { modal: 'info_how_it_works' });
         }
 
-        function openHowItWorksModal(event) {
-            event.preventDefault();
-            document.getElementById('howItWorksModal').classList.add('active');
-            analytics.track('modal_opened', { modal: 'how_it_works' });
-        }
-
-        function closeHowItWorksModal() {
-            document.getElementById('howItWorksModal').classList.remove('active');
-            analytics.track('modal_closed', { modal: 'how_it_works' });
-        }
+        // Legacy aliases (kept for safety)
+        function openInfoModal(event) { openCombinedModal(event); }
+        function closeInfoModal() { closeCombinedModal(); }
+        function openHowItWorksModal(event) { openCombinedModal(event); }
+        function closeHowItWorksModal() { closeCombinedModal(); }
 
         function openGalleryModal(imageSrc) {
             document.getElementById('galleryModal').classList.add('active');
