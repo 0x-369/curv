@@ -620,8 +620,60 @@
             line-height: 1.1;
         }
 
-        .nav-mobile-label {
-            display: none;
+        .treasury-info-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            min-width: 32px;
+            min-height: 32px;
+        }
+
+        .treasury-info-btn svg {
+            transition: opacity 0.2s;
+        }
+
+        .treasury-info-btn:hover svg {
+            opacity: 0.7;
+        }
+
+        .treasury-holdings-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(12, 243, 201, 0.1);
+        }
+
+        .treasury-holdings-row:last-child {
+            border-bottom: none;
+        }
+
+        .treasury-token-name {
+            font-weight: 600;
+            color: #0cf3c9;
+        }
+
+        .treasury-token-amount {
+            color: rgba(255,255,255,0.9);
+            text-align: right;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .treasury-counter-wrap {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .treasury-loading {
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+            padding: 20px 0;
         }
 
         .pulsechain-counter {
@@ -1499,6 +1551,24 @@
                 width: 0;
             }
 
+            .treasury-counter-wrap {
+                flex: 1 1 0;
+                width: 0;
+                align-items: center;
+            }
+
+            .treasury-counter-wrap .pulsechain-counter {
+                flex: 1 1 0;
+                width: 0;
+            }
+
+            .treasury-info-btn {
+                min-width: 44px;
+                min-height: 44px;
+                padding: 8px;
+                flex-shrink: 0;
+            }
+
             .counter-label {
                 font-size: 0.55rem;
             }
@@ -1634,10 +1704,19 @@
                         <span class="counter-label">PulseChain</span>
                         <span class="counter-days" id="pulseChainDays">0 Days</span>
                     </div>
+                    <div class="treasury-counter-wrap">
                     <div class="pulsechain-counter">
                         <span class="counter-label">Treasury</span>
                         <span class="counter-days" id="treasuryAmount">-- CURV</span>
                         <span class="counter-sub" id="treasuryPercent">--% of supply</span>
+                    </div>
+                    <button class="treasury-info-btn" onclick="openTreasuryModal()" aria-label="Treasury holdings">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00ffd5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="12" y1="12" x2="12" y2="16"/>
+                            <circle cx="12" cy="8.5" r="1.2" fill="#00ffd5" stroke="none"/>
+                        </svg>
+                    </button>
                     </div>
                 </div>
                 <div class="header-fee-banner">50% OF THE SWITCHING FEE'S SUPPORT CURV TOKEN</div>
@@ -1830,6 +1909,15 @@
     </footer>
     </div>
     <!-- End Main Website Content -->
+
+    <div id="treasuryHoldingsModal" class="modal" onclick="closeTreasuryModal()">
+        <div class="modal-content-box" onclick="event.stopPropagation()" style="max-width:480px;">
+            <span class="modal-close" onclick="closeTreasuryModal()">&times;</span>
+            <h2 style="background: linear-gradient(135deg, #0cf3c9 0%, #00d4ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 1.6rem; text-align: center; margin-bottom: 6px;">Treasury Holdings</h2>
+            <p style="color:rgba(255,255,255,0.45); font-size:0.75rem; text-align:center; margin-bottom:20px; word-break:break-all;">0xd0AbBF095f446DD8F87701A307938B300366a488</p>
+            <div id="treasuryHoldingsList"><div class="treasury-loading">Loading balances…</div></div>
+        </div>
+    </div>
 
     <div id="combinedModal" class="modal" onclick="closeCombinedModal()">
         <div class="modal-content-box" onclick="event.stopPropagation()">
@@ -2125,6 +2213,81 @@
                 });
             });
         });
+
+        function openTreasuryModal() {
+            document.getElementById('treasuryHoldingsModal').classList.add('active');
+            loadTreasuryHoldings();
+            analytics.track('modal_opened', { modal: 'treasury_holdings' });
+        }
+
+        function closeTreasuryModal() {
+            document.getElementById('treasuryHoldingsModal').classList.remove('active');
+        }
+
+        async function loadTreasuryHoldings() {
+            const WALLET = '0xd0AbBF095f446DD8F87701A307938B300366a488';
+            const RPC = 'https://rpc.pulsechain.com';
+            const el = document.getElementById('treasuryHoldingsList');
+            el.innerHTML = '<div class="treasury-loading">Loading balances…</div>';
+
+            function fmtUnits(raw, dec) {
+                const s = BigInt(raw).toString();
+                const d = Number(dec);
+                const padded = s.padStart(d + 1, '0');
+                const whole = padded.slice(0, padded.length - d) || '0';
+                const frac  = padded.slice(padded.length - d, padded.length - d + 4);
+                const wholeFormatted = whole.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                const trimmed = frac.replace(/0+$/, '');
+                return trimmed ? `${wholeFormatted}.${trimmed}` : wholeFormatted;
+            }
+
+            try {
+                // Fetch native PLS balance + all ERC-20 tokens in parallel
+                const [plsRes, tokenList] = await Promise.all([
+                    fetch(RPC, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'eth_getBalance', params: [WALLET, 'latest'] })
+                    }).then(r => r.json()),
+                    fetch(`https://api.scan.pulsechain.com/api/v2/addresses/${WALLET}/token-balances`).then(r => r.json())
+                ]);
+
+                const rows = [];
+
+                // Native PLS
+                const plsRaw = BigInt(plsRes.result || '0x0');
+                if (plsRaw > 0n) {
+                    rows.push({ symbol: 'PLS', amount: fmtUnits(plsRaw, 18) });
+                }
+
+                // ERC-20 tokens — response is a flat array
+                if (Array.isArray(tokenList)) {
+                    tokenList.forEach(item => {
+                        const raw = BigInt(item.value || '0');
+                        if (raw > 0n && item.token?.type === 'ERC-20') {
+                            rows.push({
+                                symbol: item.token.symbol || item.token.name || '???',
+                                amount: fmtUnits(raw, item.token.decimals || '18')
+                            });
+                        }
+                    });
+                }
+
+                if (rows.length === 0) {
+                    el.innerHTML = '<div class="treasury-loading">No token balances found.</div>';
+                    return;
+                }
+
+                el.innerHTML = rows.map(r => `
+                    <div class="treasury-holdings-row">
+                        <span class="treasury-token-name">${r.symbol}</span>
+                        <span class="treasury-token-amount">${r.amount}</span>
+                    </div>`).join('');
+            } catch(err) {
+                el.innerHTML = `<div class="treasury-loading">Failed to load: ${err.message}</div>`;
+                console.error(err);
+            }
+        }
 
         function openCombinedModal(event) {
             event.preventDefault();
