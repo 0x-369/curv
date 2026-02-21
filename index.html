@@ -624,13 +624,15 @@
             background: none;
             border: none;
             cursor: pointer;
-            padding: 6px;
+            padding: 3px;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-shrink: 0;
-            min-width: 32px;
-            min-height: 32px;
+            position: absolute;
+            top: 3px;
+            right: 3px;
+            min-width: 22px;
+            min-height: 22px;
         }
 
         .treasury-info-btn svg {
@@ -1563,10 +1565,11 @@
             }
 
             .treasury-info-btn {
-                min-width: 44px;
-                min-height: 44px;
-                padding: 8px;
-                flex-shrink: 0;
+                min-width: 28px;
+                min-height: 28px;
+                padding: 4px;
+                top: 3px;
+                right: 3px;
             }
 
             .counter-label {
@@ -1704,19 +1707,17 @@
                         <span class="counter-label">PulseChain</span>
                         <span class="counter-days" id="pulseChainDays">0 Days</span>
                     </div>
-                    <div class="treasury-counter-wrap">
-                    <div class="pulsechain-counter">
+                    <div class="pulsechain-counter" style="position:relative;">
                         <span class="counter-label">Treasury</span>
                         <span class="counter-days" id="treasuryAmount">-- CURV</span>
                         <span class="counter-sub" id="treasuryPercent">--% of supply</span>
-                    </div>
-                    <button class="treasury-info-btn" onclick="openTreasuryModal()" aria-label="Treasury holdings">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00ffd5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"/>
-                            <line x1="12" y1="12" x2="12" y2="16"/>
-                            <circle cx="12" cy="8.5" r="1.2" fill="#00ffd5" stroke="none"/>
-                        </svg>
-                    </button>
+                        <button class="treasury-info-btn" onclick="openTreasuryModal()" aria-label="Treasury holdings">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00ffd5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="12" y1="12" x2="12" y2="16"/>
+                                <circle cx="12" cy="8.5" r="1.2" fill="#00ffd5" stroke="none"/>
+                            </svg>
+                        </button>
                     </div>
                 </div>
                 <div class="header-fee-banner">50% OF THE SWITCHING FEE'S SUPPORT CURV TOKEN</div>
