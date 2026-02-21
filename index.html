@@ -2263,12 +2263,20 @@
                 }
 
                 // ERC-20 tokens — response is a flat array
+                // Override symbols where on-chain name is ambiguous
+                const SYMBOL_OVERRIDES = {
+                    '0x57fde0a71132198bbeC939b98976993d8d89d225': 'eHEX',
+                };
+
                 if (Array.isArray(tokenList)) {
                     tokenList.forEach(item => {
                         const raw = BigInt(item.value || '0');
                         if (raw > 0n && item.token?.type === 'ERC-20') {
+                            const addr = (item.token.address || '').toLowerCase();
+                            const overrideKey = Object.keys(SYMBOL_OVERRIDES).find(k => k.toLowerCase() === addr);
+                            const symbol = overrideKey ? SYMBOL_OVERRIDES[overrideKey] : (item.token.symbol || item.token.name || '???');
                             rows.push({
-                                symbol: item.token.symbol || item.token.name || '???',
+                                symbol,
                                 amount: fmtUnits(raw, item.token.decimals || '18')
                             });
                         }
