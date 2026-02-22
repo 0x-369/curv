@@ -576,6 +576,14 @@
             display: flex;
             align-items: baseline;
             gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .price-wpls {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: rgba(255,255,255,0.55);
+            letter-spacing: 0.3px;
         }
 
         .price-zeros {
@@ -1266,6 +1274,10 @@
                 font-size: 0.8rem;
             }
 
+            .price-wpls {
+                font-size: 0.72rem;
+            }
+
             .hamburger {
                 display: flex;
             }
@@ -1763,6 +1775,7 @@
                         <div class="price-display">
                             <span class="price-value" id="curvPrice">$0.00</span>
                             <span id="priceChange" class="price-change">0%</span>
+                            <span id="curvPriceWpls" class="price-wpls">-- WPLS</span>
                         </div>
                     </div>
                     <div class="header-actions-row">
@@ -2312,6 +2325,12 @@
                         const priceChangeEl = document.getElementById('priceChange');
                         priceChangeEl.textContent = `${priceChange >= 0 ? '+' : ''}${priceChange.toFixed(2)}%`;
                         priceChangeEl.className = `price-change ${priceChange >= 0 ? 'positive' : 'negative'}`;
+
+                        const priceNative = parseFloat(data.pair.priceNative || 0);
+                        const wplsEl = document.getElementById('curvPriceWpls');
+                        if (wplsEl && priceNative > 0) {
+                            wplsEl.textContent = `${priceNative.toFixed(4)} WPLS`;
+                        }
                     }
                 } catch (error) {
                     console.error('Error fetching price:', error);
