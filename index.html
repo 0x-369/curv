@@ -1819,6 +1819,7 @@
                     </div>
                     <div class="header-actions-row">
                         <a class="header-btn header-btn-otc" href="https://app.0xcurv.win/" target="_blank" rel="noopener noreferrer">LAUNCH P2M</a>
+                        <button class="header-btn header-btn-otc" onclick="openPointsModal()" style="min-width:auto;">POINTS</button>
                     </div>
                 </div>
             </div>
@@ -2051,6 +2052,26 @@
             <p style="background: linear-gradient(135deg, #0cf3c9 0%, #00d4ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 0.96rem; text-align: center; font-weight: 600; letter-spacing: 1px; margin-bottom: 6px;">GNOSIS SAFE CONTRACT</p>
             <p style="color:rgba(255,255,255,0.45); font-size:0.75rem; text-align:center; margin-bottom:20px; word-break:break-all;">0xd0AbBF095f446DD8F87701A307938B300366a488</p>
             <div id="treasuryHoldingsList"><div class="treasury-loading">Loading balances…</div></div>
+        </div>
+    </div>
+
+    <div id="pointsModal" class="modal" onclick="closePointsModal()">
+        <div class="modal-content-box" onclick="event.stopPropagation()" style="max-width:600px;">
+            <span class="modal-close" onclick="closePointsModal()">&times;</span>
+            <h2 style="background:linear-gradient(135deg, #0cf3c9 0%, #00d4ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:1.8rem;text-align:center;margin-bottom:24px;">Switch Points Program</h2>
+            <p style="color:rgba(255,255,255,0.88);line-height:1.8;margin-bottom:16px;font-size:0.95rem;">Every trade on the platform earns points throughout the season. Points accumulate until the season concludes, at which time final totals — along with the associated 0x wallet addresses — will be published on this site.</p>
+            <p style="color:rgba(255,255,255,0.88);line-height:1.8;margin-bottom:16px;font-size:0.95rem;">Points are issued solely for platform engagement. They carry no monetary value, no financial rights, and no guarantee of future utility. Users should not form expectations regarding potential future use.</p>
+            <p style="color:rgba(255,255,255,0.88);line-height:1.8;margin-bottom:16px;font-size:0.95rem;">Any attempt to manipulate or exploit the system may result in forfeiture of points at the platform's discretion.</p>
+            <p style="color:rgba(255,255,255,0.88);line-height:1.8;margin-bottom:6px;font-size:0.95rem;">The principle is simple:</p>
+            <p style="background:linear-gradient(135deg,#00ffd5 0%,#00b2ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:1.2rem;font-weight:700;margin-bottom:28px;">The more you Switch, the more you earn.</p>
+            <hr style="border:none;border-top:1px solid rgba(12,243,201,0.2);margin-bottom:24px;">
+            <label id="pointsAgreeLabel" style="display:flex;align-items:flex-start;gap:12px;cursor:pointer;padding:12px 16px;border-radius:12px;border:1px solid rgba(12,243,201,0.18);background:rgba(12,243,201,0.04);transition:border-color 0.25s ease;">
+                <input type="checkbox" id="pointsAgreeCheck" onchange="handlePointsAgree()" style="accent-color:#0cf3c9;width:20px;height:20px;min-width:20px;margin-top:2px;cursor:pointer;">
+                <span style="color:rgba(255,255,255,0.75);font-size:0.88rem;line-height:1.5;">I have read and agree to the terms of the Switch Points Program.</span>
+            </label>
+            <div id="pointsAgreedMsg" style="display:none;text-align:center;margin-top:16px;padding:10px;border-radius:10px;background:rgba(12,243,201,0.08);border:1px solid rgba(12,243,201,0.25);">
+                <span style="color:#0cf3c9;font-weight:600;font-size:0.92rem;">&#10003; Terms accepted — happy switching!</span>
+            </div>
         </div>
     </div>
 
@@ -2616,6 +2637,30 @@
         function closeGalleryModal() {
             document.getElementById('galleryModal').classList.remove('active');
             analytics.track('gallery_closed');
+        }
+
+        function openPointsModal() {
+            document.getElementById('pointsModal').classList.add('active');
+            analytics.track('modal_opened', { modal: 'points_program' });
+        }
+
+        function closePointsModal() {
+            document.getElementById('pointsModal').classList.remove('active');
+            analytics.track('modal_closed', { modal: 'points_program' });
+        }
+
+        function handlePointsAgree() {
+            var cb = document.getElementById('pointsAgreeCheck');
+            var msg = document.getElementById('pointsAgreedMsg');
+            var label = document.getElementById('pointsAgreeLabel');
+            if (cb.checked) {
+                msg.style.display = 'block';
+                label.style.borderColor = 'rgba(12,243,201,0.5)';
+                analytics.track('points_terms_accepted');
+            } else {
+                msg.style.display = 'none';
+                label.style.borderColor = 'rgba(12,243,201,0.18)';
+            }
         }
 
         function copyAddress() {
