@@ -908,14 +908,15 @@
             padding: 22px;
             box-shadow: 0 8px 32px rgba(0, 212, 255, 0.1);
             width: 100%;
-            max-width: 900px;
+            max-width: 480px;
             margin: 4px auto 0;
+            overflow: hidden;
         }
 
         iframe {
             border: none;
             border-radius: 12px;
-            width: 100%;
+            width: calc(100% + 40px);
             height: 900px;
             display: block;
         }
@@ -1209,6 +1210,7 @@
 
             iframe {
                 height: 700px;
+                width: calc(100% + 40px);
             }
 
             main, footer {
@@ -1500,12 +1502,12 @@
                 background: transparent;
                 box-shadow: none;
                 border-radius: 0;
+                overflow: hidden;
             }
 
             iframe {
                 height: 900px;
-                width: 100%;
-                max-width: 100%;
+                width: calc(100% + 40px);
             }
 
             .container {
@@ -1745,7 +1747,7 @@
 
             iframe {
                 height: 900px;
-                width: 100%;
+                width: calc(100% + 40px);
                 border-radius: 0;
             }
 
@@ -1929,12 +1931,12 @@
         <section id="home" class="active">
             <div class="container">
                 <div class="widget-wrapper">
-                    <iframe src="https://switch.win/widget?network=pulsechain&from=0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee&to=0x591c914BC5c878cC398AF67681C388FaC8bdaf4e&background_color=000000&font_color=0cf3c9&secondary_font_color=7a7a7a&border_color=80cced&partnerAddress=0xd0AbBF095f446DD8F87701A307938B300366a488" allow="clipboard-read; clipboard-write"></iframe>
+                    <iframe src="https://switch.win/widget?network=pulsechain&from=0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee&to=0x591c914BC5c878cC398AF67681C388FaC8bdaf4e&background_color=000000&font_color=0cf3c9&secondary_font_color=7a7a7a&border_color=0cf3c9&partnerAddress=0xd0AbBF095f446DD8F87701A307938B300366a488" allow="clipboard-read; clipboard-write"></iframe>
                 </div>
                 <div style="text-align:center;margin-top:8px;margin-bottom:6px;">
                     <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/curv-symbol.png" alt="CURV" style="width:48px;height:48px;object-fit:contain;filter:drop-shadow(0 0 8px rgba(0,255,213,0.5));">
                 </div>
-                <p style="text-align:center;margin-top:0;font-size:1.9rem;font-weight:700;letter-spacing:0.05em;background:linear-gradient(135deg,#00ffd5 0%,#00b2ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Decentralization, Privacy and Censorship Resistant.</p>
+                <p style="text-align:center;margin-top:0;font-size:1.9rem;font-weight:700;letter-spacing:0.05em;background:linear-gradient(135deg,#00ffd5 0%,#00b2ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Decentralized, Privacy and Censorship Resistant</p>
                 <div style="text-align:center;margin-top:20px;margin-bottom:8px;">
                     <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/pulsechain-logo.png" alt="PulseChain" style="height:56px;width:auto;object-fit:contain;opacity:0.9;filter:drop-shadow(0 0 6px rgba(0,255,213,0.3));">
                 </div>
