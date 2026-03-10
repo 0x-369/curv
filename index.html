@@ -903,21 +903,21 @@
         }
 
         .widget-wrapper {
-            background: rgba(255, 255, 255, 0.05);
+            background: transparent;
             border-radius: 20px;
-            padding: 22px;
-            box-shadow: 0 8px 32px rgba(0, 212, 255, 0.1);
+            padding: 0;
+            box-shadow: none;
             width: 100%;
-            max-width: 480px;
-            margin: 4px auto 0;
-            overflow: hidden;
+            max-width: 500px;
+            margin: 20px auto 0;
+            overflow: visible;
         }
 
         iframe {
             border: none;
             border-radius: 12px;
-            width: calc(100% + 40px);
-            height: 900px;
+            width: 100%;
+            height: 580px;
             display: block;
         }
 
@@ -1205,12 +1205,12 @@
             .widget-wrapper {
                 background: transparent;
                 box-shadow: none;
-                padding-bottom: 0;
+                padding: 0;
             }
 
             iframe {
-                height: 700px;
-                width: calc(100% + 40px);
+                height: 580px;
+                width: 100%;
             }
 
             main, footer {
@@ -1502,12 +1502,12 @@
                 background: transparent;
                 box-shadow: none;
                 border-radius: 0;
-                overflow: hidden;
+                overflow: visible;
             }
 
             iframe {
-                height: 900px;
-                width: calc(100% + 40px);
+                height: 580px;
+                width: 100%;
             }
 
             .container {
@@ -1742,12 +1742,12 @@
                 width: 100%;
                 margin: 0 auto;
                 max-width: 100%;
-                overflow: hidden;
+                overflow: visible;
             }
 
             iframe {
-                height: 900px;
-                width: calc(100% + 40px);
+                height: 580px;
+                width: 100%;
                 border-radius: 0;
             }
 
@@ -1931,8 +1931,16 @@
         <section id="home" class="active">
             <div class="container">
                 <div class="widget-wrapper">
-                    <iframe src="https://switch.win/widget?network=pulsechain&from=0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee&to=0x591c914BC5c878cC398AF67681C388FaC8bdaf4e&background_color=000000&font_color=0cf3c9&secondary_font_color=7a7a7a&border_color=0cf3c9&partnerAddress=0xd0AbBF095f446DD8F87701A307938B300366a488" allow="clipboard-read; clipboard-write"></iframe>
+                    <iframe id="swap-iframe" src="https://app.0xcurv.win/embed/swap" allow="clipboard-read; clipboard-write; web-share" style="overflow:visible"></iframe>
                 </div>
+                <script>
+                    window.addEventListener("message", function(e) {
+                        if (e.data && e.data.type === "swap-resize") {
+                            var iframe = document.getElementById("swap-iframe");
+                            if (iframe) iframe.style.height = e.data.height + "px";
+                        }
+                    });
+                </script>
                 <div style="text-align:center;margin-top:8px;margin-bottom:6px;">
                     <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/curv-symbol.png" alt="CURV" style="width:48px;height:48px;object-fit:contain;filter:drop-shadow(0 0 8px rgba(0,255,213,0.5));">
                 </div>
