@@ -246,6 +246,9 @@
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.8s ease, visibility 0s 0.8s;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         #main-website.show {
@@ -1060,8 +1063,12 @@
             color: #fff;
         }
 
+        main {
+            flex: 1;
+        }
+
         footer {
-            background: rgba(0, 0, 0, 0.9);
+            background: #000000;
             border-top: 1px solid rgba(12, 243, 201, 0.1);
             padding: 20px 20px 16px;
             margin-top: 0;
