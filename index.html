@@ -1061,10 +1061,10 @@
         }
 
         footer {
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             border-top: 1px solid rgba(12, 243, 201, 0.1);
-            padding: 40px 20px;
-            margin-top: 80px;
+            padding: 20px 20px 16px;
+            margin-top: 0;
             position: relative;
             z-index: 1;
             text-align: center;
@@ -1086,7 +1086,7 @@
         .copyright {
             color: rgba(255, 255, 255, 0.5);
             font-size: 0.9rem;
-            margin-top: 20px;
+            margin-top: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1777,9 +1777,9 @@
     </main>
     
     <footer>
-        <div style="margin-bottom: 30px;">
-            <h3 style="color: #0cf3c9; font-weight: 700; font-size: 1.3rem; margin-bottom: 20px; text-align: center;">$CURV Contract Address</h3>
-            <div class="contract-address" onclick="copyAddress()" style="font-size: 1rem; padding: 20px; max-width: 800px; margin: 0 auto; text-align: center; border: 2px solid rgba(12, 243, 201, 0.3);">0x591c914BC5c878cC398AF67681C388FaC8bdaf4e</div>
+        <div style="margin-bottom: 14px;">
+            <h3 style="color: rgba(255,255,255,0.5); font-weight: 600; font-size: 0.95rem; margin-bottom: 10px; text-align: center;">CURV Contract Address</h3>
+            <div class="contract-address" onclick="copyAddress()" style="font-size: 0.85rem; padding: 12px 16px; max-width: 800px; margin: 0 auto; text-align: center; border: 1px solid rgba(12, 243, 201, 0.2);">0x591c914BC5c878cC398AF67681C388FaC8bdaf4e</div>
         </div>
         <div class="copyright">
             <span>© 2026 CURV. All rights reserved.</span>
@@ -2352,6 +2352,36 @@
                 if (rows.length === 0) {
                     el.innerHTML = '<div class="treasury-loading">No token balances found.</div>';
                     return;
+                }
+
+                // Update CURV summary line from token list
+                const CURV_ADDR = '0x591c914bc5c878cc398af67681c388fac8bdaf4e';
+                if (Array.isArray(tokenList)) {
+                    const curvItem = tokenList.find(item => (item.token?.address || '').toLowerCase() === CURV_ADDR);
+                    if (curvItem && curvItem.token) {
+                        const curvRaw = BigInt(curvItem.value || '0');
+                        const curvDec = Number(curvItem.token.decimals || 18);
+                        const amtEl = document.getElementById('treasuryAmount');
+                        const pctEl = document.getElementById('treasuryPercent');
+                        if (amtEl) amtEl.textContent = fmtUnits(curvRaw, curvDec) + ' CURV';
+                        // Fetch total supply for percentage
+                        try {
+                            const supplyRes = await fetch(RPC, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'eth_call', params: [{ to: '0x591c914BC5c878cC398AF67681C388FaC8bdaf4e', data: '0x18160ddd' }, 'latest'] })
+                            }).then(r => r.json());
+                            if (supplyRes.result) {
+                                const totalSupply = BigInt(supplyRes.result);
+                                if (totalSupply > 0n) {
+                                    const bp = (curvRaw * 10000n) / totalSupply;
+                                    const whole = bp / 100n;
+                                    const frac = (bp % 100n).toString().padStart(2, '0');
+                                    if (pctEl) pctEl.textContent = `${whole}.${frac}% of supply`;
+                                }
+                            }
+                        } catch(e) { console.error('Supply fetch error:', e); }
+                    }
                 }
 
                 el.innerHTML = rows.map(r => `
