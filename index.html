@@ -278,7 +278,7 @@
             left: 0;
             right: 0;
             border-bottom: 1px solid rgba(12, 243, 201, 0.1);
-            padding: 20px 40px;
+            padding: 8px 40px;
             z-index: 1000;
         }
 
@@ -298,35 +298,28 @@
         nav {
             max-width: 100%;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+            display: flex;
             align-items: center;
+            justify-content: space-between;
             gap: 16px;
         }
 
         .header-left {
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 10px;
-            justify-self: start;
+            align-items: center;
+            gap: 12px;
             min-width: 0;
         }
 
         .header-center {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            justify-self: center;
-            width: 100%;
+            display: none;
         }
 
         .header-center-main {
             display: grid;
             grid-template-columns: 1fr auto 1fr;
             align-items: stretch;
-            gap: 16px;
+            gap: 12px;
             width: 100%;
         }
 
@@ -340,8 +333,8 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 4px;
-            padding: 0 8px;
+            gap: 2px;
+            padding: 0 6px;
             flex-shrink: 0;
         }
 
@@ -356,32 +349,24 @@
 
         .header-right {
             display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            align-items: flex-end;
-            gap: 10px;
-            justify-self: end;
+            align-items: center;
+            gap: 0;
             min-width: 0;
         }
 
         .logo {
             font-size: 1.5rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #00ffd5 0%, #00b2ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
             letter-spacing: 1px;
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            gap: 10px;
+            align-items: center;
+            gap: 12px;
         }
 
         .logo-top {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
 
         .asset-trading-btn {
@@ -401,10 +386,7 @@
         .header-actions-row {
             display: flex;
             align-items: center;
-            flex-wrap: wrap;
             gap: 6px;
-            justify-content: flex-start;
-            width: 100%;
         }
 
         .header-cta {
@@ -418,20 +400,7 @@
 
         @media (max-width: 480px) {
             .header-actions-row {
-                gap: 6px;
-            }
-
-            .header-btn {
-                padding: 7px 12px;
-                font-size: 0.85rem;
-                min-width: 68px;
-            }
-
-            .header-fee-banner {
-                order: 3;
-                width: 100%;
-                font-size: 0.72rem;
-                margin-top: 4px;
+                gap: 4px;
             }
         }
 
@@ -443,18 +412,18 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 7px 12px;
+            padding: 4px 8px;
             background: rgba(12, 243, 201, 0.08);
             border: 1px solid rgba(12, 243, 201, 0.45);
-            border-radius: 12px;
+            border-radius: 8px;
             color: #0cf3c9;
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.55rem;
             letter-spacing: 0.25px;
             text-decoration: none;
             cursor: pointer;
             transition: all 0.25s ease;
-            min-width: 68px;
+            min-width: 44px;
         }
 
         .header-btn-switch {
@@ -500,7 +469,7 @@
             box-shadow: none;
             text-shadow: none;
             -webkit-text-stroke: 0;
-            min-width: 90px;
+            min-width: 56px;
             justify-content: center;
             transition: none;
         }
@@ -555,12 +524,12 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             font-weight: 700;
-            font-size: 0.78rem;
+            font-size: 0.65rem;
             letter-spacing: 0.25px;
             text-transform: uppercase;
             text-align: center;
             text-shadow: none;
-            padding: 2px 8px 0;
+            padding: 1px 8px 0;
         }
 
         .logo-icon {
@@ -571,7 +540,7 @@
 
         .price-display {
             font-size: 0.9rem;
-            color: #0cf3c9;
+            color: rgba(255,255,255,0.6);
             font-weight: 600;
             display: flex;
             align-items: baseline;
@@ -609,39 +578,37 @@
         }
 
         .price-change.positive {
-            color: #00ff00;
-            background: rgba(0, 255, 0, 0.1);
+            color: rgba(0, 255, 0, 0.7);
+            background: rgba(0, 255, 0, 0.08);
         }
 
         .price-change.negative {
-            color: #ff0000;
-            background: rgba(255, 0, 0, 0.1);
+            color: rgba(255, 0, 0, 0.7);
+            background: rgba(255, 0, 0, 0.08);
         }
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 24px;
             align-items: center;
             list-style: none;
+            margin: 0;
+            padding: 0;
         }
 
         .nav-links > li > a {
             text-decoration: none;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 0.85rem;
             transition: all 0.3s ease;
             position: relative;
-            background: linear-gradient(135deg, #00ffd5 0%, #00b2ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: rgba(255,255,255,0.55);
+            -webkit-text-fill-color: rgba(255,255,255,0.55);
         }
 
         .nav-links > li > a:hover {
-            background: linear-gradient(135deg, #00ffd5 0%, #00b2ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: rgba(255,255,255,0.85);
+            -webkit-text-fill-color: rgba(255,255,255,0.85);
         }
 
         .nav-link-center {
@@ -712,12 +679,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 6px 14px;
+            padding: 4px 12px;
             background: rgba(12, 243, 201, 0.1);
             border: 1px solid rgba(12, 243, 201, 0.3);
             border-radius: 10px;
-            min-width: 160px;
-            min-height: 58px;
+            min-width: 140px;
+            min-height: 46px;
             justify-content: center;
             flex: 1;
         }
@@ -731,7 +698,7 @@
         }
 
         .counter-days {
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             font-weight: 700;
             background: linear-gradient(135deg, #00ffd5 0%, #00b2ff 100%);
             -webkit-background-clip: text;
@@ -760,17 +727,17 @@
             display: none;
             position: absolute;
             top: 100%;
-            left: 0;
+            right: 0;
             background: rgba(0, 0, 0, 0.95);
             border: 1px solid rgba(12, 243, 201, 0.2);
             border-radius: 10px;
             padding: 10px 0;
             min-width: 200px;
-            margin-top: 1px;
+            margin-top: 6px;
             z-index: 1001;
         }
 
-        .dropdown:hover .dropdown-menu {
+        .dropdown.active .dropdown-menu {
             display: block;
         }
 
@@ -790,24 +757,24 @@
         .icon-button {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 5px;
             text-decoration: none;
             cursor: pointer;
         }
 
         .icon-button img {
-            width: 28px;
-            height: 28px;
+            width: 20px;
+            height: 20px;
         }
 
         .icon-label {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.55);
+            font-size: 0.85rem;
             font-weight: 600;
         }
 
         main {
-            padding-top: 100px;
+            padding-top: 52px;
             position: relative;
             z-index: 1;
         }
@@ -1160,26 +1127,8 @@
         }
 
         @media (max-width: 1800px) {
-            nav {
-                grid-template-rows: auto auto;
-            }
-
-            .header-right {
-                grid-column: 1 / -1;
-                grid-row: 2;
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-
             .nav-links {
-                justify-content: center;
-                flex-wrap: wrap;
                 gap: 18px;
-            }
-
-            .header-cta {
-                flex-wrap: wrap;
-                justify-content: center;
             }
         }
 
@@ -1225,71 +1174,20 @@
 
         @media (max-width: 1024px) {
             header {
-                padding: 12px 16px;
+                padding: 10px 16px;
             }
 
             nav {
-                grid-template-columns: 1fr auto;
-                grid-template-rows: auto auto auto;
-                gap: 8px;
+                flex-wrap: nowrap;
             }
 
             .header-left {
-                grid-column: 1 / -1;
-                grid-row: 2;
-                align-items: center;
-                justify-self: center;
-            }
-
-            .logo {
-                align-items: center;
-            }
-
-            .header-center {
-                grid-column: 1 / -1;
-                grid-row: 1;
-                max-width: 100%;
-            }
-
-            .header-center-main {
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: auto auto;
+                flex-wrap: wrap;
                 gap: 8px;
-            }
-
-            .header-curvx-logo {
-                grid-column: 1 / -1;
-                grid-row: 1;
-                width: 100%;
-                justify-content: center;
-                padding-bottom: 4px;
-            }
-
-            .header-center-main .pulsechain-counter:first-child {
-                grid-column: 1;
-                grid-row: 2;
-            }
-
-            .header-center-main .pulsechain-counter:last-child {
-                grid-column: 2;
-                grid-row: 2;
             }
 
             .header-right {
-                grid-column: 1 / -1;
-                grid-row: 1;
-                position: absolute;
-                top: 12px;
-                right: 16px;
-                flex-direction: row;
-                align-items: center;
-                justify-content: flex-end;
-                gap: 8px;
-                overflow: visible;
-            }
-
-            nav {
-                position: relative;
+                flex-shrink: 0;
             }
 
             .header-cta {
@@ -1386,13 +1284,6 @@
                 margin-top: 70px;
             }
 
-            .pulsechain-counter {
-                width: auto;
-                min-width: 120px;
-                padding: 6px 12px;
-                min-height: 50px;
-            }
-
             .dropdown-menu {
                 position: static;
                 display: none;
@@ -1478,7 +1369,7 @@
             }
 
             main {
-                padding-top: 260px;
+                padding-top: 70px;
             }
 
             h1 {
@@ -1584,137 +1475,27 @@
 
         @media (max-width: 480px) {
             header {
-                padding: 10px 12px;
-            }
-
-            nav {
-                grid-template-columns: 1fr auto;
-                gap: 8px;
+                padding: 8px 12px;
             }
 
             .header-left {
-                grid-column: 1 / -1;
-                grid-row: 2;
-                align-items: center;
-                justify-self: center;
-            }
-
-            .header-center {
-                grid-column: 1 / -1;
-                grid-row: 1;
-                align-items: center;
-                width: 100%;
-            }
-
-            .header-center-main {
-                grid-template-columns: 1fr 1fr;
-                grid-template-rows: auto auto;
-                gap: 8px;
-            }
-
-            .header-curvx-logo {
-                grid-column: 1 / -1;
-                grid-row: 1;
-                width: 100%;
-                justify-content: center;
-                padding-bottom: 2px;
-            }
-
-            .header-center-main .pulsechain-counter:first-child {
-                grid-column: 1;
-                grid-row: 2;
-            }
-
-            .header-center-main .pulsechain-counter:last-child {
-                grid-column: 2;
-                grid-row: 2;
-            }
-
-            .header-right {
-                top: 10px;
-                right: 12px;
-            }
-
-            .logo {
-                font-size: 1rem;
-                align-items: center;
-            }
-
-            .logo-top {
-                gap: 8px;
-            }
-
-            .logo-icon {
-                width: 26px;
-                height: 26px;
+                gap: 6px;
+                flex-wrap: wrap;
             }
 
             .price-display {
                 font-size: 0.7rem;
-                flex-direction: row;
                 gap: 4px;
             }
 
-            .header-actions-row {
-                justify-content: center;
-            }
-
             .header-btn {
-                padding: 7px 10px;
-                font-size: 0.8rem;
-                min-width: 60px;
+                padding: 4px 6px;
+                font-size: 0.5rem;
+                min-width: 44px;
             }
 
             .header-btn-otc {
-                min-width: 70px;
-            }
-
-            .pulsechain-counter {
-                padding: 5px 10px;
-                min-width: 0;
-                min-height: 44px;
-                flex: 1 1 0;
-                width: 0;
-            }
-
-            .treasury-counter-wrap {
-                flex: 1 1 0;
-                width: 0;
-                align-items: center;
-            }
-
-            .treasury-counter-wrap .pulsechain-counter {
-                flex: 1 1 0;
-                width: 0;
-            }
-
-            .treasury-info-btn {
-                min-width: 28px;
-                min-height: 28px;
-                padding: 4px;
-                top: 3px;
-                right: 3px;
-            }
-
-            .counter-label {
-                font-size: 0.55rem;
-            }
-
-            .counter-days {
-                font-size: 0.85rem;
-            }
-
-            .counter-sub {
-                font-size: 0.55rem;
-            }
-
-            .header-fee-banner {
-                font-size: 0.65rem;
-            }
-
-            .header-counter-row {
-                gap: 8px;
-                align-items: stretch;
+                min-width: 50px;
             }
 
             .hamburger span {
@@ -1723,7 +1504,7 @@
             }
 
             main {
-                padding-top: 250px;
+                padding-top: 60px;
             }
 
             h1 {
@@ -1810,72 +1591,35 @@
     <header>
         <nav>
             <div class="header-left">
-                <div class="logo">
-                    <div class="logo-top">
-                        <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/Curv-logo-26.png" alt="CURV" style="height:24px;width:auto;">
-                        <div class="price-display">
-                            <span class="price-value" id="curvPrice">$0.00</span>
-                            <span id="priceChange" class="price-change">0%</span>
-                            <span id="curvPriceWpls" class="price-wpls">-- WPLS</span>
-                        </div>
-                    </div>
-                    <div class="header-actions-row">
-                        <a class="header-btn header-btn-otc" href="https://app.0xcurv.win/" target="_blank" rel="noopener noreferrer">LAUNCH P2M</a>
-                        <button class="header-btn header-btn-otc" onclick="openPointsModal()" style="min-width:auto;">POINTS</button>
-                    </div>
+                <a href="#home" onclick="closeMenu()" style="display:flex;align-items:center;text-decoration:none;flex-shrink:0;">
+                    <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/Curv-logo-26.png" alt="CURV" style="height:22px;width:auto;">
+                </a>
+                <div class="price-display">
+                    <span class="price-value" id="curvPrice">$0.00</span>
+                    <span id="priceChange" class="price-change">0%</span>
+                    <span id="curvPriceWpls" class="price-wpls">-- WPLS</span>
                 </div>
-            </div>
-
-            <div class="header-center">
-                <div class="header-center-main">
-                    <div class="pulsechain-counter">
-                        <span class="counter-label">PulseChain</span>
-                        <span class="counter-days" id="pulseChainDays">0 Days</span>
-                    </div>
-                    <div class="header-curvx-logo">
-                        <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/0XCURVX.png" alt="CURVX" style="height:48px;width:auto;display:block;">
-                        <span style="background:linear-gradient(135deg,#00ffd5 0%,#00b2ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:0.75rem;font-weight:700;letter-spacing:0.18em;">COMING SOON!</span>
-                    </div>
-                    <div class="pulsechain-counter" style="position:relative;">
-                        <span class="counter-label">Treasury</span>
-                        <span class="counter-days" id="treasuryAmount">-- CURV</span>
-                        <span class="counter-sub" id="treasuryPercent">--% of supply</span>
-                        <button class="treasury-info-btn" onclick="openTreasuryModal()" aria-label="Treasury holdings">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00ffd5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="10"/>
-                                <line x1="12" y1="12" x2="12" y2="16"/>
-                                <circle cx="12" cy="8.5" r="1.2" fill="#00ffd5" stroke="none"/>
-                            </svg>
-                        </button>
-                    </div>
+                <div class="header-actions-row">
+                    <a class="header-btn header-btn-otc" href="https://app.0xcurv.win/" target="_blank" rel="noopener noreferrer">LAUNCH P2M</a>
+                    <button class="header-btn header-btn-otc" onclick="openPointsModal()" style="min-width:auto;">POINTS</button>
                 </div>
-                <div class="header-fee-banner">50% OF THE SWITCHING FEE'S SUPPORT CURV TOKEN</div>
             </div>
 
             <div class="header-right">
                 <ul class="nav-links" id="navLinks">
-                    <li><a href="#home" onclick="closeMenu()" aria-label="Home" style="display:flex;align-items:center;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#homeGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="-webkit-text-fill-color:initial;flex-shrink:0;">
-                            <defs>
-                                <linearGradient id="homeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stop-color="#00ffd5"/>
-                                    <stop offset="100%" stop-color="#00b2ff"/>
-                                </linearGradient>
-                            </defs>
-                            <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9.5z"/>
-                            <polyline points="9 21 9 12 15 12 15 21"/>
-                        </svg>
-                        <span class="nav-mobile-label">Home</span>
-                    </a></li>
+                    <li>
+                        <a href="#" onclick="openTreasuryModal(); return false;" style="display:flex;align-items:center;gap:6px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="-webkit-text-fill-color:initial;flex-shrink:0;">
+                                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                                <path d="M2 10h20"/>
+                                <path d="M12 4v16"/>
+                            </svg>
+                            <span class="nav-mobile-label">Treasury</span>
+                        </a>
+                    </li>
                     <li class="dropdown" id="linksDropdown">
-                        <a href="#" class="dropdown-toggle" onclick="toggleDropdown(event)" aria-label="Links" style="display:flex;align-items:center;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#linkGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="-webkit-text-fill-color:initial;flex-shrink:0;">
-                                <defs>
-                                    <linearGradient id="linkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" stop-color="#00ffd5"/>
-                                        <stop offset="100%" stop-color="#00b2ff"/>
-                                    </linearGradient>
-                                </defs>
+                        <a href="#" class="dropdown-toggle" onclick="toggleDropdown(event)" aria-label="Links" style="display:flex;align-items:center;gap:6px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="-webkit-text-fill-color:initial;flex-shrink:0;">
                                 <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
                                 <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
                             </svg>
@@ -1895,14 +1639,8 @@
                         </div>
                     </li>
                     <li>
-                        <a href="#" onclick="openCombinedModal(event)" aria-label="Info & How It Works" style="display:flex;align-items:center;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#infoGrad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="-webkit-text-fill-color:initial;flex-shrink:0;">
-                                <defs>
-                                    <linearGradient id="infoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" stop-color="#00ffd5"/>
-                                        <stop offset="100%" stop-color="#00b2ff"/>
-                                    </linearGradient>
-                                </defs>
+                        <a href="#" onclick="openCombinedModal(event)" aria-label="Info & How It Works" style="display:flex;align-items:center;gap:6px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="-webkit-text-fill-color:initial;flex-shrink:0;">
                                 <circle cx="12" cy="12" r="10"/>
                                 <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
                                 <line x1="12" y1="17" x2="12.01" y2="17"/>
@@ -2059,6 +1797,11 @@
         <div class="modal-content-box" onclick="event.stopPropagation()" style="max-width:480px;">
             <span class="modal-close" onclick="closeTreasuryModal()">&times;</span>
             <h2 style="background: linear-gradient(135deg, #0cf3c9 0%, #00d4ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 1.6rem; text-align: center; margin-bottom: 2px;">Treasury Holdings</h2>
+            <div style="text-align:center;margin-bottom:12px;">
+                <span id="treasuryAmount" style="color:#0cf3c9;font-weight:700;font-size:1.1rem;">-- CURV</span>
+                <span style="color:rgba(255,255,255,0.4);margin:0 6px;">·</span>
+                <span id="treasuryPercent" style="color:rgba(255,255,255,0.55);font-size:0.9rem;font-weight:600;">--% of supply</span>
+            </div>
             <p style="background: linear-gradient(135deg, #0cf3c9 0%, #00d4ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-size: 0.96rem; text-align: center; font-weight: 600; letter-spacing: 1px; margin-bottom: 6px;">GNOSIS SAFE CONTRACT</p>
             <p style="color:rgba(255,255,255,0.45); font-size:0.75rem; text-align:center; margin-bottom:20px; word-break:break-all;">0xd0AbBF095f446DD8F87701A307938B300366a488</p>
             <div id="treasuryHoldingsList"><div class="treasury-loading">Loading balances…</div></div>
@@ -2708,12 +2451,18 @@
         function toggleDropdown(event) {
             event.preventDefault();
             event.stopPropagation();
-            if (window.innerWidth <= 1024) {
-                const dropdown = document.getElementById('linksDropdown');
-                const isActive = dropdown.classList.toggle('active');
-                analytics.track('dropdown_toggled', { opened: isActive });
-            }
+            const dropdown = document.getElementById('linksDropdown');
+            const isActive = dropdown.classList.toggle('active');
+            analytics.track('dropdown_toggled', { opened: isActive });
         }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            const dropdown = document.getElementById('linksDropdown');
+            if (dropdown && !dropdown.contains(e.target)) {
+                dropdown.classList.remove('active');
+            }
+        });
 
         // Track external link clicks
         document.addEventListener('click', (e) => {
