@@ -1682,7 +1682,9 @@
                     <iframe id="swap-iframe" src="https://app.0xcurv.win/embed/swap" allow="clipboard-read; clipboard-write; web-share" style="overflow:visible"></iframe>
                 </div>
                 <script>
+                    var ALLOWED_ORIGINS = ["https://app.0xcurv.win"];
                     window.addEventListener("message", function(e) {
+                        if (!ALLOWED_ORIGINS.includes(e.origin)) return;
                         if (e.data && e.data.type === "swap-resize") {
                             var iframe = document.getElementById("swap-iframe");
                             if (iframe) iframe.style.height = e.data.height + "px";
