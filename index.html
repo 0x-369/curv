@@ -733,13 +733,15 @@
             position: absolute;
             top: 100%;
             right: 0;
-            background: rgba(0, 0, 0, 0.95);
-            border: 1px solid rgba(12, 243, 201, 0.2);
+            background: rgba(5, 2, 15, 0.97);
+            border: 1px solid rgba(12, 243, 201, 0.15);
             border-radius: 10px;
-            padding: 10px 0;
-            min-width: 200px;
+            padding: 6px 0;
+            min-width: 210px;
             margin-top: 6px;
             z-index: 1001;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
         }
 
         .dropdown.active .dropdown-menu {
@@ -747,16 +749,32 @@
         }
 
         .dropdown-menu a {
-            display: block;
-            padding: 12px 20px;
-            color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 14px;
+            color: rgba(255, 255, 255, 0.75);
             text-decoration: none;
-            transition: all 0.3s ease;
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+            transition: all 0.2s ease;
+            gap: 8px;
         }
 
         .dropdown-menu a:hover {
-            background: rgba(12, 243, 201, 0.1);
+            background: rgba(255, 255, 255, 0.07);
             color: #0cf3c9;
+        }
+
+        .dropdown-menu a .link-icon {
+            flex-shrink: 0;
+            opacity: 0.4;
+            transition: opacity 0.2s;
+        }
+
+        .dropdown-menu a:hover .link-icon {
+            opacity: 0.9;
         }
 
         .icon-button {
@@ -1635,18 +1653,7 @@
                             </svg>
                             <span class="nav-mobile-label">Links</span>
                         </a>
-                        <div class="dropdown-menu">
-                            <!-- <a href="#about" onclick="closeMenu()">About</a> -->
-                            <a href="#collective" onclick="closeMenu()">CURV Collective</a>
-                            <a href="https://bridge.pulsechain.com/#/bridge" target="_blank">Pulse Bridge</a>
-                            <a href="https://ipfs.app.pulsex.com/" target="_blank">PulseX</a>
-                            <a href="https://pulsechain.com/" target="_blank">PulseChain</a>
-                            <a href="https://app.provex.com/" target="_blank">ProveX</a>
-                            <a href="https://www.pulsechainstats.com/" target="_blank">PulseChain Stats</a>
-                            <a href="https://scan.pulsechain.com/" target="_blank">Scan.PulseChain.com</a>
-                            <a href="https://pump.tires/" target="_blank">Pump Tires</a>
-                            <a href="https://www.buildthetech.com/" target="_blank">Build The Tech</a>
-                        </div>
+                        <div class="dropdown-menu"><a href="https://www.buildthetech.com/" target="_blank">Build The Tech<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a><a href="https://otherscan.pulsechain.box/" target="_blank">OtherScan<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a><a href="https://scan.pulsechain.com/" target="_blank">Scan.PulseChain.com<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a><a href="https://bridge.pulsechain.com/#/bridge" target="_blank">Pulse Bridge<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a><a href="https://ipfs.app.pulsex.com/" target="_blank">PulseX<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a><a href="https://dex.9mm.pro/swap" target="_blank">9mm DEX<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a><a href="https://pulsechain.com/" target="_blank">PulseChain<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a><a href="https://app.provex.com/" target="_blank">ProveX<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a><a href="https://pump.tires/" target="_blank">Pump Tires<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>
                     </li>
                     <li>
                         <a href="#" onclick="openCombinedModal(event)" aria-label="Info & How It Works" style="display:flex;align-items:center;gap:6px;">
