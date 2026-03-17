@@ -898,9 +898,97 @@
             padding: 0 0 28px;
             box-shadow: none;
             width: 100%;
-            max-width: 520px;
-            margin: 20px auto 0;
-            overflow: visible;
+        }
+
+        /* ── Launch Cards ───────────────────────────────────────────────── */
+        .launch-cards {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            padding: 40px 0 28px;
+            flex-wrap: wrap;
+        }
+
+        .launch-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            text-decoration: none;
+            width: 300px;
+            min-height: 320px;
+            padding: 36px 28px;
+            background: rgba(12, 243, 201, 0.04);
+            border: 1px solid rgba(12, 243, 201, 0.22);
+            border-radius: 20px;
+            gap: 16px;
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+            cursor: pointer;
+        }
+
+        .launch-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(12, 243, 201, 0.6);
+            box-shadow: 0 0 40px rgba(12, 243, 201, 0.12), 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .launch-card-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(12, 243, 201, 0.08);
+            border: 1px solid rgba(12, 243, 201, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .launch-card-title {
+            font-size: 1.45rem;
+            font-weight: 700;
+            line-height: 1.25;
+            background: linear-gradient(135deg, #0cf3c9 0%, #00d4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .launch-card-sub {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.55);
+            line-height: 1.6;
+        }
+
+        .launch-card-cta {
+            margin-top: auto;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #0cf3c9;
+            letter-spacing: 0.3px;
+        }
+
+        .launch-card-cta span {
+            display: inline-block;
+            transition: transform 0.2s ease;
+        }
+
+        .launch-card:hover .launch-card-cta span {
+            transform: translateX(4px);
+        }
+
+        @media (max-width: 680px) {
+            .launch-cards {
+                flex-direction: column;
+                align-items: center;
+                padding: 24px 0 20px;
+            }
+            .launch-card {
+                width: 100%;
+                max-width: 340px;
+                min-height: 260px;
+            }
         }
 
         iframe {
@@ -1664,7 +1752,6 @@
                     <span id="curvPriceWpls" class="price-wpls">-- WPLS</span>
                 </div>
                 <div class="header-actions-row">
-                    <a class="header-btn header-btn-otc" href="https://app.0xcurv.win/" target="_blank" rel="noopener noreferrer">LAUNCH P2M</a>
                     <button class="header-btn header-btn-otc" onclick="openPointsModal()" style="min-width:auto;">POINTS</button>
                 </div>
             </div>
@@ -1721,22 +1808,37 @@
     <main>
         <section id="home" class="active">
             <div class="container">
-                <div class="widget-wrapper">
-                    <iframe id="swap-iframe" src="https://app.0xcurv.win/embed/swap" allow="clipboard-read; clipboard-write; web-share" style="overflow:visible"></iframe>
-                    <div style="text-align:center;margin-top:12px;font-size:12px;color:rgba(255,255,255,0.3);">
-                        Powered by <a href="https://switch.win" target="_blank" rel="noopener noreferrer" style="color:#0cf3c9;text-decoration:none;">Switch DEX Aggregator</a>
-                    </div>
+                <div class="launch-cards">
+                    <!-- Card 1: Swap Aggregator + Limit Orders -->
+                    <a class="launch-card" href="https://app.0xcurv.win/swap" target="0xcurv-app" rel="noopener noreferrer" onclick="window.open('https://app.0xcurv.win/swap','0xcurv-app');return false;">
+                        <div class="launch-card-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#0cf3c9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M7 16V4m0 0L3 8m4-4l4 4"/>
+                                <path d="M17 8v12m0 0l4-4m-4 4l-4-4"/>
+                            </svg>
+                        </div>
+                        <div class="launch-card-title">Aggregator &amp;<br>Limit Orders</div>
+                        <div class="launch-card-sub">Best rates across PulseChain DEXs.<br>Gasless limit orders, fill when ready.</div>
+                        <div class="launch-card-cta">Launch App <span>&rarr;</span></div>
+                    </a>
+
+                    <!-- Card 2: Peer-To-Many OTC -->
+                    <a class="launch-card" href="https://app.0xcurv.win/" target="0xcurv-app" rel="noopener noreferrer" onclick="window.open('https://app.0xcurv.win/','0xcurv-app');return false;">
+                        <div class="launch-card-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#0cf3c9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="8" cy="7" r="3"/>
+                                <circle cx="16" cy="7" r="3"/>
+                                <path d="M2 20c0-3.3 2.7-6 6-6"/>
+                                <path d="M16 14c3.3 0 6 2.7 6 6"/>
+                                <path d="M10 14h4"/>
+                                <path d="M12 14v4"/>
+                            </svg>
+                        </div>
+                        <div class="launch-card-title">Peer-To-Many<br>OTC</div>
+                        <div class="launch-card-sub">Create public OTC offers.<br>Anyone can fill, no intermediary.</div>
+                        <div class="launch-card-cta">Launch App <span>&rarr;</span></div>
+                    </a>
                 </div>
-                <script>
-                    var ALLOWED_ORIGINS = ["https://app.0xcurv.win"];
-                    window.addEventListener("message", function(e) {
-                        if (!ALLOWED_ORIGINS.includes(e.origin)) return;
-                        if (e.data && e.data.type === "swap-resize") {
-                            var iframe = document.getElementById("swap-iframe");
-                            if (iframe) iframe.style.height = e.data.height + "px";
-                        }
-                    });
-                </script>
             </div>
         </section>
 
