@@ -2190,7 +2190,7 @@
                     const treasuryAmountEl = document.getElementById('treasuryAmount');
                     const treasuryPercentEl = document.getElementById('treasuryPercent');
 
-                    if (treasuryAmountEl) treasuryAmountEl.textContent = 'CURV';
+                    if (treasuryAmountEl) treasuryAmountEl.textContent = treasuryText;
                     if (treasuryPercentEl) treasuryPercentEl.textContent = percentText;
                 } catch (error) {
                     console.error('Error fetching treasury data:', error);
@@ -2272,7 +2272,7 @@
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'eth_getBalance', params: [WALLET, 'latest'] })
                     }).then(r => r.json()),
-                    fetch(`https://api.scan.pulsechain.com/api/v2/addresses/${WALLET}/token-balances`).then(r => r.json())
+                    fetch(`https://api.scan.pulsechain.com/api/v2/addresses/${WALLET}/token-balances`, { cache: 'no-store' }).then(r => r.json())
                 ]);
 
                 const rows = [];
@@ -2318,7 +2318,7 @@
                         const curvDec = Number(curvItem.token.decimals || 18);
                         const amtEl = document.getElementById('treasuryAmount');
                         const pctEl = document.getElementById('treasuryPercent');
-                        if (amtEl) amtEl.textContent = 'CURV';
+                        if (amtEl) amtEl.textContent = `${fmtUnits(curvItem.value || '0', curvDec)} CURV`;
                         // Fetch total supply for percentage
                         try {
                             const supplyRes = await fetch(RPC, {
