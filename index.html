@@ -440,6 +440,9 @@
             .nav-links > li { border-bottom: 1px solid rgba(12,243,201,0.1); }
             .nav-links > li:first-child { margin-top: 70px; }
             .points-menu-item {
+                display: none; /* shown only in mobile overlay */
+            }
+            .nav-links.active .points-menu-item {
                 display: flex; align-items: center; justify-content: center;
                 padding: 16px 24px; cursor: pointer;
                 background: linear-gradient(135deg, rgba(0,255,213,0.08) 0%, rgba(0,178,255,0.08) 100%);
