@@ -500,7 +500,7 @@
             .hero-heading, .hero-body { opacity: 1; }
             .reveal, .stagger-children > * { transition: none !important; opacity: 1 !important; transform: none !important; }
         }
-        /* ===== SCROLL REVEAL =====
+        /* ===== SCROLL REVEAL ===== */
         .reveal {
             opacity: 0;
             transform: translateY(80px) scale(0.97);
@@ -797,7 +797,7 @@ Click a card to open the dApp
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.08 });
+        }, { threshold: 0.12, rootMargin: '0px 0px -80px 0px' });
         document.querySelectorAll('.reveal').forEach(function(el) {
             observer.observe(el);
         });
