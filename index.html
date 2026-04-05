@@ -1,280 +1,132 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta name="description" content="CURV - Aggregator | Peer-To-Many OTC">
-    <title>CURV | Aggregator | Peer-To-Many OTC Multi-Asset Trading Platform</title>
-    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/curv-symbol.png">
-    
-    <!-- Performance Optimization -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://api.dexscreener.com">
-    <link rel="preconnect" href="https://raw.githubusercontent.com">
-    <link rel="dns-prefetch" href="https://switch.win">
-    
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9T7DKNJ13N"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-9T7DKNJ13N');
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0" name="viewport">
+<meta name="description" content="CURV - DEX Aggregator | Peer-To-Many OTC | Intent Based Auto DCA on PulseChain">
+<title>CURV - DEX Aggregator | Peer-To-Many OTC | Intent Based Auto DCA</title>
+<link rel="icon" type="image/png" href="assets/curv-symbol.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://api.dexscreener.com">
+<link rel="preconnect" href="https://raw.githubusercontent.com">
+<link rel="dns-prefetch" href="https://switch.win">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9T7DKNJ13N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-9T7DKNJ13N');
+</script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700&amp;family=Tiro+Kannada:ital@1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#333b3a",
+                        "on-error-container": "#ffdad6",
+                        "primary-fixed-dim": "#0cf3c9",
+                        "secondary-fixed-dim": "#0cf3c9",
+                        "surface-variant": "#222d2b",
+                        "on-primary-container": "#00201a",
+                        "on-secondary": "#00382d",
+                        "surface-container": "#181c21",
+                        "primary-fixed": "#0cf3c9",
+                        "surface-container-low": "#101419",
+                        "on-tertiary-fixed-variant": "#005144",
+                        "outline": "#899390",
+                        "on-primary": "#00382d",
+                        "error": "#ffb4ab",
+                        "surface-container-high": "#222d2b",
+                        "secondary-fixed": "#0cf3c9",
+                        "surface-container-lowest": "#0a0e0d",
+                        "background": "#101419",
+                        "on-background": "#dfe2eb",
+                        "on-secondary-container": "#0cf3c9",
+                        "on-tertiary": "#00382d",
+                        "outline-variant": "#3f4947",
+                        "tertiary-fixed": "#0cf3c9",
+                        "secondary-container": "#005144",
+                        "error-container": "#93000a",
+                        "inverse-on-surface": "#101419",
+                        "primary-container": "#0cf3c9",
+                        "tertiary": "#0cf3c9",
+                        "on-secondary-fixed": "#00201a",
+                        "on-tertiary-container": "#00201a",
+                        "on-surface-variant": "#b9cac3",
+                        "on-primary-fixed-variant": "#005144",
+                        "on-tertiary-fixed": "#00201a",
+                        "inverse-primary": "#0cf3c9",
+                        "on-secondary-fixed-variant": "#005144",
+                        "secondary": "#0cf3c9",
+                        "surface": "#101419",
+                        "on-surface": "#dfe2eb",
+                        "primary": "#0cf3c9",
+                        "inverse-surface": "#dfe2eb",
+                        "tertiary-container": "#005144",
+                        "surface-dim": "#101419",
+                        "surface-bright": "#333b3a",
+                        "on-primary-fixed": "#00201a",
+                        "tertiary-fixed-dim": "#0cf3c9",
+                        "surface-tint": "#0cf3c9",
+                        "on-error": "#690005"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Space Grotesk"]
+                    }
+                },
+            },
+        }
     </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; background-color: #101419; color: #dfe2eb; }
+        .font-headline { font-family: 'Space Grotesk', sans-serif; }
+        .font-editorial { font-family: 'Tiro Kannada', serif; font-style: italic; }
+        .glass-card {
+            background: rgba(34, 45, 43, 0.15);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(12, 243, 201, 0.08);
+        }
+        .atomic-glow {
+            box-shadow: 0 0 40px -10px rgba(12, 243, 201, 0.25);
+        }
+        .hover-glow {
+            transition: box-shadow 0.3s ease;
+        }
+        .hover-glow:hover {
+            box-shadow: 0 0 40px -10px rgba(12, 243, 201, 0.25);
+        }
+        a.glass-card {
+            text-decoration: none;
+            color: inherit;
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #0cf3c9 0%, #00bfa5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
     
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.15; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.25; transform: translate(-50%, -50%) scale(1.1); }
+        }
+        .animate-pulse-glow {
+            animation: pulse-glow 8s ease-in-out infinite;
         }
 
-        /* Lazy loading images */
-        img[loading="lazy"] {
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        img[loading="lazy"].loaded {
-            opacity: 1;
-        }
-
-        body {
-            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #000000;
-            position: relative;
-            min-height: 100vh;
-            padding: 0;
-            overflow-x: hidden;
-        }
-
-        body.intro-active {
-            overflow: hidden;
-        }
-
-        body.intro-complete {
-            overflow-x: hidden;
-            overflow-y: auto;
-        }
-
-        /* Intro Animation Styles */
-        #intro-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #000;
-            z-index: 10000;
-            cursor: pointer;
-            overflow: hidden;
-        }
-
-        #intro-container.fade-out {
-            animation: fadeOutIntro 0.8s ease forwards;
-        }
-
-        #intro-container.hidden {
-            display: none;
-        }
-
-        .ripple-container {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .ripple {
-            position: absolute;
-            border: 6px solid #0cf3c9;
-            border-radius: 50%;
-            animation: rippleEffect 2s ease-out infinite;
-            pointer-events: none;
-            box-shadow: 0 0 20px #0cf3c9, inset 0 0 20px #0cf3c9;
-        }
-
-        .ripple:nth-child(2) {
-            animation-delay: 0.5s;
-            border-color: #00d4ff;
-            box-shadow: 0 0 20px #00d4ff, inset 0 0 20px #00d4ff;
-        }
-
-        .ripple:nth-child(3) {
-            animation-delay: 1s;
-            border-color: #80cced;
-            box-shadow: 0 0 20px #80cced, inset 0 0 20px #80cced;
-        }
-
-        @keyframes rippleEffect {
-            0% {
-                width: 50px;
-                height: 50px;
-                opacity: 1;
-                transform: scale(1);
-            }
-            25% {
-                opacity: 0.9;
-            }
-            50% {
-                opacity: 0.6;
-            }
-            75% {
-                opacity: 0.3;
-            }
-            100% {
-                width: 1000px;
-                height: 1000px;
-                opacity: 0;
-                transform: scale(1.2);
-            }
-        }
-
-        .logo-wrapper {
-            position: relative;
-            z-index: 10;
-            animation: logoEntry 3s ease forwards;
-        }
-
-        .logo-wrapper::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            border: 2px solid #0cf3c9;
-            border-radius: 50%;
-            opacity: 0;
-            animation: circlePulse 2s ease-in-out infinite 1s;
-        }
-
-        @keyframes circlePulse {
-            0% {
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(0.8);
-            }
-            50% {
-                opacity: 0.6;
-                transform: translate(-50%, -50%) scale(1);
-            }
-            100% {
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(1.1);
-            }
-        }
-
-        .logo-wrapper img {
-            width: 500px;
-            height: auto;
-            filter: drop-shadow(0 0 30px #0cf3c9) drop-shadow(0 0 60px #00d4ff);
-            animation: hologramFlicker 0.8s ease, pulseGlow 2s ease-in-out infinite 0.8s;
-        }
-
-        @keyframes logoEntry {
-            0% {
-                opacity: 0;
-                transform: scale(0.5);
-            }
-            30% {
-                opacity: 1;
-                transform: scale(1.1);
-            }
-            50% {
-                transform: scale(0.95);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        @keyframes hologramFlicker {
-            0%, 20%, 40%, 60%, 80%, 100% {
-                opacity: 1;
-            }
-            10%, 30%, 50%, 70%, 90% {
-                opacity: 0.3;
-            }
-        }
-
-        @keyframes pulseGlow {
-            0%, 100% {
-                filter: drop-shadow(0 0 30px #0cf3c9) drop-shadow(0 0 60px #00d4ff);
-            }
-            50% {
-                filter: drop-shadow(0 0 50px #0cf3c9) drop-shadow(0 0 100px #00d4ff);
-            }
-        }
-
-        @keyframes fadeOutIntro {
-            to {
-                opacity: 0;
-                visibility: hidden;
-            }
-        }
-
-        .skip-text {
-            position: absolute;
-            bottom: 40px;
-            color: #80cced;
-            font-size: 14px;
-            opacity: 0;
-            animation: fadeInText 1s ease 2s forwards;
-        }
-
-        @keyframes fadeInText {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 0.6;
-            }
-        }
-
-        #main-website {
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.8s ease, visibility 0s 0.8s;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        #main-website.show {
-            opacity: 1;
-            visibility: visible;
-            transition: opacity 0.8s ease, visibility 0s 0s;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            bottom: 0;
-            right: 0;
-            width: 60%;
-            height: 60%;
-            background: radial-gradient(ellipse at bottom right, 
-                rgba(128, 0, 0, 0.3) 0%,
-                rgba(128, 0, 64, 0.25) 20%,
-                rgba(64, 0, 128, 0.2) 40%,
-                rgba(0, 64, 128, 0.15) 60%,
-                rgba(0, 128, 128, 0.1) 80%,
-                transparent 100%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
+        /* ===== HEADER / NAV ===== */
         header {
             position: fixed;
             top: 0;
@@ -284,20 +136,15 @@
             padding: 8px 40px;
             z-index: 1000;
         }
-
         header::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.8);
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             z-index: -1;
         }
-
         nav {
             max-width: 100%;
             margin: 0 auto;
@@ -306,111 +153,23 @@
             justify-content: space-between;
             gap: 16px;
         }
-
         .header-left {
             display: flex;
             align-items: center;
             gap: 12px;
             min-width: 0;
         }
-
-        .header-center {
-            display: none;
-        }
-
-        .header-center-main {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            align-items: stretch;
-            gap: 12px;
-            width: 100%;
-        }
-
-        .header-center-main .pulsechain-counter {
-            flex: unset;
-            width: 100%;
-        }
-
-        .header-curvx-logo {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 2px;
-            padding: 0 6px;
-            flex-shrink: 0;
-        }
-
-        .header-counter-row {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            width: 100%;
-        }
-
         .header-right {
             display: flex;
             align-items: center;
             gap: 0;
             min-width: 0;
         }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .logo-top {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .asset-trading-btn {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 0;
-            background: transparent;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-            gap: 2px;
-        }
-
         .header-actions-row {
             display: flex;
             align-items: center;
             gap: 6px;
         }
-
-        .header-cta {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 0;
-            justify-content: flex-end;
-        }
-
-        @media (max-width: 480px) {
-            .header-actions-row {
-                gap: 4px;
-            }
-        }
-
-        .asset-trading-btn:hover {
-            transform: translateY(-1px);
-        }
-
         .header-btn {
             display: inline-flex;
             align-items: center;
@@ -428,119 +187,24 @@
             transition: all 0.25s ease;
             min-width: 44px;
         }
-
-        .header-btn-switch {
-            background-image: linear-gradient(135deg, #00ffd5 0%, #00b2ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .header-btn-info {
-            background-image: linear-gradient(135deg, #00ffd5 0%, #00b2ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .header-btn-how {
-            background-image: linear-gradient(135deg, #00ffd5 0%, #00b2ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .header-btn-switch:hover,
-        .header-btn-info:hover,
-        .header-btn-how:hover {
-            background: transparent;
-            background-image: linear-gradient(135deg, #00ffd5 0%, #00b2ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            border-color: rgba(12, 243, 201, 0.45);
-            box-shadow: none;
-        }
-
         .header-btn-otc {
             background: linear-gradient(135deg, #00ffd5 0%, #00b2ff 100%);
             border: none;
             color: #000000;
             -webkit-text-fill-color: #000000;
             font-weight: 800;
-            letter-spacing: 0.05px;
-            box-shadow: none;
-            text-shadow: none;
-            -webkit-text-stroke: 0;
             min-width: 56px;
-            justify-content: center;
-            transition: none;
         }
-
         .header-btn-otc:hover {
-            box-shadow: none;
-            transform: none;
             background: linear-gradient(135deg, #00ffd5 0%, #00b2ff 100%);
             color: #000000;
+            -webkit-text-fill-color: #000000;
         }
-
-        .header-btn-otc:active,
-        .header-btn-otc:visited {
-            color: #000000;
-        }
-
         .header-btn:hover {
             background: rgba(12, 243, 201, 0.16);
             border-color: rgba(12, 243, 201, 0.6);
             box-shadow: 0 0 0 2px rgba(12, 243, 201, 0.12);
         }
-
-        .header-btn.header-btn-switch:hover,
-        .header-btn.header-btn-info:hover,
-        .header-btn.header-btn-how:hover {
-            background-image: linear-gradient(rgba(12, 243, 201, 0.08), rgba(12, 243, 201, 0.08)),
-                linear-gradient(135deg, #00ffd5 0%, #00b2ff 100%);
-            border-color: rgba(12, 243, 201, 0.45);
-            box-shadow: none;
-            -webkit-background-clip: padding-box, text;
-            -webkit-text-fill-color: transparent;
-            background-clip: padding-box, text;
-        }
-
-        .header-btn:active {
-            transform: translateY(1px);
-        }
-
-        .header-btn.header-btn-otc:hover,
-        .header-btn.header-btn-otc:active {
-            background: linear-gradient(135deg, #00ffd5 0%, #00b2ff 100%);
-            border: none;
-            box-shadow: none;
-            color: #000000;
-            -webkit-text-fill-color: #000000;
-            transform: none;
-        }
-
-        .header-fee-banner {
-            background: linear-gradient(135deg, #00ffd5 0%, #00b2ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 700;
-            font-size: 0.65rem;
-            letter-spacing: 0.25px;
-            text-transform: uppercase;
-            text-align: center;
-            text-shadow: none;
-            padding: 1px 8px 0;
-        }
-
-        .logo-icon {
-            width: 35px;
-            height: 35px;
-            flex-shrink: 0;
-        }
-
         .price-display {
             font-size: 0.9rem;
             color: rgba(255,255,255,0.6);
@@ -550,46 +214,27 @@
             gap: 8px;
             flex-wrap: wrap;
         }
-
         .price-wpls {
             font-size: 0.8rem;
             font-weight: 600;
             color: rgba(255,255,255,0.55);
             letter-spacing: 0.3px;
         }
-
         .price-zeros {
             font-size: 0.6em;
             vertical-align: super;
             letter-spacing: 0.5px;
             margin: 0 1px;
         }
-
-        .price-tail {
-            letter-spacing: 0.5px;
-        }
-
-        .price-value {
-            display: flex;
-            align-items: baseline;
-        }
-
+        .price-tail { letter-spacing: 0.5px; }
+        .price-value { display: flex; align-items: baseline; }
         .price-change {
             font-size: 0.75rem;
             padding: 2px 6px;
             border-radius: 4px;
         }
-
-        .price-change.positive {
-            color: rgba(0, 255, 0, 0.7);
-            background: rgba(0, 255, 0, 0.08);
-        }
-
-        .price-change.negative {
-            color: rgba(255, 0, 0, 0.7);
-            background: rgba(255, 0, 0, 0.08);
-        }
-
+        .price-change.positive { color: rgba(0,255,0,0.7); background: rgba(0,255,0,0.08); }
+        .price-change.negative { color: rgba(255,0,0,0.7); background: rgba(255,0,0,0.08); }
         .nav-links {
             display: flex;
             gap: 24px;
@@ -598,136 +243,16 @@
             margin: 0;
             padding: 0;
         }
-
-        .nav-links > li > a {
+        .nav-links a {
+            color: rgba(255,255,255,0.7);
             text-decoration: none;
-            font-weight: 600;
             font-size: 0.85rem;
-            transition: all 0.3s ease;
-            position: relative;
-            color: rgba(255,255,255,0.55);
-            -webkit-text-fill-color: rgba(255,255,255,0.55);
-        }
-
-        .nav-links > li > a:hover {
-            color: rgba(255,255,255,0.85);
-            -webkit-text-fill-color: rgba(255,255,255,0.85);
-        }
-
-        .nav-link-center {
-            text-align: center;
-            display: inline-block;
-            line-height: 1.1;
-        }
-
-        .treasury-info-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 3px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: absolute;
-            top: 3px;
-            right: 3px;
-            min-width: 22px;
-            min-height: 22px;
-        }
-
-        .treasury-info-btn svg {
-            transition: opacity 0.2s;
-        }
-
-        .treasury-info-btn:hover svg {
-            opacity: 0.7;
-        }
-
-        .treasury-holdings-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(12, 243, 201, 0.08);
-        }
-
-        .treasury-holdings-row:last-child {
-            border-bottom: none;
-        }
-
-        .treasury-token-name {
             font-weight: 600;
-            color: #0cf3c9;
-            font-size: 0.9rem;
+            transition: color 0.2s ease;
         }
-
-        .treasury-token-amount {
-            color: rgba(255,255,255,0.9);
-            text-align: right;
-            font-variant-numeric: tabular-nums;
-            font-size: 0.9rem;
-        }
-
-        .treasury-counter-wrap {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .treasury-loading {
-            text-align: center;
-            color: rgba(255,255,255,0.6);
-            padding: 20px 0;
-        }
-
-        .pulsechain-counter {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 4px 12px;
-            background: rgba(12, 243, 201, 0.1);
-            border: 1px solid rgba(12, 243, 201, 0.3);
-            border-radius: 10px;
-            min-width: 140px;
-            min-height: 46px;
-            justify-content: center;
-            flex: 1;
-        }
-
-        .counter-label {
-            font-size: 0.6rem;
-            color: rgba(255, 255, 255, 0.7);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 2px;
-        }
-
-        .counter-days {
-            font-size: 0.85rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #00ffd5 0%, #00b2ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .counter-sub {
-            font-size: 0.65rem;
-            font-weight: 600;
-            background: linear-gradient(135deg, #00ffd5 0%, #00b2ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown-toggle {
-            cursor: pointer;
-        }
-
+        .nav-links a:hover { color: #0cf3c9; }
+        .dropdown { position: relative; }
+        .dropdown-toggle { cursor: pointer; }
         .dropdown-menu {
             display: none;
             position: absolute;
@@ -743,40 +268,22 @@
             backdrop-filter: blur(12px);
             box-shadow: 0 8px 32px rgba(0,0,0,0.5);
         }
-
-        .dropdown.active .dropdown-menu {
-            display: block;
-        }
-
+        .dropdown.active .dropdown-menu { display: block; }
         .dropdown-menu a {
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 8px 14px;
-            color: rgba(255, 255, 255, 0.75);
+            color: rgba(255,255,255,0.75);
             text-decoration: none;
             font-size: 0.78rem;
             font-weight: 500;
-            letter-spacing: 0.01em;
             transition: all 0.2s ease;
             gap: 8px;
         }
-
-        .dropdown-menu a:hover {
-            background: rgba(255, 255, 255, 0.07);
-            color: #0cf3c9;
-        }
-
-        .dropdown-menu a .link-icon {
-            flex-shrink: 0;
-            opacity: 0.4;
-            transition: opacity 0.2s;
-        }
-
-        .dropdown-menu a:hover .link-icon {
-            opacity: 0.9;
-        }
-
+        .dropdown-menu a:hover { background: rgba(255,255,255,0.07); color: #0cf3c9; }
+        .dropdown-menu a .link-icon { flex-shrink: 0; opacity: 0.4; transition: opacity 0.2s; }
+        .dropdown-menu a:hover .link-icon { opacity: 0.9; }
         .icon-button {
             display: inline-flex;
             align-items: center;
@@ -784,411 +291,40 @@
             text-decoration: none;
             cursor: pointer;
         }
-
-        .icon-button img {
-            width: 20px;
-            height: 20px;
-        }
-
-        .icon-label {
-            color: rgba(255, 255, 255, 0.55);
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        main {
-            padding-top: 52px;
-            position: relative;
-            z-index: 1;
-        }
-
-        section {
+        .icon-button img { width: 20px; height: 20px; }
+        .icon-label { color: rgba(255,255,255,0.55); font-size: 0.85rem; font-weight: 600; }
+        .hamburger {
             display: none;
-        }
-
-        section.active {
-            display: block;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 12px 20px 16px;
-        }
-
-        h1 {
-            background: linear-gradient(135deg, #0cf3c9 0%, #00d4ff 50%, #80cced 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-size: 2.4rem;
-            text-align: center;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-
-        .description {
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 1.1rem;
-            text-align: center;
-            line-height: 1.7;
-            max-width: 800px;
-            margin: 0 auto 20px;
-        }
-
-        .fee-highlight {
-            text-align: center;
-            margin: 2px auto 2px;
-            max-width: 800px;
-        }
-
-        .fee-highlight p {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: #0cf3c9;
-            text-shadow: 0 0 10px rgba(12, 243, 201, 0.3);
-            margin: 0;
-            display: block;
-        }
-
-        .info-link {
-            color: #0cf3c9;
-            text-decoration: none;
-            font-size: 0.9rem;
-            margin-left: 0;
-            padding: 4px 12px;
-            border: 1px solid #0cf3c9;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            display: inline-block;
-        }
-
-
-        .info-link:hover {
-            background: rgba(12, 243, 201, 0.1);
-        }
-
-        .tooltip-icon-wrapper {
-            text-align: center;
-            margin: 15px auto 15px;
-        }
-
-        .tooltip-icon {
-            color: #0cf3c9;
-            text-decoration: none;
-            font-size: 0.9rem;
-            padding: 4px 12px;
-            border: 1px solid #0cf3c9;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            display: inline-block;
-            background: transparent;
-        }
-
-        .tooltip-icon:hover {
-            background: rgba(12, 243, 201, 0.1);
-        }
-
-        .widget-wrapper {
-            background: transparent;
-            border-radius: 20px;
-            padding: 0 0 28px;
-            box-shadow: none;
-            width: 100%;
-        }
-
-        /* ── Launch Cards ───────────────────────────────────────────────── */
-        .launch-cards {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            padding: 40px 0 28px;
-            flex-wrap: wrap;
-        }
-
-        .launch-card {
-            display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            text-decoration: none;
-            width: 300px;
-            min-height: 320px;
-            padding: 36px 28px;
-            background: rgba(12, 243, 201, 0.04);
-            border: 1px solid rgba(12, 243, 201, 0.22);
-            border-radius: 20px;
-            gap: 16px;
-            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
             cursor: pointer;
+            gap: 5px;
         }
-
-        .launch-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(12, 243, 201, 0.6);
-            box-shadow: 0 0 40px rgba(12, 243, 201, 0.12), 0 8px 32px rgba(0, 0, 0, 0.4);
-        }
-
-        .launch-card-icon {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: rgba(12, 243, 201, 0.08);
-            border: 1px solid rgba(12, 243, 201, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .launch-card-title {
-            font-size: 1.45rem;
-            font-weight: 700;
-            line-height: 1.25;
-            color: #ffffff;
-        }
-
-        .launch-card-sub {
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.55);
-            line-height: 1.6;
-        }
-
-        .launch-card-cta {
-            margin-top: auto;
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: #ffffff;
-            letter-spacing: 0.3px;
-        }
-
-        .launch-card-cta span {
-            display: inline-block;
-            transition: transform 0.2s ease;
-        }
-
-        .launch-card:hover .launch-card-cta span {
-            transform: translateX(4px);
-        }
-
-        @media (max-width: 680px) {
-            .launch-cards {
-                flex-direction: column;
-                align-items: center;
-                padding: 24px 0 20px;
-            }
-            .launch-card {
-                width: 100%;
-                max-width: 340px;
-                min-height: 260px;
-            }
-        }
-
-        iframe {
-            border: none;
-            border-radius: 12px;
-            width: 100%;
-            height: 580px;
-            display: block;
-            overflow: hidden;
-        }
-
-        .about-title {
-            background: linear-gradient(135deg, #0cf3c9 0%, #00d4ff 50%, #80cced 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-size: 2.8rem;
-            font-weight: 700;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .about-intro {
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 1.2rem;
-            line-height: 1.8;
-            max-width: 900px;
-            margin: 0 auto 60px;
-            text-align: center;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(12, 243, 201, 0.15);
-            border-radius: 20px;
-            padding: 35px;
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #0cf3c9;
+            border-radius: 3px;
             transition: all 0.3s ease;
+            transform-origin: center;
         }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
 
-        .feature-card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(12, 243, 201, 0.3);
-            transform: translateY(-5px);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-
-        .feature-title {
-            color: #0cf3c9;
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .feature-description {
-            color: rgba(255, 255, 255, 0.75);
-            line-height: 1.6;
-        }
-
-        .collective-hero {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 0;
-        }
-
-        .collective-hero img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.5);
-        }
-
-        .collective-hero-text {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            padding: 40px;
-        }
-
-        .collective-hero-text h2 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: #fff;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
-            line-height: 1.2;
-        }
-
-        .collective-gallery {
-            padding: 60px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        .gallery-item {
-            cursor: pointer;
-            border-radius: 15px;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-            height: 300px;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.05);
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 3000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal.active {
-            display: flex;
-        }
-
-        .modal-content-box {
-            background: #0d0f14;
-            border: 1px solid rgba(12, 243, 201, 0.25);
-            border-radius: 16px;
-            padding: 32px;
-            max-width: 900px;
-            margin: 20px;
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(12, 243, 201, 0.08);
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .gallery-modal-img {
-            max-width: 90vw;
-            max-height: 90vh;
-            object-fit: contain;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 40px;
-            color: #0cf3c9;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .modal-close:hover {
-            color: #fff;
-        }
-
-        main {
-            flex: 1;
-        }
-
+        /* ===== FOOTER ===== */
         footer {
             background: #000000;
             border-top: 1px solid rgba(12, 243, 201, 0.1);
             padding: 20px 20px 16px;
-            margin-top: 0;
             position: relative;
             z-index: 1;
             text-align: center;
         }
-
         .contract-address {
-            background: rgba(255, 255, 255, 0.07);
-            border: none;
+            background: rgba(255,255,255,0.07);
             border-radius: 10px;
             padding: 15px 20px;
-            color: rgba(255, 255, 255, 0.9);
+            color: rgba(255,255,255,0.9);
             font-family: 'Courier New', monospace;
             cursor: pointer;
             display: inline-block;
@@ -1196,7 +332,6 @@
             max-width: 100%;
             position: relative;
         }
-
         .copy-toast {
             position: absolute;
             bottom: calc(100% + 8px);
@@ -1217,23 +352,17 @@
             z-index: 200;
             animation: toastIn 0.18s ease forwards;
         }
-
-        .copy-toast.fade-out {
-            animation: toastOut 0.25s ease forwards;
-        }
-
+        .copy-toast.fade-out { animation: toastOut 0.25s ease forwards; }
         @keyframes toastIn {
             from { opacity: 0; transform: translateX(-50%) translateY(6px); }
             to   { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
-
         @keyframes toastOut {
             from { opacity: 1; transform: translateX(-50%) translateY(0); }
             to   { opacity: 0; transform: translateX(-50%) translateY(-5px); }
         }
-
         .copyright {
-            color: rgba(255, 255, 255, 0.5);
+            color: rgba(255,255,255,0.5);
             font-size: 0.9rem;
             margin-top: 12px;
             display: flex;
@@ -1243,178 +372,76 @@
             flex-wrap: wrap;
         }
 
-        .hamburger {
+        /* ===== MODALS ===== */
+        .modal {
             display: none;
-            flex-direction: column;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 9000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+        }
+        .modal.active { display: flex; }
+        .modal-content-box {
+            background: #0e0b1a;
+            border: 1px solid rgba(12,243,201,0.2);
+            border-radius: 16px;
+            padding: 32px 28px;
+            width: 90%;
+            max-width: 480px;
+            position: relative;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+        .modal-close {
+            position: absolute;
+            top: 14px; right: 18px;
+            font-size: 1.4rem;
+            color: rgba(255,255,255,0.4);
             cursor: pointer;
-            gap: 5px;
+            transition: color 0.2s;
         }
-
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: #0cf3c9;
-            border-radius: 3px;
-            transition: all 0.3s ease;
-            transform-origin: center;
+        .modal-close:hover { color: #0cf3c9; }
+        .treasury-holdings-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
         }
+        .treasury-holdings-row:last-child { border-bottom: none; }
+        .treasury-token-name { color: rgba(255,255,255,0.85); font-weight: 600; font-size: 0.9rem; }
+        .treasury-token-amount { color: #0cf3c9; font-weight: 700; font-size: 0.9rem; font-family: 'Courier New', monospace; }
+        .treasury-loading { color: rgba(255,255,255,0.4); text-align: center; padding: 20px 0; font-size: 0.88rem; }
 
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 6px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -6px);
-        }
-
-        .mobile-cta-links {
-            display: none;
-        }
-
-        @media (max-width: 1800px) {
-            .nav-links {
-                gap: 18px;
-            }
-        }
-
-        /* ===== DESKTOP BACKGROUND IMAGE ===== */
-        @media (min-width: 1025px) {
-            body {
-                background: #000000 url('https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/curvBG.jpg') no-repeat center center fixed;
-                background-size: cover;
-            }
-
-            body::before {
-                content: '';
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0, 0, 0, 0.3);
-                pointer-events: none;
-                z-index: 0;
-            }
-
-            .widget-wrapper {
-                background: transparent;
-                box-shadow: none;
-                padding: 0 0 28px;
-            }
-
-            iframe {
-                height: 580px;
-                width: 100%;
-            }
-
-            main, footer {
-                position: relative;
-                z-index: 1;
-            }
-
-            header {
-                z-index: 1000;
-            }
-        }
-
-        @media (max-width: 1024px) {
-            header {
-                padding: 10px 16px;
-            }
-
-            nav {
-                flex-wrap: nowrap;
-            }
-
-            .header-left {
-                flex-wrap: wrap;
-                gap: 8px;
-            }
-
-            .header-right {
-                flex-shrink: 0;
-            }
-
-            .header-cta {
-                display: none;
-            }
-
-            .mobile-cta-links {
-                display: list-item;
-                list-style: none;
-            }
-
-            .logo {
-                font-size: 1.2rem;
-                gap: 8px;
-            }
-
-            .logo-icon {
-                width: 28px;
-                height: 28px;
-            }
-
-            .price-display {
-                font-size: 0.8rem;
-            }
-
-            .price-wpls {
-                font-size: 0.72rem;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
+        /* ===== MOBILE ===== */
+        @media (max-width: 768px) {
+            header { padding: 8px 16px; }
+            .price-display { font-size: 0.8rem; }
+            .hamburger { display: flex; }
             .nav-links {
                 display: none;
                 position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                width: 100vw;
-                height: 100vh;
-                background: rgba(0, 0, 0, 0.97);
+                top: 0; left: 0; right: 0; bottom: 0;
+                width: 100vw; height: 100vh;
+                background: rgba(0,0,0,0.97);
                 backdrop-filter: blur(20px);
-                -webkit-backdrop-filter: blur(20px);
                 flex-direction: column;
-                padding: 0;
-                margin: 0;
-                gap: 0;
+                padding: 0; margin: 0; gap: 0;
                 z-index: 9999;
-                overflow-x: hidden;
                 overflow-y: auto;
-                border: none;
                 list-style: none;
-                box-sizing: border-box;
             }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-links > li {
-                border-bottom: 1px solid rgba(12, 243, 201, 0.1);
-            }
-
-            .nav-links > li:last-child {
-                border-bottom: none;
-            }
-
+            .nav-links.active { display: flex; }
+            .nav-links > li { border-bottom: 1px solid rgba(12,243,201,0.1); }
+            .nav-links > li:first-child { margin-top: 70px; }
             .nav-links > li > a {
-                display: flex;
-                align-items: center;
+                display: flex; align-items: center;
                 padding: 18px 24px;
-                font-size: 1.15rem;
-                font-weight: 600;
-                letter-spacing: 0.5px;
+                font-size: 1.15rem; font-weight: 600;
             }
-
             .nav-mobile-label {
                 display: inline-block;
                 margin-left: 12px;
@@ -1423,1046 +450,426 @@
                 -webkit-text-fill-color: transparent;
                 background-clip: text;
             }
-
-            /* Chevron sits after the label on the dropdown toggle */
-            .dropdown-toggle .nav-mobile-label {
-                flex: 1;
-            }
-
-            .nav-links > li:first-child {
-                margin-top: 70px;
-            }
-
-            .dropdown-menu {
-                position: static;
-                display: none;
-                background: rgba(12, 243, 201, 0.04);
-                margin: 0;
-                padding: 0;
-                border-radius: 0;
-                border: none;
-                border-top: 1px solid rgba(12, 243, 201, 0.08);
-            }
-
-            .dropdown.active .dropdown-menu {
-                display: block;
-            }
-
-            .dropdown-menu a {
-                padding: 14px 24px 14px 40px;
-                font-size: 0.95rem;
-                color: rgba(255, 255, 255, 0.7);
-                border-bottom: 1px solid rgba(12, 243, 201, 0.06);
-            }
-
-            .dropdown-menu a:last-child {
-                border-bottom: none;
-            }
-
-            .dropdown-menu a:hover {
-                background: rgba(12, 243, 201, 0.08);
-                color: #0cf3c9;
-            }
-
+            .dropdown-toggle .nav-mobile-label { flex: 1; }
             .dropdown-toggle {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                width: 100%;
+                display: flex; align-items: center;
+                justify-content: space-between; width: 100%;
             }
-
             .dropdown-toggle::after {
-                content: '\25BC';
-                font-size: 0.6rem;
-                margin-left: 8px;
-                transition: transform 0.3s ease;
-                display: inline-block;
+                content: '\25BC'; font-size: 0.6rem;
+                margin-left: 8px; transition: transform 0.3s ease; display: inline-block;
             }
-
-            .dropdown.active .dropdown-toggle::after {
-                transform: rotate(180deg);
+            .dropdown.active .dropdown-toggle::after { transform: rotate(180deg); }
+            .dropdown-menu {
+                position: static; background: rgba(12,243,201,0.04);
+                margin: 0; padding: 0; border-radius: 0; border: none;
+                border-top: 1px solid rgba(12,243,201,0.08);
             }
-
-            .icon-button {
-                flex-direction: row;
-                gap: 12px;
-                padding: 18px 24px;
-                border: none;
-                border-radius: 0;
-                background: transparent;
-            }
-
-            .icon-button img {
-                width: 28px;
-                height: 28px;
-            }
-
-            .icon-label {
-                font-size: 1.15rem;
-            }
-
-            .mobile-cta-links {
-                display: none;
-            }
-
-            .dropdown:hover .dropdown-menu {
-                display: none;
-            }
-
-            .dropdown.active .dropdown-menu {
-                display: block;
-            }
-
-            .icon-label {
-                font-size: 0.9rem;
-            }
-
-            main {
-                padding-top: 70px;
-            }
-
-            h1 {
-                font-size: 1.6rem;
-            }
-
-            .description {
-                font-size: 1rem;
-            }
-
-            .fee-highlight p {
-                font-size: 0.95rem;
-                margin-bottom: 12px;
-            }
-
-            .widget-wrapper {
-                padding: 0 0 28px;
-                max-width: 100%;
-                width: 100%;
-                margin: 20px auto 0;
-                background: transparent;
-                box-shadow: none;
-                border-radius: 0;
-                overflow: visible;
-            }
-
-            iframe {
-                height: 580px;
-                width: 100%;
-                border-radius: 0;
-            }
-
-            .container {
-                padding: 15px 0;
-                max-width: 100%;
-            }
-
-            footer {
-                padding: 30px 15px;
-                margin-top: 40px;
-            }
-
-            .contract-address {
-                font-size: 0.75rem;
-                padding: 12px 15px;
-                word-break: break-all;
-            }
-
-            .copyright {
-                font-size: 0.8rem;
-                gap: 10px;
-            }
-
-            .collective-hero-text h2 {
-                font-size: 1.8rem;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .modal-content-box {
-                padding: 25px 20px;
-                margin: 10px;
-            }
-        }
-
-        @keyframes rippleEffect {
-            0% {
-                width: 30px;
-                height: 30px;
-                opacity: 1;
-                transform: scale(1);
-            }
-            100% {
-                width: 600px;
-                height: 600px;
-                opacity: 0;
-                transform: scale(1.2);
-            }
-        }
-
-        .logo-wrapper img {
-            width: 300px;
-        }
-
-        .logo-wrapper::before {
-            width: 400px;
-            height: 400px;
-        }
-
-        .ripple {
-            border: 4px solid #0cf3c9;
-        }
-
-        .ripple:nth-child(2) {
-            border-color: #00d4ff;
-        }
-
-        .ripple:nth-child(3) {
-            border-color: #80cced;
-        }
-
-        @media (max-width: 480px) {
-            header {
-                padding: 8px 12px;
-            }
-
-            .header-left {
-                gap: 6px;
-                flex-wrap: wrap;
-            }
-
-            .price-display {
-                font-size: 0.7rem;
-                gap: 4px;
-            }
-
-            .header-btn {
-                padding: 4px 6px;
-                font-size: 0.5rem;
-                min-width: 44px;
-            }
-
-            .header-btn-otc {
-                min-width: 50px;
-            }
-
-            .hamburger span {
-                width: 24px;
-                height: 2px;
-            }
-
-            main {
-                padding-top: 60px;
-            }
-
-            h1 {
-                font-size: 1.25rem;
-            }
-
-            .collective-hero-text h2 {
-                font-size: 1.2rem;
-                padding: 15px;
-            }
-
-            .widget-wrapper {
-                padding: 0 0 28px;
-                border-radius: 0;
-                background: transparent;
-                box-shadow: none;
-                width: 100%;
-                margin: 12px auto 0;
-                max-width: 100%;
-                overflow: visible;
-            }
-
-            iframe {
-                height: 580px;
-                width: 100%;
-                border-radius: 0;
-            }
-
-            .container {
-                padding: 8px 0;
-            }
-
-            .fee-highlight p {
-                font-size: 0.85rem;
-            }
-
-            .info-link {
-                font-size: 0.8rem;
-                padding: 3px 10px;
-            }
-
-            .contract-address {
-                font-size: 0.6rem;
-                padding: 10px 12px;
-            }
-
-            .copyright {
-                font-size: 0.75rem;
-            }
-
-            .modal-content-box {
-                padding: 20px 15px;
-                margin: 10px;
-                border-radius: 15px;
-            }
-
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-            }
-
-            .gallery-item {
-                height: 150px;
-            }
+            .dropdown-menu a { padding: 14px 24px 14px 40px; font-size: 0.95rem; }
+            .icon-button { flex-direction: row; gap: 12px; padding: 18px 24px; }
+            .icon-button img { width: 28px; height: 28px; }
         }
     </style>
 </head>
-<body>
-    <!-- Intro Animation -->
-    <div id="intro-container" onclick="skipIntro()">
-        <div class="ripple-container">
-            <div class="ripple"></div>
-            <div class="ripple"></div>
-            <div class="ripple"></div>
-        </div>
-        <div class="logo-wrapper">
-            <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/0xcurv-win-logo.png" alt="CURV Logo">
-        </div>
-        <div class="skip-text">Click anywhere to skip</div>
-    </div>
-
-    <!-- Main Website Content -->
-    <div id="main-website">
-    <header>
-        <nav>
-            <div class="header-left">
-                <a href="#home" onclick="closeMenu()" style="display:flex;align-items:center;text-decoration:none;flex-shrink:0;">
-                    <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/Curv-logo-26.png" alt="CURV" style="height:22px;width:auto;">
-                </a>
-                <div class="price-display">
-                    <span class="price-value" id="curvPrice">$0.00</span>
-                    <span id="priceChange" class="price-change">0%</span>
-                    <span id="curvPriceWpls" class="price-wpls">-- WPLS</span>
-                </div>
-                <div class="header-actions-row">
-                    <button class="header-btn header-btn-otc" onclick="openPointsModal()" style="min-width:auto;">POINTS</button>
-                </div>
-            </div>
-
-            <div class="header-right">
-                <ul class="nav-links" id="navLinks">
-                    <li>
-                        <a href="#" onclick="openTreasuryModal(); return false;" style="display:flex;align-items:center;gap:6px;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="-webkit-text-fill-color:initial;flex-shrink:0;">
-                                <rect x="2" y="4" width="20" height="16" rx="2"/>
-                                <path d="M2 10h20"/>
-                                <path d="M12 4v16"/>
-                            </svg>
-                            <span class="nav-mobile-label">Treasury</span>
-                        </a>
-                    </li>
-                    <li class="dropdown" id="linksDropdown">
-                        <a href="#" class="dropdown-toggle" onclick="toggleDropdown(event)" aria-label="Links" style="display:flex;align-items:center;gap:6px;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="-webkit-text-fill-color:initial;flex-shrink:0;">
-                                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
-                                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
-                            </svg>
-                            <span class="nav-mobile-label">Links</span>
-                        </a>
-                        <div class="dropdown-menu"><a href="https://pulsechain.com/" target="_blank">PulseChain<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a><a href="https://www.buildthetech.com/" target="_blank">Build The Tech<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a><a href="https://zkpulse.app/" target="_blank">ZKPULSE<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a><a href="https://otherscan.pulsechain.box/" target="_blank">OtherScan<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a><a href="https://scan.pulsechain.com/" target="_blank">Scan.PulseChain.com<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a><a href="https://bridge.pulsechain.com/#/bridge" target="_blank">Pulse Bridge<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a><a href="https://ipfs.app.pulsex.com/" target="_blank">PulseX<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a><a href="https://dex.9mm.pro/swap" target="_blank">9mm DEX<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a><a href="https://plstart.me/" target="_blank">PLS Ecosystem<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a><a href="https://app.provex.com/" target="_blank">ProveX<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a><a href="http://plsx.fun/" target="_blank">PLSX Fun<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a><a href="https://pump.tires/" target="_blank">Pump Tires<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>
-                    </li>
-
-                    <li>
-                        <a href="https://libertyswap.finance/curv" target="_blank" class="icon-button">
-                            <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/liberty.png" alt="Liberty Swap">
-                            <span class="icon-label">LibertySwap</span>
-                        </a>
-                    </li>
-                </ul>
-                <div class="hamburger" onclick="toggleMenu()" style="z-index: 10001; position: relative;">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-
-            </div>
-        </nav>
-    </header>
-
-    <main>
-        <section id="home" class="active">
-            <div class="container">
-                <div class="launch-cards">
-                    <!-- Card 1: Swap Aggregator + Limit Orders -->
-                    <a class="launch-card" href="https://app.0xcurv.win/swap" target="0xcurv-app" rel="noopener noreferrer" onclick="window.open('https://app.0xcurv.win/swap','0xcurv-app');return false;">
-                        <div class="launch-card-icon">
-                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#0cf3c9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M7 16V4m0 0L3 8m4-4l4 4"/>
-                                <path d="M17 8v12m0 0l4-4m-4 4l-4-4"/>
-                            </svg>
-                        </div>
-                        <div class="launch-card-title">Aggregator &amp;<br>Limit Orders</div>
-                        <div class="launch-card-sub">Best rates across PulseChain DEXs.<br>Gasless limit orders, fill when ready.</div>
-                        <div class="launch-card-cta">Launch App</div>
-                    </a>
-
-                    <!-- Card 2: Peer-To-Many OTC -->
-                    <a class="launch-card" href="https://app.0xcurv.win/" target="0xcurv-app" rel="noopener noreferrer" onclick="window.open('https://app.0xcurv.win/','0xcurv-app');return false;">
-                        <div class="launch-card-icon">
-                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#0cf3c9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="8" cy="7" r="3"/>
-                                <circle cx="16" cy="7" r="3"/>
-                                <path d="M2 20c0-3.3 2.7-6 6-6"/>
-                                <path d="M16 14c3.3 0 6 2.7 6 6"/>
-                                <path d="M10 14h4"/>
-                                <path d="M12 14v4"/>
-                            </svg>
-                        </div>
-                        <div class="launch-card-title">Peer-To-Many<br>OTC</div>
-                        <div class="launch-card-sub">Create public OTC offers.<br>Anyone can fill, no intermediary.</div>
-                        <div class="launch-card-cta">Launch App</div>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section id="about" style="display:none;">
-            <div class="container">
-                <h2 class="about-title">About $CURV</h2>
-                <p class="about-intro">The meme token that's all about those killer curves, juicy vibes, and zero-shame swagger! With a fair launch, token-burning, and zero taxes, hop on this bouncy bandwagon and surf straight to PulseX paradise.</p>
-
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">💎</div>
-                        <h3 class="feature-title">Killer Curves</h3>
-                        <p class="feature-description">All about those juicy vibes and zero-shame swagger.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🔥</div>
-                        <h3 class="feature-title">Token Burns</h3>
-                        <p class="feature-description">Regular burns to keep supply tight and value right.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">💰</div>
-                        <h3 class="feature-title">Zero Taxes</h3>
-                        <p class="feature-description">Buy and sell with 0% taxes. Keep all your gains!</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🎯</div>
-                        <h3 class="feature-title">Fair Launch</h3>
-                        <p class="feature-description">No presale, no team tokens. Everyone starts equal.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">⚡</div>
-                        <h3 class="feature-title">PulseChain Power</h3>
-                        <p class="feature-description">Lightning-fast transactions with minimal fees.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feature-icon">🚀</div>
-                        <h3 class="feature-title">To The Moon</h3>
-                        <p class="feature-description">Laugh all the way to the moon with the squad!</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="collective">
-            <div class="collective-hero">
-                <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/collective-hero.jpeg" alt="CURV Collective">
-                <div class="collective-hero-text">
-                    <h2>The meme token that's all about those killer curves, juicy vibes, zero-shame swagger & DeFi!</h2>
-                </div>
-            </div>
-            
-            <div class="collective-gallery">
-                <div class="gallery-grid">
-                    <div class="gallery-item" onclick="openGalleryModal('https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/gallery1.jpeg')">
-                        <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/gallery1.jpeg" alt="CURV Collective Gallery Image 1" loading="lazy">
-                    </div>
-                    <div class="gallery-item" onclick="openGalleryModal('https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/gallery2.jpeg')">
-                        <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/gallery2.jpeg" alt="CURV Collective Gallery Image 2" loading="lazy">
-                    </div>
-                    <div class="gallery-item" onclick="openGalleryModal('https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/gallery3.jpeg')">
-                        <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/gallery3.jpeg" alt="CURV Collective Gallery Image 3" loading="lazy">
-                    </div>
-                    <div class="gallery-item" onclick="openGalleryModal('https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/gallery4.jpeg')">
-                        <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/gallery4.jpeg" alt="CURV Collective Gallery Image 4" loading="lazy">
-                    </div>
-                    <div class="gallery-item" onclick="openGalleryModal('https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/gallery5.jpeg')">
-                        <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/gallery5.jpeg" alt="CURV Collective Gallery Image 5" loading="lazy">
-                    </div>
-                    <div class="gallery-item" onclick="openGalleryModal('https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/gallery6.jpeg')">
-                        <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/gallery6.jpeg" alt="CURV Collective Gallery Image 6" loading="lazy">
-                    </div>
-                    <div class="gallery-item" onclick="openGalleryModal('https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/gallery7.jpeg')">
-                        <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/gallery7.jpeg" alt="CURV Collective Gallery Image 7" loading="lazy">
-                    </div>
-                    <div class="gallery-item" onclick="openGalleryModal('https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/gallery8.jpeg')">
-                        <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/gallery8.jpeg" alt="CURV Collective Gallery Image 8" loading="lazy">
-                    </div>
-                    <div class="gallery-item" onclick="openGalleryModal('https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/gallery9.jpeg')">
-                        <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/gallery9.jpeg" alt="CURV Collective Gallery Image 9" loading="lazy">
-                    </div>
-                </div>
-            </div>
-
-            <div id="galleryModal" class="modal" onclick="closeGalleryModal()">
-                <span class="modal-close" onclick="closeGalleryModal()">&times;</span>
-                <img class="gallery-modal-img" id="galleryModalImg">
-            </div>
-        </section>
-    </main>
-
-    <div style="text-align:center;margin-top:auto;padding:20px 20px 0;position:relative;z-index:1;">
-        <div style="margin-bottom:6px;">
-            <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/curv-symbol.png" alt="CURV" style="width:48px;height:48px;object-fit:contain;filter:drop-shadow(0 0 8px rgba(0,255,213,0.5));">
-        </div>
-        <p style="text-align:center;margin:0 0 20px;font-size:1.9rem;font-weight:700;letter-spacing:0.05em;color:rgba(255,255,255,0.9);">Decentralized, Privacy and Censorship Resistant</p>
-        <div style="margin-bottom:8px;">
-            <img src="https://raw.githubusercontent.com/0x-369/curv/refs/heads/main/pulsechain-logo.png" alt="PulseChain" style="height:56px;width:auto;object-fit:contain;opacity:0.9;filter:drop-shadow(0 0 6px rgba(0,255,213,0.3));">
-        </div>
-    </div>
-
-    <footer>
-        <div style="margin-bottom: 14px;">
-            <h3 style="color: rgba(255,255,255,0.5); font-weight: 600; font-size: 0.95rem; margin-bottom: 10px; text-align: center;">CURV Contract Address</h3>
-            <div class="contract-address" onclick="copyAddress()" style="font-size: 0.85rem; padding: 12px 16px; max-width: 800px; margin: 0 auto; text-align: center;">0x591c914BC5c878cC398AF67681C388FaC8bdaf4e</div>
-        </div>
-        <div class="copyright">
-            <span>© 2026 CURV. All rights reserved.</span>
-            <a href="https://x.com/0xCurv" target="_blank" rel="noopener noreferrer" style="color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: all 0.3s ease;">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                </svg>
+<body class="selection:bg-primary-container selection:text-on-primary-container">
+<!-- Header -->
+<header>
+    <nav>
+        <div class="header-left">
+            <a href="#" style="display:flex;align-items:center;text-decoration:none;flex-shrink:0;">
+                <img src="assets/Curv-logo-26.png" alt="CURV" style="height:22px;width:auto;">
             </a>
-        </div>
-    </footer>
-    </div>
-    <!-- End Main Website Content -->
-
-    <div id="treasuryHoldingsModal" class="modal" onclick="closeTreasuryModal()">
-        <div class="modal-content-box" onclick="event.stopPropagation()" style="max-width:480px;">
-            <span class="modal-close" onclick="closeTreasuryModal()">&times;</span>
-            <h2 style="color:#fff;font-size:1.5rem;text-align:center;margin-bottom:4px;font-weight:700;">Treasury Holdings</h2>
-            <div style="text-align:center;margin-bottom:14px;">
-                <span id="treasuryAmount" style="color:#0cf3c9;font-weight:700;font-size:1.05rem;">CURV</span>
-                <span style="color:rgba(255,255,255,0.3);margin:0 6px;">·</span>
-                <span id="treasuryPercent" style="color:rgba(255,255,255,0.5);font-size:0.88rem;font-weight:600;">--% of supply</span>
+            <div class="price-display">
+                <span class="price-value" id="curvPrice">$0.00</span>
+                <span id="priceChange" class="price-change">0%</span>
+                <span id="curvPriceWpls" class="price-wpls">-- WPLS</span>
             </div>
-            <p style="color:#0cf3c9;font-size:0.8rem;text-align:center;font-weight:600;letter-spacing:1px;margin-bottom:4px;">GNOSIS SAFE CONTRACT</p>
-            <p style="color:rgba(255,255,255,0.35);font-size:0.72rem;text-align:center;margin-bottom:18px;word-break:break-all;">0xd0AbBF095f446DD8F87701A307938B300366a488</p>
-            <div id="treasuryHoldingsList"><div class="treasury-loading">Loading balances…</div></div>
-        </div>
-    </div>
-
-    <div id="pointsModal" class="modal" onclick="closePointsModal()">
-        <div class="modal-content-box" onclick="event.stopPropagation()" style="max-width:600px;">
-            <span class="modal-close" onclick="closePointsModal()">&times;</span>
-            <h2 style="background:linear-gradient(135deg, #0cf3c9 0%, #00d4ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:1.8rem;text-align:center;margin-bottom:24px;">CURV/Switch Points Program</h2>
-            <p style="color:rgba(255,255,255,0.88);line-height:1.8;margin-bottom:16px;font-size:0.95rem;">Every trade on the platform earns points throughout the season. Points accumulate until the season concludes, at which time final totals — along with the associated 0x wallet addresses — will be published on this site.</p>
-            <p style="color:rgba(255,255,255,0.88);line-height:1.8;margin-bottom:16px;font-size:0.95rem;">Points are issued solely for platform engagement. They carry no monetary value, no financial rights, and no guarantee of future utility. Users should not form expectations regarding potential future use.</p>
-            <p style="color:rgba(255,255,255,0.88);line-height:1.8;margin-bottom:16px;font-size:0.95rem;">Any attempt to manipulate or exploit the system may result in forfeiture of points at the platform's discretion.</p>
-            <p style="color:rgba(255,255,255,0.88);line-height:1.8;margin-bottom:6px;font-size:0.95rem;">The principle is simple:</p>
-            <p style="background:linear-gradient(135deg,#00ffd5 0%,#00b2ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:1.2rem;font-weight:700;margin-bottom:10px;">The more you Switch, the more you earn.</p>
-            <p style="color:rgba(255,255,255,0.55);font-size:0.82rem;font-style:italic;margin-bottom:28px;">*This points program is exclusive to CURV and this site!</p>
-            <hr style="border:none;border-top:1px solid rgba(12,243,201,0.2);margin-bottom:24px;">
-            <label id="pointsAgreeLabel" style="display:flex;align-items:flex-start;gap:12px;cursor:pointer;padding:12px 16px;border-radius:12px;border:1px solid rgba(12,243,201,0.18);background:rgba(12,243,201,0.04);transition:border-color 0.25s ease;">
-                <input type="checkbox" id="pointsAgreeCheck" onchange="handlePointsAgree()" style="accent-color:#0cf3c9;width:20px;height:20px;min-width:20px;margin-top:2px;cursor:pointer;">
-                <span style="color:rgba(255,255,255,0.75);font-size:0.88rem;line-height:1.5;">I have read and agree to the terms of the Switch Points Program.</span>
-            </label>
-            <div id="pointsAgreedMsg" style="display:none;text-align:center;margin-top:16px;padding:10px;border-radius:10px;background:rgba(12,243,201,0.08);border:1px solid rgba(12,243,201,0.25);">
-                <span style="color:#0cf3c9;font-weight:600;font-size:0.92rem;">&#10003; Terms accepted — happy switching!</span>
+            <div class="header-actions-row">
+                <button class="header-btn header-btn-otc" onclick="openPointsModal()" style="min-width:auto;">POINTS</button>
             </div>
         </div>
+        <div class="header-right">
+            <ul class="nav-links" id="navLinks">
+                <li>
+                    <a href="#" onclick="openTreasuryModal(); closeMenu(); return false;" style="display:flex;align-items:center;gap:6px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="-webkit-text-fill-color:initial;flex-shrink:0;"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 10h20"/><path d="M12 4v16"/></svg>
+                        <span class="nav-mobile-label">Treasury</span>
+                    </a>
+                </li>
+                <li class="dropdown" id="linksDropdown">
+                    <a href="#" class="dropdown-toggle" onclick="toggleDropdown(event)" aria-label="Links" style="display:flex;align-items:center;gap:6px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="-webkit-text-fill-color:initial;flex-shrink:0;"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                        <span class="nav-mobile-label">Links</span>
+                    </a>
+                    <div class="dropdown-menu"><a href="https://pulsechain.com/" target="_blank">PulseChain<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a><a href="https://www.buildthetech.com/" target="_blank">Build The Tech<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a><a href="https://scan.pulsechain.com/" target="_blank">Scan.PulseChain.com<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a><a href="https://bridge.pulsechain.com/#/bridge" target="_blank">Pulse Bridge<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a><a href="https://ipfs.app.pulsex.com/" target="_blank">PulseX<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a><a href="https://dex.9mm.pro/swap" target="_blank">9mm DEX<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a><a href="https://plstart.me/" target="_blank">PLS Ecosystem<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a><a href="https://app.provex.com/" target="_blank">ProveX<svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></div>
+                </li>
+                <li>
+                    <a href="https://libertyswap.finance/curv" target="_blank" class="icon-button">
+                        <img src="assets/liberty.png" alt="Liberty Swap">
+                        <span class="icon-label">LibertySwap</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+</header>
+<main class="relative pt-32 overflow-hidden">
+<!-- Hero Background Elements -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[800px] pointer-events-none -z-10">
+<div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary-container/10 blur-[120px] rounded-full"></div>
+<div class="absolute top-1/3 right-1/4 w-64 h-64 bg-secondary/5 blur-[100px] rounded-full"></div>
+</div>
+<!-- Hero Section -->
+<section class="max-w-[1440px] mx-auto px-8 mb-32 relative">
+<div class="flex flex-col items-center text-center">
+<h1 class="text-[10rem] md:text-[18rem] font-black font-headline tracking-tighter leading-none opacity-5 select-none absolute top-[-50px] z-0" style="">CURV</h1>
+<div class="relative z-10 space-y-8 mt-24">
+<h2 class="text-5xl md:text-8xl font-headline font-bold tracking-tight max-w-5xl mx-auto leading-[0.9]" style="">&nbsp;DEFI&nbsp;<span class="text-editorial font-light text-primary" style="">Solutions</span>&nbsp;&nbsp;</h2>
+<p class="text-xl md:text-2xl text-on-surface-variant max-w-2xl mx-auto font-body font-light" style="">From the ultimate DEX aggregator and intent-based limit orders to peer-to-many, multi-asset OTC trading, we provide a comprehensive suite of DeFi tools. Our automated DCA strategies are powered by decentralized keeper bots, delivering every intent with unmatched efficiency and precision.</p>
+</div>
+</div>
+</section>
+<!-- What We Do Section -->
+<section class="max-w-[1440px] mx-auto px-8 mb-32">
+<div class="flex flex-col mb-12">
+<span class="text-primary font-label uppercase tracking-widest text-sm mb-4" style="">Infrastructure</span>
+<h3 class="text-4xl md:text-6xl font-headline font-bold tracking-tight" style="">What We Offer</h3>
+<p class="text-on-surface-variant text-sm mt-4 flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary" style="font-size:1rem;">open_in_new</span>
+Click a card to open the dApp
+</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-8">
+<!-- Feature Card 1 -->
+<a href="https://app.0xcurv.win/swap" target="_blank" rel="noopener noreferrer" class="glass-card p-8 rounded-xl flex flex-col space-y-5 group hover:translate-y-[-10px] transition-all duration-500 hover-glow no-underline">
+<div class="w-12 h-12 rounded-xl bg-primary-container/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="swap_horiz" style="">swap_horiz</span>
+</div>
+<div class="space-y-3">
+<h4 class="text-xl font-headline font-bold" style="">Intent Based Limit Orders</h4>
+<p class="text-on-surface-variant leading-relaxed text-sm" style="">Non-custodial by design—approve once and retain full control. Execute intent-based limit orders with a single gas payment, enabling the creation of multiple orders efficiently. Fully compatible with tax tokens. An operator-driven network ensures optimal routing and fast execution, driven by competitive incentives.</p>
+</div>
+</a>
+<!-- Feature Card 2 -->
+<a href="https://app.0xcurv.win/swap" target="_blank" rel="noopener noreferrer" class="glass-card p-8 rounded-xl flex flex-col space-y-5 group hover:translate-y-[-10px] transition-all duration-500 hover-glow no-underline">
+<div class="w-12 h-12 rounded-xl bg-primary-container/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="hub" style="">hub</span>
+</div>
+<div class="space-y-3">
+<h4 class="text-xl font-headline font-bold" style="">Aggregator</h4>
+<p class="text-on-surface-variant leading-relaxed text-sm" style="">Sophisticated algorithms intelligently optimise trade paths to minimise slippage and reduce transaction costs. Effortlessly access and compare liquidity across multiple markets, ensuring you consistently secure the most competitive pricing and best execution opportunities.</p>
+</div>
+</a>
+<!-- Feature Card 3 -->
+<a href="https://app.0xcurv.win/" target="_blank" rel="noopener noreferrer" class="glass-card p-8 rounded-xl flex flex-col space-y-5 group hover:translate-y-[-10px] transition-all duration-500 hover-glow no-underline">
+<div class="w-12 h-12 rounded-xl bg-primary-container/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="group" style="">group</span>
+</div>
+<div class="space-y-3">
+<h4 class="text-xl font-headline font-bold" style="">Peer-To-Many OTC</h4>
+<p class="text-on-surface-variant leading-relaxed text-sm" style="">Multi-asset OTC trading platform</p>
+<ul class="text-on-surface-variant text-sm space-y-1">
+<li>• Execute partial or full fills with flexibility</li>
+<li>• Peer-to-many matching | Low fees | Zero slippage</li>
+<li>• No price impact on execution</li>
+<li>• Arbitrage opportunities</li>
+</ul>
+<p class="text-on-surface-variant text-sm pt-1">Trade directly with anyone, anytime — no middlemen</p>
+</div>
+</a>
+<!-- Feature Card 4 -->
+<div class="glass-card p-8 rounded-xl flex flex-col space-y-5 group hover:translate-y-[-10px] transition-all duration-500 hover-glow cursor-default">
+<div class="w-12 h-12 rounded-xl bg-secondary-container/20 flex items-center justify-center group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-secondary text-3xl" data-icon="pending_actions" style="">pending_actions</span>
+</div>
+<div class="space-y-3">
+<h4 class="text-xl font-headline font-bold" style="">Intent Based Auto DCA <span class="text-sm font-normal text-on-surface-variant">(Coming Soon)</span></h4>
+<p class="text-on-surface-variant leading-relaxed text-sm" style="">Automate your DCA strategy without ever relinquishing control—fully non-custodial by design. Set hourly, weekly, or monthly schedules, define your per-cycle amounts and budget caps, and benefit from individual slippage protection on each plan. Easily edit or cancel at any time.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Stats Bar -->
+<section class="max-w-[1440px] mx-auto px-8 mb-40">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 py-16 px-12 bg-surface-container-low rounded-xl relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent opacity-30"></div>
+<div class="flex flex-col items-center text-center space-y-2 relative z-10">
+<span class="text-6xl font-headline font-bold text-primary" style="">12+</span>
+<span class="text-sm font-label uppercase tracking-[0.3em] text-on-surface-variant" style="">Connected DEXs</span>
+</div>
+<div class="flex flex-col items-center text-center space-y-2 relative z-10 border-y md:border-y-0 md:border-x border-outline-variant/10 py-8 md:py-0">
+<span class="text-6xl font-headline font-bold text-secondary" style="">25%</span>
+<span class="text-sm font-label uppercase tracking-[0.3em] text-on-surface-variant" style="">PROJECT COMPLETION</span>
+</div>
+<div class="flex flex-col items-center text-center space-y-2 relative z-10">
+<span class="text-6xl font-headline font-bold text-primary" style="">1 of 4</span>
+<span class="text-sm font-label uppercase tracking-[0.3em] text-on-surface-variant" style="">Networks Supported</span>
+</div>
+</div>
+</section>
+<!-- Manage Your Assets Section (Editorial) -->
+<section class="max-w-[1440px] mx-auto px-8 mb-48 overflow-hidden">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+<div class="relative order-2 lg:order-1">
+<div class="absolute -top-20 -left-20 w-80 h-80 bg-primary/5 blur-[100px] rounded-full"></div>
+<div class="relative z-10 glass-card p-4 rounded-full w-fit mx-auto lg:mx-0 rotate-[-5deg]">
+<img alt="3D Digital Asset Management Visualization" class="w-[400px] h-[500px] object-cover rounded-full mix-blend-screen opacity-90" data-alt="3D abstract rendering of neon teal metallic rings interlocking in a dark ethereal digital space with soft neon green light" src="assets/hero-rings.png" style="">
+</div>
+<!-- Badges -->
+<div class="absolute top-1/4 right-0 lg:right-[-40px] z-20 glass-card px-6 py-4 rounded-xl atomic-glow">
+<div class="flex items-center space-x-3">
+<span class="material-symbols-outlined text-secondary" data-icon="bolt" style="">bolt</span>
+<span class="text-sm font-headline font-bold" style="">Ultimate Swap Efficiency</span>
+</div>
+</div>
+<div class="absolute bottom-1/4 left-0 lg:left-[-40px] z-20 glass-card px-6 py-4 rounded-xl border-secondary/20">
+<div class="flex items-center space-x-3">
+<span class="material-symbols-outlined text-primary" data-icon="verified_user" style="">verified_user</span>
+<span class="text-sm font-headline font-bold" style="">Intuitive&nbsp;Limit Orders</span>
+</div>
+</div>
+</div>
+<div class="space-y-12 order-1 lg:order-2">
+<div class="space-y-6">
+<h2 class="text-6xl md:text-8xl font-headline font-bold leading-[0.85] tracking-tighter" style="">
+                        Control Your <br>
+<span class="text-editorial text-primary" style="">Assets<br></span>Your way.</h2>
+<p class="text-xl text-on-surface-variant font-body max-w-lg leading-relaxed" style="">
+                        CURV offers a frictionless trading experience, cutting out intermediaries and centralized control, leaving you with nothing but precision, efficiency, and direct execution.
+                    </p>
+</div>
+<div class="space-y-4">
+<div class="flex items-center space-x-4 p-4 hover:bg-surface-container-high rounded-xl transition-colors cursor-default">
+<span class="text-primary font-headline font-bold text-2xl" style="">01.</span>
+<span class="text-lg font-headline" style="">Immutable, permissionless &amp; censorship resistant</span>
+</div>
+<div class="flex items-center space-x-4 p-4 hover:bg-surface-container-high rounded-xl transition-colors cursor-default">
+<span class="text-primary font-headline font-bold text-2xl" style="">02.</span>
+<span class="text-lg font-headline" style="">Intuitive&nbsp;UI/UX across all dApps</span>
+</div>
+<div class="flex items-center space-x-4 p-4 hover:bg-surface-container-high rounded-xl transition-colors cursor-default">
+<span class="text-primary font-headline font-bold text-2xl" style="">03.</span>
+<span class="text-lg font-headline" style="">Whitelisted Operators &amp; Keepers for MEV protection</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="max-w-[1440px] mx-auto px-8 mb-32">
+<div class="relative bg-surface-container p-12 md:p-24 rounded-xl overflow-hidden text-center atomic-glow">
+<div class="absolute inset-0 w-full h-full opacity-40 pointer-events-none">
+<img alt="3D Ring Architecture" class="w-full h-full object-cover mix-blend-screen" data-alt="Futuristic, abstract Web3-inspired background with deep blacks and neon teal accents" src="assets/cta-bg.png" style="">
+</div>
+<div class="relative z-10 space-y-10">
+<h2 class="text-5xl md:text-7xl font-headline font-bold tracking-tight" style="">Building for tomorrow<br>today <font color="#0cf3c9">CURV</font></h2>
+<p class="text-on-surface-variant text-xl max-w-xl mx-auto" style="">Community first belief system - Each One Teach One!</p>
+</div>
+<div class="absolute inset-0 bg-gradient-to-b from-surface-container/80 via-transparent to-surface-container/80 pointer-events-none z-0"></div></div>
+</section>
+</main>
+<!-- Footer -->
+<footer>
+    <div style="margin-bottom: 14px;">
+        <h3 style="color: rgba(255,255,255,0.5); font-weight: 600; font-size: 0.95rem; margin-bottom: 10px; text-align: center;">CURV Contract Address</h3>
+        <div class="contract-address" onclick="copyAddress()" style="font-size: 0.85rem; padding: 12px 16px; max-width: 800px; margin: 0 auto; text-align: center;">0x591c914BC5c878cC398AF67681C388FaC8bdaf4e</div>
     </div>
+    <div class="copyright">
+        <span>© 2026 CURV. All rights reserved.</span>
+        <a href="https://x.com/0xCurv" target="_blank" rel="noopener noreferrer" style="color: rgba(255,255,255,0.7); text-decoration: none; transition: all 0.3s ease;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+    </div>
+</footer>
 
+<!-- Treasury Modal -->
+<div id="treasuryHoldingsModal" class="modal" onclick="closeTreasuryModal()">
+    <div class="modal-content-box" onclick="event.stopPropagation()" style="max-width:480px;">
+        <span class="modal-close" onclick="closeTreasuryModal()">&times;</span>
+        <h2 style="color:#fff;font-size:1.5rem;text-align:center;margin-bottom:4px;font-weight:700;">Treasury Holdings</h2>
+        <div style="text-align:center;margin-bottom:14px;">
+            <span id="treasuryAmount" style="color:#0cf3c9;font-weight:700;font-size:1.05rem;">CURV</span>
+            <span style="color:rgba(255,255,255,0.3);margin:0 6px;">·</span>
+            <span id="treasuryPercent" style="color:rgba(255,255,255,0.5);font-size:0.88rem;font-weight:600;">--% of supply</span>
+        </div>
+        <p style="color:#0cf3c9;font-size:0.8rem;text-align:center;font-weight:600;letter-spacing:1px;margin-bottom:4px;">GNOSIS SAFE CONTRACT</p>
+        <p style="color:rgba(255,255,255,0.35);font-size:0.72rem;text-align:center;margin-bottom:18px;word-break:break-all;">0xd0AbBF095f446DD8F87701A307938B300366a488</p>
+        <div id="treasuryHoldingsList"><div class="treasury-loading">Loading balances…</div></div>
+    </div>
+</div>
 
-    <script>
-        // ===== SIMPLE ANALYTICS (No Third-Party Services) =====
-        const analytics = {
-            sessionStart: Date.now(),
-            events: [],
-            
-            track(eventName, data = {}) {
-                const event = {
-                    name: eventName,
-                    timestamp: Date.now(),
-                    page: window.location.hash || '#home',
-                    ...data
-                };
-                this.events.push(event);
-                console.log('📊 Analytics:', event);
-            },
-            
-            getSession() {
-                return {
-                    duration: Math.floor((Date.now() - this.sessionStart) / 1000),
-                    events: this.events,
-                    userAgent: navigator.userAgent,
-                    screenSize: `${window.innerWidth}x${window.innerHeight}`
-                };
+<!-- Points Modal -->
+<div id="pointsModal" class="modal" onclick="closePointsModal()">
+    <div class="modal-content-box" onclick="event.stopPropagation()" style="max-width:600px;">
+        <span class="modal-close" onclick="closePointsModal()">&times;</span>
+        <h2 style="background:linear-gradient(135deg,#0cf3c9 0%,#00d4ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:1.8rem;text-align:center;margin-bottom:24px;">CURV/Switch Points Program</h2>
+        <p style="color:rgba(255,255,255,0.88);line-height:1.8;margin-bottom:16px;font-size:0.95rem;">Every trade on the platform earns points throughout the season. Points accumulate until the season concludes, at which time final totals — along with the associated 0x wallet addresses — will be published on this site.</p>
+        <p style="color:rgba(255,255,255,0.88);line-height:1.8;margin-bottom:16px;font-size:0.95rem;">Points are issued solely for platform engagement. They carry no monetary value, no financial rights, and no guarantee of future utility.</p>
+        <p style="color:rgba(255,255,255,0.88);line-height:1.8;margin-bottom:16px;font-size:0.95rem;">Any attempt to manipulate or exploit the system may result in forfeiture of points at the platform's discretion.</p>
+        <p style="background:linear-gradient(135deg,#00ffd5 0%,#00b2ff 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:1.2rem;font-weight:700;margin-bottom:10px;">The more you Switch, the more you earn.</p>
+        <p style="color:rgba(255,255,255,0.55);font-size:0.82rem;font-style:italic;margin-bottom:28px;">*This points program is exclusive to CURV and this site!</p>
+        <hr style="border:none;border-top:1px solid rgba(12,243,201,0.2);margin-bottom:24px;">
+        <label id="pointsAgreeLabel" style="display:flex;align-items:flex-start;gap:12px;cursor:pointer;padding:12px 16px;border-radius:12px;border:1px solid rgba(12,243,201,0.18);background:rgba(12,243,201,0.04);transition:border-color 0.25s ease;">
+            <input type="checkbox" id="pointsAgreeCheck" onchange="handlePointsAgree()" style="accent-color:#0cf3c9;width:20px;height:20px;min-width:20px;margin-top:2px;cursor:pointer;">
+            <span style="color:rgba(255,255,255,0.75);font-size:0.88rem;line-height:1.5;">I have read and agree to the terms of the Switch Points Program.</span>
+        </label>
+        <div id="pointsAgreedMsg" style="display:none;text-align:center;margin-top:16px;padding:10px;border-radius:10px;background:rgba(12,243,201,0.08);border:1px solid rgba(12,243,201,0.25);">
+            <span style="color:#0cf3c9;font-weight:600;font-size:0.92rem;">&#10003; Terms accepted — happy switching!</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ===== PRICE DISPLAY =====
+    function formatPriceWithZeroCount(price, maxDecimals) {
+        if (!price || isNaN(price)) return '$0.00';
+        const str = price.toFixed(maxDecimals);
+        const [intPart, decPart = ''] = str.split('.');
+        let zeroCount = 0;
+        for (let i = 0; i < decPart.length; i++) {
+            if (decPart[i] !== '0') break;
+            zeroCount++;
+        }
+        if (zeroCount === 0) return `$${intPart}.${decPart}`;
+        const tail = decPart.slice(zeroCount) || '0';
+        return `$${intPart}.0<span class="price-zeros">${zeroCount}</span><span class="price-tail">${tail}</span>`;
+    }
+
+    async function fetchCurvPrice() {
+        try {
+            const response = await fetch('https://api.dexscreener.com/latest/dex/pairs/pulsechain/0x1fcdcc8ec77CFba28D31556addA85358c3Af5873');
+            const data = await response.json();
+            if (data && data.pair) {
+                const price = parseFloat(data.pair.priceUsd);
+                const priceChange = parseFloat(data.pair.priceChange?.h24 || 0);
+                const curvPriceEl = document.getElementById('curvPrice');
+                if (curvPriceEl) curvPriceEl.innerHTML = formatPriceWithZeroCount(price, 8);
+                const priceChangeEl = document.getElementById('priceChange');
+                if (priceChangeEl) {
+                    priceChangeEl.textContent = `${priceChange >= 0 ? '+' : ''}${priceChange.toFixed(2)}%`;
+                    priceChangeEl.className = `price-change ${priceChange >= 0 ? 'positive' : 'negative'}`;
+                }
+                const priceNative = parseFloat(data.pair.priceNative || 0);
+                const wplsEl = document.getElementById('curvPriceWpls');
+                if (wplsEl && priceNative > 0) wplsEl.textContent = `${priceNative.toFixed(4)} WPLS`;
             }
-        };
+        } catch (e) { console.error('Price fetch error:', e); }
+    }
+    fetchCurvPrice();
+    setInterval(fetchCurvPrice, 30000);
 
-        // Track page view
-        analytics.track('page_view', { 
-            referrer: document.referrer,
-            userAgent: navigator.userAgent 
-        });
+    // ===== NAV =====
+    function toggleMenu() {
+        const navLinks = document.getElementById('navLinks');
+        const hamburger = document.querySelector('.hamburger');
+        const isActive = navLinks.classList.toggle('active');
+        if (hamburger) hamburger.classList.toggle('active', isActive);
+        document.body.style.overflow = isActive ? 'hidden' : '';
+    }
+    function closeMenu() {
+        const navLinks = document.getElementById('navLinks');
+        const hamburger = document.querySelector('.hamburger');
+        navLinks.classList.remove('active');
+        if (hamburger) hamburger.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    function toggleDropdown(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        document.getElementById('linksDropdown').classList.toggle('active');
+    }
+    document.addEventListener('click', function(e) {
+        const dropdown = document.getElementById('linksDropdown');
+        if (dropdown && !dropdown.contains(e.target)) dropdown.classList.remove('active');
+    });
 
-        // Intro Animation Logic
-        // Set initial state
-        document.body.classList.add('intro-active');
-
-        // Auto-skip after 3.5 seconds
-        setTimeout(() => {
-            skipIntro();
-        }, 3500);
-
-        function skipIntro() {
-            const intro = document.getElementById('intro-container');
-            const mainWebsite = document.getElementById('main-website');
-            
-            intro.classList.add('fade-out');
-            analytics.track('intro_completed', { method: 'auto' });
-            
+    // ===== CONTRACT ADDRESS COPY =====
+    function copyAddress() {
+        const address = '0x591c914BC5c878cC398AF67681C388FaC8bdaf4e';
+        navigator.clipboard.writeText(address).then(() => {
+            const el = document.querySelector('.contract-address');
+            if (!el) return;
+            const prev = el.querySelector('.copy-toast');
+            if (prev) prev.remove();
+            const toast = document.createElement('span');
+            toast.className = 'copy-toast';
+            toast.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied';
+            el.appendChild(toast);
             setTimeout(() => {
-                intro.classList.add('hidden');
-                mainWebsite.classList.add('show');
-                document.body.classList.remove('intro-active');
-                document.body.classList.add('intro-complete');
-            }, 800);
+                toast.classList.add('fade-out');
+                setTimeout(() => toast.remove(), 260);
+            }, 1700);
+        }).catch(err => console.error('Copy failed:', err));
+    }
+
+    // ===== TREASURY MODAL =====
+    function openTreasuryModal() {
+        document.getElementById('treasuryHoldingsModal').classList.add('active');
+        loadTreasuryHoldings();
+    }
+    function closeTreasuryModal() {
+        document.getElementById('treasuryHoldingsModal').classList.remove('active');
+    }
+    async function loadTreasuryHoldings() {
+        const WALLET = '0xd0AbBF095f446DD8F87701A307938B300366a488';
+        const RPC = 'https://rpc.pulsechain.com';
+        const el = document.getElementById('treasuryHoldingsList');
+        el.innerHTML = '<div class="treasury-loading">Loading balances…</div>';
+        function fmtUnits(raw, dec) {
+            const s = BigInt(raw).toString();
+            const d = Number(dec);
+            const padded = s.padStart(d + 1, '0');
+            const whole = padded.slice(0, padded.length - d) || '0';
+            const frac  = padded.slice(padded.length - d, padded.length - d + 4);
+            return `${whole.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}${frac.replace(/0+$/, '') ? '.' + frac.replace(/0+$/, '') : ''}`;
         }
-
-        // Main Website Logic
-        document.addEventListener('DOMContentLoaded', () => {
-            const PULSECHAIN_RPC = 'https://rpc.pulsechain.com';
-            const CURV_TOKEN = '0x591c914BC5c878cC398AF67681C388FaC8bdaf4e';
-            const TREASURY_WALLET = '0xd0AbBF095f446DD8F87701A307938B300366a488';
-
-            function formatPriceWithZeroCount(value, decimals = 7) {
-                const fixed = Number(value).toFixed(decimals);
-                const [intPart, decPart = ''] = fixed.split('.');
-
-                if (intPart !== '0') {
-                    return `${intPart}.${decPart}`;
-                }
-
-                let zeroCount = 0;
-                while (zeroCount < decPart.length && decPart[zeroCount] === '0') {
-                    zeroCount += 1;
-                }
-
-                if (zeroCount === 0) {
-                    return `${intPart}.${decPart}`;
-                }
-
-                const tail = decPart.slice(zeroCount) || '0';
-                return `${intPart}.0<span class="price-zeros">${zeroCount}</span><span class="price-tail">${tail}</span>`;
-            }
-
-            // Lazy load images
-            const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-            if ('IntersectionObserver' in window) {
-                const imageObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const img = entry.target;
-                            img.classList.add('loaded');
-                            imageObserver.unobserve(img);
-                        }
-                    });
-                });
-                lazyImages.forEach(img => imageObserver.observe(img));
-            } else {
-                // Fallback for older browsers
-                lazyImages.forEach(img => img.classList.add('loaded'));
-            }
-
-            // Fetch CURV price
-            async function fetchCurvPrice() {
-                try {
-                    const response = await fetch('https://api.dexscreener.com/latest/dex/pairs/pulsechain/0x1fcdcc8ec77CFba28D31556addA85358c3Af5873');
-                    const data = await response.json();
-                    
-                    if (data && data.pair) {
-                        const price = parseFloat(data.pair.priceUsd);
-                        const priceChange = parseFloat(data.pair.priceChange?.h24 || 0);
-                        
-                        const curvPriceEl = document.getElementById('curvPrice');
-                        if (curvPriceEl) {
-                            curvPriceEl.innerHTML = formatPriceWithZeroCount(price, 8);
-                        }
-                        
-                        const priceChangeEl = document.getElementById('priceChange');
-                        priceChangeEl.textContent = `${priceChange >= 0 ? '+' : ''}${priceChange.toFixed(2)}%`;
-                        priceChangeEl.className = `price-change ${priceChange >= 0 ? 'positive' : 'negative'}`;
-
-                        const priceNative = parseFloat(data.pair.priceNative || 0);
-                        const wplsEl = document.getElementById('curvPriceWpls');
-                        if (wplsEl && priceNative > 0) {
-                            wplsEl.textContent = `${priceNative.toFixed(4)} WPLS`;
-                        }
-                    }
-                } catch (error) {
-                    console.error('Error fetching price:', error);
-                }
-            }
-
-            fetchCurvPrice();
-            setInterval(fetchCurvPrice, 30000);
-
-            // PulseChain days counter
-            function updatePulseChainDays() {
-                const startDate = new Date('2023-05-13T18:00:00Z');
-                const now = new Date();
-                const diffTime = Math.abs(now - startDate);
-                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-                
-                document.getElementById('pulseChainDays').textContent = `${diffDays} Days`;
-            }
-
-            updatePulseChainDays();
-            setInterval(updatePulseChainDays, 24 * 60 * 60 * 1000);
-
-            async function rpcCall(method, params) {
-                const response = await fetch(PULSECHAIN_RPC, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ jsonrpc: '2.0', id: 1, method, params })
-                });
-
-                const data = await response.json();
-                if (data.error) {
-                    throw new Error(data.error.message || 'RPC error');
-                }
-                return data.result;
-            }
-
-            function padAddress(address) {
-                return address.toLowerCase().replace(/^0x/, '').padStart(64, '0');
-            }
-
-            function formatUnits(value, decimals, displayDecimals = 0) {
-                const base = 10n ** BigInt(decimals);
-                const whole = value / base;
-                const fraction = value % base;
-
-                const wholeFormatted = whole.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-                if (displayDecimals === 0) {
-                    return wholeFormatted;
-                }
-
-                const fracString = fraction.toString().padStart(decimals, '0').slice(0, displayDecimals);
-                return `${wholeFormatted}.${fracString}`;
-            }
-
-            function formatPercent(part, total) {
-                if (total === 0n) return '0.00';
-                const basisPoints = (part * 10000n) / total;
-                const whole = basisPoints / 100n;
-                const frac = (basisPoints % 100n).toString().padStart(2, '0');
-                return `${whole.toString()}.${frac}`;
-            }
-
-            async function fetchTreasuryData() {
-                try {
-                    const [decimalsHex, totalSupplyHex, balanceHex] = await Promise.all([
-                        rpcCall('eth_call', [{ to: CURV_TOKEN, data: '0x313ce567' }, 'latest']),
-                        rpcCall('eth_call', [{ to: CURV_TOKEN, data: '0x18160ddd' }, 'latest']),
-                        rpcCall('eth_call', [{
-                            to: CURV_TOKEN,
-                            data: `0x70a08231${padAddress(TREASURY_WALLET)}`
-                        }, 'latest'])
-                    ]);
-
-                    const decimals = Number(BigInt(decimalsHex));
-                    const totalSupply = BigInt(totalSupplyHex);
-                    const treasuryBalance = BigInt(balanceHex);
-
-                    const treasuryText = `${formatUnits(treasuryBalance, decimals, 0)} CURV`;
-                    const percentText = `${formatPercent(treasuryBalance, totalSupply)}% of supply`;
-
-                    const treasuryAmountEl = document.getElementById('treasuryAmount');
-                    const treasuryPercentEl = document.getElementById('treasuryPercent');
-
-                    if (treasuryAmountEl) treasuryAmountEl.textContent = treasuryText;
-                    if (treasuryPercentEl) treasuryPercentEl.textContent = percentText;
-                } catch (error) {
-                    console.error('Error fetching treasury data:', error);
-                }
-            }
-
-            fetchTreasuryData();
-            setInterval(fetchTreasuryData, 60000);
-
-            // Handle URL hash navigation
-            function showSection(hash) {
-                const targetPage = hash.substring(1) || 'home';
-                
-                document.querySelectorAll('section').forEach(section => {
-                    section.classList.remove('active');
-                });
-                
-                const targetSection = document.getElementById(targetPage);
-                if (targetSection) {
-                    targetSection.classList.add('active');
-                    analytics.track('page_navigation', { page: targetPage });
-                }
-                
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-
-            window.addEventListener('hashchange', () => {
-                showSection(window.location.hash);
-            });
-
-            showSection(window.location.hash || '#home');
-
-            // Menu navigation
-            document.querySelectorAll('nav a[href^="#"]').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    // Skip dropdown toggles - they handle their own click
-                    if (link.classList.contains('dropdown-toggle')) return;
-                    const href = link.getAttribute('href');
-                    if (href.startsWith('#') && href.length > 1) {
-                        e.preventDefault();
-                        window.location.hash = href.substring(1);
+        try {
+            const [plsRes, tokenList] = await Promise.all([
+                fetch(RPC, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'eth_getBalance', params: [WALLET, 'latest'] }) }).then(r => r.json()),
+                fetch(`https://api.scan.pulsechain.com/api/v2/addresses/${WALLET}/token-balances`, { cache: 'no-store' }).then(r => r.json())
+            ]);
+            const rows = [];
+            const plsRaw = BigInt(plsRes.result || '0x0');
+            if (plsRaw > 0n) rows.push({ symbol: 'PLS', amount: fmtUnits(plsRaw, 18) });
+            const SYMBOL_OVERRIDES = { '0x57fde0a71132198bbeC939b98976993d8d89d225': 'eHEX' };
+            if (Array.isArray(tokenList)) {
+                tokenList.forEach(item => {
+                    const raw = BigInt(item.value || '0');
+                    if (raw > 0n && item.token?.type === 'ERC-20') {
+                        const addr = (item.token.address || '').toLowerCase();
+                        const overrideKey = Object.keys(SYMBOL_OVERRIDES).find(k => k.toLowerCase() === addr);
+                        rows.push({ symbol: overrideKey ? SYMBOL_OVERRIDES[overrideKey] : (item.token.symbol || '???'), amount: fmtUnits(raw, item.token.decimals || '18') });
                     }
                 });
-            });
-        });
-
-        function openTreasuryModal() {
-            document.getElementById('treasuryHoldingsModal').classList.add('active');
-            loadTreasuryHoldings();
-            analytics.track('modal_opened', { modal: 'treasury_holdings' });
-        }
-
-        function closeTreasuryModal() {
-            document.getElementById('treasuryHoldingsModal').classList.remove('active');
-        }
-
-        async function loadTreasuryHoldings() {
-            const WALLET = '0xd0AbBF095f446DD8F87701A307938B300366a488';
-            const RPC = 'https://rpc.pulsechain.com';
-            const el = document.getElementById('treasuryHoldingsList');
-            el.innerHTML = '<div class="treasury-loading">Loading balances…</div>';
-
-            function fmtUnits(raw, dec) {
-                const s = BigInt(raw).toString();
-                const d = Number(dec);
-                const padded = s.padStart(d + 1, '0');
-                const whole = padded.slice(0, padded.length - d) || '0';
-                const frac  = padded.slice(padded.length - d, padded.length - d + 4);
-                const wholeFormatted = whole.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-                const trimmed = frac.replace(/0+$/, '');
-                return trimmed ? `${wholeFormatted}.${trimmed}` : wholeFormatted;
             }
-
-            try {
-                // Fetch native PLS balance + all ERC-20 tokens in parallel
-                const [plsRes, tokenList] = await Promise.all([
-                    fetch(RPC, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'eth_getBalance', params: [WALLET, 'latest'] })
-                    }).then(r => r.json()),
-                    fetch(`https://api.scan.pulsechain.com/api/v2/addresses/${WALLET}/token-balances`, { cache: 'no-store' }).then(r => r.json())
-                ]);
-
-                const rows = [];
-
-                // Native PLS
-                const plsRaw = BigInt(plsRes.result || '0x0');
-                if (plsRaw > 0n) {
-                    rows.push({ symbol: 'PLS', amount: fmtUnits(plsRaw, 18) });
-                }
-
-                // ERC-20 tokens — response is a flat array
-                // Override symbols where on-chain name is ambiguous
-                const SYMBOL_OVERRIDES = {
-                    '0x57fde0a71132198bbeC939b98976993d8d89d225': 'eHEX',
-                };
-
-                if (Array.isArray(tokenList)) {
-                    tokenList.forEach(item => {
-                        const raw = BigInt(item.value || '0');
-                        if (raw > 0n && item.token?.type === 'ERC-20') {
-                            const addr = (item.token.address || '').toLowerCase();
-                            const overrideKey = Object.keys(SYMBOL_OVERRIDES).find(k => k.toLowerCase() === addr);
-                            const symbol = overrideKey ? SYMBOL_OVERRIDES[overrideKey] : (item.token.symbol || item.token.name || '???');
-                            rows.push({
-                                symbol,
-                                amount: fmtUnits(raw, item.token.decimals || '18')
-                            });
-                        }
-                    });
-                }
-
-                if (rows.length === 0) {
-                    el.innerHTML = '<div class="treasury-loading">No token balances found.</div>';
-                    return;
-                }
-
-                // Update CURV summary line from token list
-                const CURV_ADDR = '0x591c914bc5c878cc398af67681c388fac8bdaf4e';
-                if (Array.isArray(tokenList)) {
-                    const curvItem = tokenList.find(item => (item.token?.address || '').toLowerCase() === CURV_ADDR);
-                    if (curvItem && curvItem.token) {
-                        const curvRaw = BigInt(curvItem.value || '0');
-                        const curvDec = Number(curvItem.token.decimals || 18);
-                        const amtEl = document.getElementById('treasuryAmount');
-                        const pctEl = document.getElementById('treasuryPercent');
-                        if (amtEl) amtEl.textContent = `${fmtUnits(curvItem.value || '0', curvDec)} CURV`;
-                        // Fetch total supply for percentage
-                        try {
-                            const supplyRes = await fetch(RPC, {
-                                method: 'POST',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'eth_call', params: [{ to: '0x591c914BC5c878cC398AF67681C388FaC8bdaf4e', data: '0x18160ddd' }, 'latest'] })
-                            }).then(r => r.json());
-                            if (supplyRes.result) {
-                                const totalSupply = BigInt(supplyRes.result);
-                                if (totalSupply > 0n) {
-                                    const bp = (curvRaw * 10000n) / totalSupply;
-                                    const whole = bp / 100n;
-                                    const frac = (bp % 100n).toString().padStart(2, '0');
-                                    if (pctEl) pctEl.textContent = `${whole}.${frac}% of supply`;
-                                }
-                            }
-                        } catch(e) { console.error('Supply fetch error:', e); }
-                    }
-                }
-
-                el.innerHTML = rows.map(r => `
-                    <div class="treasury-holdings-row">
-                        <span class="treasury-token-name">${r.symbol}</span>
-                        <span class="treasury-token-amount">${r.amount}</span>
-                    </div>`).join('');
-            } catch(err) {
-                el.innerHTML = `<div class="treasury-loading">Failed to load: ${err.message}</div>`;
-                console.error(err);
-            }
+            if (rows.length === 0) { el.innerHTML = '<div class="treasury-loading">No balances found.</div>'; return; }
+            el.innerHTML = rows.map(r => `<div class="treasury-holdings-row"><span class="treasury-token-name">${r.symbol}</span><span class="treasury-token-amount">${r.amount}</span></div>`).join('');
+        } catch(err) {
+            el.innerHTML = `<div class="treasury-loading">Failed to load: ${err.message}</div>`;
         }
+    }
 
+    // ===== POINTS MODAL =====
+    function openPointsModal() {
+        document.getElementById('pointsModal').classList.add('active');
+    }
+    function closePointsModal() {
+        document.getElementById('pointsModal').classList.remove('active');
+    }
+    function handlePointsAgree() {
+        const cb = document.getElementById('pointsAgreeCheck');
+        const msg = document.getElementById('pointsAgreedMsg');
+        const label = document.getElementById('pointsAgreeLabel');
+        msg.style.display = cb.checked ? 'block' : 'none';
+        label.style.borderColor = cb.checked ? 'rgba(12,243,201,0.5)' : 'rgba(12,243,201,0.18)';
+    }
 
-
-        function openGalleryModal(imageSrc) {
-            document.getElementById('galleryModal').classList.add('active');
-            document.getElementById('galleryModalImg').src = imageSrc;
-            analytics.track('gallery_image_opened', { image: imageSrc });
-        }
-
-        function closeGalleryModal() {
-            document.getElementById('galleryModal').classList.remove('active');
-            analytics.track('gallery_closed');
-        }
-
-        function openPointsModal() {
-            document.getElementById('pointsModal').classList.add('active');
-            analytics.track('modal_opened', { modal: 'points_program' });
-        }
-
-        function closePointsModal() {
-            document.getElementById('pointsModal').classList.remove('active');
-            analytics.track('modal_closed', { modal: 'points_program' });
-        }
-
-        function handlePointsAgree() {
-            var cb = document.getElementById('pointsAgreeCheck');
-            var msg = document.getElementById('pointsAgreedMsg');
-            var label = document.getElementById('pointsAgreeLabel');
-            if (cb.checked) {
-                msg.style.display = 'block';
-                label.style.borderColor = 'rgba(12,243,201,0.5)';
-                analytics.track('points_terms_accepted');
-            } else {
-                msg.style.display = 'none';
-                label.style.borderColor = 'rgba(12,243,201,0.18)';
-            }
-        }
-
-        function copyAddress() {
-            const address = '0x591c914BC5c878cC398AF67681C388FaC8bdaf4e';
-            navigator.clipboard.writeText(address).then(() => {
-                const el = document.querySelector('.contract-address');
-                if (el) {
-                    const prev = el.querySelector('.copy-toast');
-                    if (prev) prev.remove();
-                    const toast = document.createElement('span');
-                    toast.className = 'copy-toast';
-                    toast.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Copied';
-                    el.appendChild(toast);
-                    setTimeout(() => {
-                        toast.classList.add('fade-out');
-                        setTimeout(() => toast.remove(), 260);
-                    }, 1700);
-                }
-                analytics.track('contract_address_copied', { address });
-            }).catch(err => {
-                console.error('Failed to copy:', err);
-            });
-        }
-
-        function toggleMenu() {
-            const navLinks = document.getElementById('navLinks');
-            const hamburger = document.querySelector('.hamburger');
-            const isActive = navLinks.classList.toggle('active');
-            if (hamburger) {
-                hamburger.classList.toggle('active', isActive);
-            }
-            document.body.style.overflow = isActive ? 'hidden' : '';
-            analytics.track('mobile_menu_toggled', { opened: isActive });
-        }
-
-        function closeMenu() {
-            const navLinks = document.getElementById('navLinks');
-            const hamburger = document.querySelector('.hamburger');
-            navLinks.classList.remove('active');
-            if (hamburger) {
-                hamburger.classList.remove('active');
-            }
-            document.body.style.overflow = '';
-        }
-
-        function toggleDropdown(event) {
-            event.preventDefault();
-            event.stopPropagation();
-            const dropdown = document.getElementById('linksDropdown');
-            const isActive = dropdown.classList.toggle('active');
-            analytics.track('dropdown_toggled', { opened: isActive });
-        }
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function(e) {
-            const dropdown = document.getElementById('linksDropdown');
-            if (dropdown && !dropdown.contains(e.target)) {
-                dropdown.classList.remove('active');
-            }
-        });
-
-        // Track external link clicks
-        document.addEventListener('click', (e) => {
-            const link = e.target.closest('a');
-            if (link && link.href && link.target === '_blank') {
-                analytics.track('external_link_clicked', { 
-                    url: link.href,
-                    text: link.textContent || link.alt
-                });
-            }
-        });
-
-        // Track session end (when user leaves)
-        window.addEventListener('beforeunload', () => {
-            const session = analytics.getSession();
-            console.log('📊 Session Summary:', session);
-            // In a real implementation, you could send this to your own server
-        });
-    </script>
-</body>
-</html>
+    // Close modals on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') { closeTreasuryModal(); closePointsModal(); closeMenu(); }
+    });
+</script>
+</body></html>
