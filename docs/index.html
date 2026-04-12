@@ -640,6 +640,8 @@
         <a class="sidebar-sub-item" onclick="navigate('otc','how-it-works')">How OTC Works</a>
         <a class="sidebar-sub-item" onclick="navigate('otc','creating')">Creating an Offer</a>
         <a class="sidebar-sub-item" onclick="navigate('otc','filling')">Filling an Offer</a>
+        <a class="sidebar-sub-item" onclick="navigate('otc','modifying')">Modifying an Offer</a>
+        <a class="sidebar-sub-item" onclick="navigate('otc','redeem-cancel')">Redeem &amp; Cancel</a>
         <a class="sidebar-sub-item" onclick="navigate('otc','fees')">Fees</a>
       </div>
     </div>
@@ -892,6 +894,39 @@ const PAGES = {
         <li><div class="step-body"><strong>Enter your fill amount.</strong> Choose how many tokens you want to buy. You can fill any portion of an open offer — no minimum.</div></li>
         <li><div class="step-body"><strong>Approve and fill.</strong> Approve the buy token, then confirm the fill transaction. The sell tokens arrive in your wallet immediately in the same transaction.</div></li>
       </ol>
+
+      <h2 id="modifying">Modifying an OTC Offer</h2>
+      <p>As the seller, you can modify an open offer at any time — for gas only. There are two modifiable fields:</p>
+      <ul>
+        <li><strong>Rate</strong> — the price (how many buy tokens per sell token)</li>
+        <li><strong>Expiry</strong> — the deadline after which the offer automatically closes</li>
+      </ul>
+      <div class="callout note">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body"><strong>One change per transaction.</strong> Rate and expiry must be modified in separate transactions. Attempting to change both at once is blocked — submit one, wait for the cooldown to expire, then submit the other. The modify modal stays open during cooldown so you can complete the second change without navigating away.</div>
+      </div>
+
+      <h2 id="redeem-cancel">Redeem &amp; Cancel</h2>
+      <p>Both actions are accessible from the <strong>My Orders</strong> tab in the OTC section.</p>
+      <table>
+        <thead><tr><th>Action</th><th>When available</th><th>What it does</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Redeem</strong></td>
+            <td>When filled tokens are awaiting collection (order active or expired)</td>
+            <td>Claims filled tokens directly to your wallet. Gas only.</td>
+          </tr>
+          <tr>
+            <td><strong>Cancel</strong></td>
+            <td>At any time — active or expired</td>
+            <td>Cancels the offer, returns any unfilled escrow to the seller, and collects any filled tokens in the same transaction. Gas only.</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout note">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body"><strong>Cancel handles everything in one transaction.</strong> If your offer is partially filled when you cancel, the unfilled portion is returned and the filled tokens are redeemed simultaneously — no separate redeem step needed.</div>
+      </div>
 
       <h2 id="fees">OTC Fees</h2>
       <p>Buyers pay nothing. Sellers pay a protocol fee only on successful fills — deducted from the whitelisted tokens received. No trade, no fee.</p>
