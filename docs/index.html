@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CURV Docs</title>
+  <meta name="description" content="CURV Protocol documentation — Aggregator, Limit Orders, Peer-To-Many OTC, and Auto DCA on PulseChain.">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700&family=Iceland&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #101419;
+      --sidebar-bg: #0c1016;
+      --surface: rgba(255,255,255,0.04);
+      --surface-hover: rgba(255,255,255,0.07);
+      --border: rgba(255,255,255,0.08);
+      --text: #dfe2eb;
+      --text-dim: rgba(255,255,255,0.45);
+      --text-dimmer: rgba(255,255,255,0.25);
+      --teal: #0cf3c9;
+      --teal-dim: rgba(12,243,201,0.15);
+      --teal-border: rgba(12,243,201,0.3);
+      --sidebar-w: 260px;
+      --header-h: 52px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Manrope', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── TOP BAR ── */
+    .topbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--header-h);
+      background: rgba(16,20,25,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px 0 0;
+      z-index: 200;
+    }
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      width: var(--sidebar-w);
+      padding: 0 20px;
+      border-right: 1px solid var(--border);
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .topbar-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+    .topbar-logo img { height: 20px; width: auto; }
+    .topbar-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-dim);
+      letter-spacing: 0.02em;
+    }
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .topbar-back {
+      font-family: 'Manrope', sans-serif;
+      font-size: 13px;
+      color: var(--text-dim);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.15s;
+    }
+    .topbar-back:hover { color: var(--teal); }
+
+    /* dApps dropdown in topbar */
+    .docs-dropdown { position: relative; }
+    .docs-dropdown-toggle {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      color: rgba(255,255,255,0.75);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+      white-space: nowrap;
+    }
+    .docs-dropdown-toggle:hover { border-color: var(--teal-border); color: var(--teal); }
+    .docs-chevron { transition: transform 0.2s; opacity: 0.5; }
+    .docs-dropdown.active .docs-chevron { transform: rotate(180deg); }
+    .docs-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 6px);
+      right: 0;
+      background: rgba(5,2,15,0.97);
+      border: 1px solid rgba(12,243,201,0.15);
+      border-radius: 10px;
+      padding: 6px 0;
+      min-width: 190px;
+      z-index: 500;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    }
+    .docs-dropdown.active .docs-dropdown-menu { display: block; }
+    .docs-dropdown-menu a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 14px;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 500;
+      transition: all 0.2s;
+      gap: 8px;
+    }
+    .docs-dropdown-menu a:hover { background: rgba(255,255,255,0.07); color: #0cf3c9; }
+    .docs-link-icon { flex-shrink: 0; opacity: 0.4; transition: opacity 0.2s; }
+    .docs-dropdown-menu a:hover .docs-link-icon { opacity: 0.9; }
+
+    .hamburger-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-dim);
+      padding: 6px;
+      margin-left: 4px;
+    }
+
+    /* ── LAYOUT ── */
+    .layout {
+      display: flex;
+      padding-top: var(--header-h);
+      min-height: 100vh;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar {
+      position: fixed;
+      top: var(--header-h);
+      left: 0;
+      width: var(--sidebar-w);
+      height: calc(100vh - var(--header-h));
+      background: var(--sidebar-bg);
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 20px 12px 40px;
+      z-index: 100;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,0.1) transparent;
+    }
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+
+    .sidebar-section {
+      margin-bottom: 6px;
+    }
+    .sidebar-section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 10px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-dimmer);
+      cursor: pointer;
+      border-radius: 6px;
+      user-select: none;
+      transition: color 0.15s;
+    }
+    .sidebar-section-header:hover { color: var(--text-dim); }
+    .sidebar-section-header .chevron {
+      transition: transform 0.2s;
+      opacity: 0.5;
+      font-size: 10px;
+    }
+    .sidebar-section.collapsed .chevron { transform: rotate(-90deg); }
+    .sidebar-section.collapsed .sidebar-items { display: none; }
+
+    .sidebar-items { padding: 2px 0 6px; }
+    .sidebar-item {
+      display: block;
+      padding: 6px 10px 6px 16px;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text-dim);
+      text-decoration: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: color 0.15s, background 0.15s;
+      border-left: 2px solid transparent;
+      margin-left: 2px;
+      line-height: 1.4;
+    }
+    .sidebar-item:hover {
+      color: var(--text);
+      background: var(--surface-hover);
+    }
+    .sidebar-item.active {
+      color: var(--teal);
+      background: var(--teal-dim);
+      border-left-color: var(--teal);
+      font-weight: 600;
+    }
+    .sidebar-sub-item {
+      display: block;
+      padding: 4px 10px 4px 28px;
+      font-size: 12.5px;
+      font-weight: 400;
+      color: var(--text-dimmer);
+      text-decoration: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: color 0.15s, background 0.15s;
+      line-height: 1.4;
+    }
+    .sidebar-sub-item:hover {
+      color: var(--text);
+      background: var(--surface);
+    }
+    .sidebar-sub-item.active {
+      color: var(--teal);
+      font-weight: 500;
+    }
+
+    .sidebar-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 10px 0;
+    }
+    .sidebar-footer {
+      margin-top: 24px;
+      padding: 0 10px;
+      font-size: 11px;
+      color: var(--text-dimmer);
+    }
+
+    /* ── MAIN CONTENT ── */
+    .main {
+      margin-left: var(--sidebar-w);
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      padding: 48px 280px 80px 60px;
+      min-width: 0;
+    }
+    .content {
+      width: 100%;
+      max-width: 720px;
+    }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12.5px;
+      color: var(--text-dimmer);
+      margin-bottom: 24px;
+    }
+    .breadcrumb span { color: var(--text-dimmer); }
+    .breadcrumb a { color: var(--text-dim); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--teal); }
+
+    /* ── TYPOGRAPHY ── */
+    .content h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .content .lead {
+      font-size: 16px;
+      color: var(--text-dim);
+      line-height: 1.7;
+      margin-bottom: 36px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 28px;
+    }
+    .content h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin: 40px 0 12px;
+      padding-top: 8px;
+    }
+    .content h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin: 28px 0 10px;
+    }
+    .content p {
+      font-size: 14.5px;
+      line-height: 1.75;
+      color: var(--text-dim);
+      margin-bottom: 14px;
+    }
+    .content ul, .content ol {
+      padding-left: 20px;
+      margin-bottom: 14px;
+    }
+    .content li {
+      font-size: 14.5px;
+      line-height: 1.75;
+      color: var(--text-dim);
+      margin-bottom: 4px;
+    }
+    .content strong { color: var(--text); font-weight: 600; }
+    .content a { color: var(--teal); text-decoration: none; }
+    .content a:hover { text-decoration: underline; }
+    .content code {
+      font-family: 'Courier New', monospace;
+      font-size: 12.5px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1px 6px;
+      color: var(--teal);
+    }
+
+    /* ── CALLOUT BOXES ── */
+    .callout {
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin: 20px 0;
+      display: flex;
+      gap: 12px;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+    .callout-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+    .callout-body { color: var(--text-dim); }
+    .callout-body strong { color: var(--text); }
+    .callout.info { background: rgba(12,243,201,0.06); border: 1px solid var(--teal-border); }
+    .callout.warn { background: rgba(255,180,0,0.06); border: 1px solid rgba(255,180,0,0.25); }
+    .callout.note { background: var(--surface); border: 1px solid var(--border); }
+
+    /* ── TABLE ── */
+    .content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 13.5px;
+    }
+    .content th {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-dimmer);
+      text-align: left;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .content td {
+      padding: 10px 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+    .content tr:last-child td { border-bottom: none; }
+    .content tr:hover td { background: var(--surface); }
+    .teal { color: var(--teal); font-weight: 600; }
+
+    /* ── TOKEN GRID ── */
+    .token-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 14px 0;
+    }
+    .token-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 4px 12px 4px 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .token-pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--teal);
+      flex-shrink: 0;
+    }
+
+    /* ── STEP LIST ── */
+    .steps { counter-reset: step; list-style: none; padding: 0; margin: 20px 0; }
+    .steps li {
+      counter-increment: step;
+      display: flex;
+      gap: 14px;
+      margin-bottom: 18px;
+      align-items: flex-start;
+    }
+    .steps li::before {
+      content: counter(step);
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--teal-dim);
+      border: 1px solid var(--teal-border);
+      color: var(--teal);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+    .steps li .step-body { font-size: 14.5px; line-height: 1.7; color: var(--text-dim); }
+    .steps li .step-body strong { color: var(--text); }
+
+    /* ── PAGE NAV ── */
+    .page-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 60px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      gap: 16px;
+    }
+    .page-nav-btn {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      text-decoration: none;
+      padding: 14px 18px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--surface);
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      flex: 1;
+      max-width: 240px;
+    }
+    .page-nav-btn:hover { border-color: var(--teal-border); background: var(--teal-dim); }
+    .page-nav-btn.next { align-items: flex-end; margin-left: auto; }
+    .page-nav-label { font-size: 11px; color: var(--text-dimmer); font-weight: 500; }
+    .page-nav-title { font-size: 14px; color: var(--text); font-weight: 600; }
+
+    /* ── RIGHT RAIL (On this page) ── */
+    .rail {
+      position: fixed;
+      top: calc(var(--header-h) + 48px);
+      right: 0;
+      width: 220px;
+      padding: 0 20px;
+    }
+    .rail-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dimmer);
+      margin-bottom: 12px;
+    }
+    .rail-item {
+      display: block;
+      font-size: 12.5px;
+      color: var(--text-dimmer);
+      text-decoration: none;
+      padding: 4px 0;
+      border-left: 2px solid transparent;
+      padding-left: 10px;
+      margin-left: -12px;
+      transition: color 0.15s, border-color 0.15s;
+      line-height: 1.4;
+      cursor: pointer;
+    }
+    .rail-item:hover { color: var(--text-dim); }
+    .rail-item.active { color: var(--teal); border-left-color: var(--teal); }
+
+    /* ── MOBILE OVERLAY ── */
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 99;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1200px) {
+      .rail { display: none; }
+      .main { padding-right: 60px; }
+    }
+    @media (max-width: 768px) {
+      .hamburger-btn { display: flex; align-items: center; justify-content: center; }
+      .topbar-left { border-right: none; width: auto; }
+      .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.25s cubic-bezier(0.22,1,0.36,1);
+        z-index: 150;
+      }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay.open { display: block; }
+      .main { margin-left: 0; padding: 32px 20px 60px; }
+      .content h1 { font-size: 1.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="topbar-left">
+    <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+    <a href="./" class="topbar-logo">
+      <img src="../assets/0xcurv-win-logo.png" alt="CURV">
+      <span class="topbar-title">Documentation</span>
+    </a>
+  </div>
+  <div class="topbar-right">
+    <a href="../index.html" class="topbar-back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      Back to site
+    </a>
+    <div class="docs-dropdown" id="docsAppsDropdown">
+      <button class="docs-dropdown-toggle" onclick="toggleDocsDropdown(event)" aria-label="dApps">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        dApps
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="docs-chevron"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="docs-dropdown-menu">
+        <a href="https://app.0xcurv.win/swap" target="_blank">Aggregator<svg class="docs-link-icon" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+        <a href="https://app.0xcurv.win/swap" target="_blank">Limit Orders<svg class="docs-link-icon" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+        <a href="https://app.0xcurv.win/" target="_blank">Peer-To-Many OTC<svg class="docs-link-icon" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 14px;color:rgba(255,255,255,0.35);font-size:0.78rem;font-weight:500;gap:8px;cursor:default;">Auto DCA<span style="font-size:0.68rem;padding:2px 6px;border-radius:4px;background:rgba(12,243,201,0.08);color:rgba(12,243,201,0.5);letter-spacing:0.3px;">Soon</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- SIDEBAR OVERLAY (mobile) -->
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar" id="sidebar">
+
+    <!-- Introduction -->
+    <div class="sidebar-section" id="sec-intro">
+      <div class="sidebar-section-header" onclick="toggleSection('sec-intro')">
+        Introduction <span class="chevron">▾</span>
+      </div>
+      <div class="sidebar-items">
+        <a class="sidebar-item" onclick="navigate('introduction')">What is CURV?</a>
+        <a class="sidebar-sub-item" onclick="navigate('introduction','network')">PulseChain Network</a>
+        <a class="sidebar-sub-item" onclick="navigate('introduction','getting-started')">Getting Started</a>
+      </div>
+    </div>
+
+    <hr class="sidebar-divider">
+
+    <!-- Aggregator -->
+    <div class="sidebar-section" id="sec-agg">
+      <div class="sidebar-section-header" onclick="toggleSection('sec-agg')">
+        Aggregator <span class="chevron">▾</span>
+      </div>
+      <div class="sidebar-items">
+        <a class="sidebar-item" onclick="navigate('aggregator')">Overview</a>
+        <a class="sidebar-sub-item" onclick="navigate('aggregator','how-to-swap')">How to Swap</a>
+        <a class="sidebar-sub-item" onclick="navigate('aggregator','routing')">Best Price Routing</a>
+        <a class="sidebar-sub-item" onclick="navigate('aggregator','tokens')">Supported Tokens</a>
+      </div>
+    </div>
+
+    <!-- Limit Orders -->
+    <div class="sidebar-section" id="sec-limit">
+      <div class="sidebar-section-header" onclick="toggleSection('sec-limit')">
+        Limit Orders <span class="chevron">▾</span>
+      </div>
+      <div class="sidebar-items">
+        <a class="sidebar-item" onclick="navigate('limit-orders')">Overview</a>
+        <a class="sidebar-sub-item" onclick="navigate('limit-orders','how-it-works')">How Limit Orders Work</a>
+        <a class="sidebar-sub-item" onclick="navigate('limit-orders','creating')">Creating a Limit Order</a>
+        <a class="sidebar-sub-item" onclick="navigate('limit-orders','managing')">Managing Orders</a>
+      </div>
+    </div>
+
+    <!-- OTC -->
+    <div class="sidebar-section" id="sec-otc">
+      <div class="sidebar-section-header" onclick="toggleSection('sec-otc')">
+        Peer-To-Many OTC <span class="chevron">▾</span>
+      </div>
+      <div class="sidebar-items">
+        <a class="sidebar-item" onclick="navigate('otc')">Overview</a>
+        <a class="sidebar-sub-item" onclick="navigate('otc','how-it-works')">How OTC Works</a>
+        <a class="sidebar-sub-item" onclick="navigate('otc','creating')">Creating an Offer</a>
+        <a class="sidebar-sub-item" onclick="navigate('otc','filling')">Filling an Offer</a>
+        <a class="sidebar-sub-item" onclick="navigate('otc','fees')">Fees</a>
+      </div>
+    </div>
+
+    <!-- DCA -->
+    <div class="sidebar-section" id="sec-dca">
+      <div class="sidebar-section-header" onclick="toggleSection('sec-dca')">
+        Auto DCA — Queueit <span class="chevron">▾</span>
+      </div>
+      <div class="sidebar-items">
+        <a class="sidebar-item" onclick="navigate('dca')">Overview</a>
+        <a class="sidebar-sub-item" onclick="navigate('dca','creating')">Creating a Plan</a>
+        <a class="sidebar-sub-item" onclick="navigate('dca','managing')">Managing Plans</a>
+        <a class="sidebar-sub-item" onclick="navigate('dca','security')">Security & Trust</a>
+        <a class="sidebar-sub-item" onclick="navigate('dca','keeper')">Keeper Network</a>
+        <a class="sidebar-sub-item" onclick="navigate('dca','assets')">Supported Assets</a>
+        <a class="sidebar-sub-item" onclick="navigate('dca','fees')">Fee Structure</a>
+      </div>
+    </div>
+
+    <hr class="sidebar-divider">
+
+    <!-- Security -->
+    <div class="sidebar-section" id="sec-security">
+      <div class="sidebar-section-header" onclick="toggleSection('sec-security')">
+        Security <span class="chevron">▾</span>
+      </div>
+      <div class="sidebar-items">
+        <a class="sidebar-item" onclick="navigate('security')">Security Overview</a>
+      </div>
+    </div>
+
+    <!-- Fees -->
+    <div class="sidebar-section" id="sec-fees">
+      <div class="sidebar-section-header" onclick="toggleSection('sec-fees')">
+        Fees <span class="chevron">▾</span>
+      </div>
+      <div class="sidebar-items">
+        <a class="sidebar-item" onclick="navigate('fees')">Fee Reference</a>
+      </div>
+    </div>
+
+    <div class="sidebar-footer">v1 · PulseChain · Chain ID 369</div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+    <article class="content" id="content">
+      <!-- Content injected by JS -->
+    </article>
+  </main>
+
+  <!-- RIGHT RAIL -->
+  <aside class="rail" id="rail">
+    <div class="rail-title">On this page</div>
+    <div id="rail-items"></div>
+  </aside>
+
+</div>
+
+<script>
+// ─── TOPBAR DAPPS DROPDOWN ────────────────────────────────────────────────────
+function toggleDocsDropdown(event) {
+  event.preventDefault();
+  event.stopPropagation();
+  const el = document.getElementById('docsAppsDropdown');
+  el.classList.toggle('active');
+}
+document.addEventListener('click', function(e) {
+  const el = document.getElementById('docsAppsDropdown');
+  if (el && !el.contains(e.target)) el.classList.remove('active');
+});
+
+// ─── PAGE DEFINITIONS ─────────────────────────────────────────────────────────
+
+const PAGES = {
+
+  'introduction': {
+    section: 'Introduction',
+    title: 'What is CURV?',
+    lead: 'CURV is a DeFi protocol suite built on PulseChain — providing a DEX aggregator, intent-based limit orders, peer-to-many OTC trading, and automated dollar-cost averaging (DCA). On-chain and built for the long game.',
+    prev: null,
+    next: { id: 'aggregator', label: 'Aggregator — Overview' },
+    content: `
+      <h2 id="the-protocol">The Protocol</h2>
+      <p>CURV bundles four complementary DeFi primitives under one roof — all deployed on PulseChain (Chain ID 369). The Aggregator, Limit Orders, and Auto DCA products are fully non-custodial — your funds never leave your wallet except to execute exactly what you authorised. Peer-To-Many OTC uses a smart contract escrow: tokens are held trustlessly on-chain and are only accessible to buyers (to fill) or the seller (to cancel).</p>
+
+      <div class="callout info">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body"><strong>Powered by CURV.</strong> The Queueit DCA product is branded separately but runs fully on the CURV smart contract infrastructure.</div>
+      </div>
+
+      <h2 id="the-four-dapps">The Four dApps</h2>
+      <table>
+        <thead><tr><th>dApp</th><th>What it does</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Aggregator</strong></td><td>Best-price swap routing across all PulseChain DEXs</td><td class="teal">Live</td></tr>
+          <tr><td><strong>Limit Orders</strong></td><td>Intent-based orders that execute at your target price</td><td class="teal">Live</td></tr>
+          <tr><td><strong>Peer-To-Many OTC</strong></td><td>Create token sell offers, multiple buyers can fill</td><td class="teal">Live</td></tr>
+          <tr><td><strong>Auto DCA — Queueit</strong></td><td>Automated recurring investment plans, fully on-chain</td><td class="teal">Beta</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="network">PulseChain Network</h2>
+      <p>PulseChain is an EVM-compatible blockchain with fast finality and low transaction costs — making it practical to run recurring on-chain strategies like DCA at a fraction of Ethereum mainnet cost.</p>
+      <table>
+        <thead><tr><th>Property</th><th>Value</th></tr></thead>
+        <tbody>
+          <tr><td>Chain ID</td><td><code>369</code></td></tr>
+          <tr><td>RPC</td><td><code>https://rpc.pulsechain.com</code></td></tr>
+          <tr><td>Explorer</td><td><a href="https://scan.pulsechain.com" target="_blank">scan.pulsechain.com</a></td></tr>
+          <tr><td>Native currency</td><td>PLS</td></tr>
+          <tr><td>Block time</td><td>~10 seconds</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="getting-started">Getting Started</h2>
+      <p>To use any CURV dApp you need an EVM-compatible wallet. We recommend <strong>OKX Web3</strong>, <strong>ZKX</strong> (Coming Soon), or any WalletConnect-compatible wallet.</p>
+      <ol class="steps">
+        <li><div class="step-body"><strong>Add PulseChain to your wallet.</strong> Visit <a href="https://pulsechain.com" target="_blank">pulsechain.com</a> and click "Add Network", or manually add Chain ID <code>369</code> with RPC <code>https://rpc.pulsechain.com</code>.</div></li>
+        <li><div class="step-body"><strong>Bridge assets if needed.</strong> Use the <a href="https://bridge.pulsechain.com" target="_blank">PulseChain Bridge</a> to move ETH, USDC, DAI, or other ERC-20 tokens from Ethereum, or <a href="https://libertyswap.finance/curv" target="_blank">LibertySwap</a> for cross-chain transfers from a wider range of networks.</div></li>
+        <li><div class="step-body"><strong>Connect your wallet.</strong> Go to <a href="https://app.0xcurv.win" target="_blank">app.0xcurv.win</a>, click the wallet button in the top right, and confirm the connection in your wallet.</div></li>
+        <li><div class="step-body"><strong>Choose a dApp.</strong> Use the navigation tabs to switch between Swap, Limit Orders, OTC, or Auto DCA.</div></li>
+      </ol>
+    `
+  },
+
+  'aggregator': {
+    section: 'Aggregator',
+    title: 'Aggregator — Overview',
+    lead: 'The CURV Aggregator routes your swap across all major PulseChain DEXs to find the best price available at execution time. One click, best rate, no DEX hopping required.',
+    prev: { id: 'introduction', label: 'What is CURV?' },
+    next: { id: 'limit-orders', label: 'Limit Orders — Overview' },
+    content: `
+      <h2 id="how-it-works">How It Works</h2>
+      <p>When you initiate a swap, the aggregator queries the <strong>Switch protocol</strong> — a routing engine that splits and routes your trade across PulseX V1, PulseX V2, 9mm DEX, and other liquidity sources simultaneously. The best combination of routes is selected automatically.</p>
+      <p>You see the expected output amount, price impact, and route breakdown before confirming.</p>
+
+      <div class="callout info">
+        <div class="callout-icon">🔀</div>
+        <div class="callout-body"><strong>Split routing.</strong> Large swaps can be split across multiple pools to minimise price impact — the aggregator handles this automatically.</div>
+      </div>
+
+      <h2 id="how-to-swap">How to Swap</h2>
+      <ol class="steps">
+        <li><div class="step-body"><strong>Select your tokens.</strong> Choose the token you want to sell and the token you want to receive. Search by name or paste a contract address for any PulseChain token.</div></li>
+        <li><div class="step-body"><strong>Enter an amount.</strong> Type the amount to sell. The expected output and price impact are shown in real time.</div></li>
+        <li><div class="step-body"><strong>Review slippage.</strong> The default slippage tolerance is 0.5%. Adjust if swapping low-liquidity or tax tokens.</div></li>
+        <li><div class="step-body"><strong>Approve if needed.</strong> For ERC-20 tokens, a one-time approval transaction is required before the first swap.</div></li>
+        <li><div class="step-body"><strong>Confirm the swap.</strong> Review the summary and click Swap. Confirm in your wallet. Done.</div></li>
+      </ol>
+
+      <h2 id="routing">Best Price Routing</h2>
+      <p>The Switch aggregator evaluates routes across all major PulseChain liquidity sources and selects the path that returns the most tokens to you. This includes:</p>
+      <ul>
+        <li>Direct single-hop swaps (token A → token B in one pool)</li>
+        <li>Multi-hop routes (token A → WPLS → token B across different DEXs)</li>
+        <li>Split routes (part of your trade goes via route 1, part via route 2)</li>
+      </ul>
+      <p>The routing engine runs off-chain for speed, but the swap executes entirely on-chain — slippage protection is enforced at the contract level.</p>
+
+      <h2 id="tokens">Supported Tokens</h2>
+      <p>Any token listed on the Switch/Piteas token registry is supported — this covers hundreds of PulseChain assets. You can also swap any token by pasting its contract address directly into the token selector.</p>
+      <div class="callout note">
+        <div class="callout-icon">⚠️</div>
+        <div class="callout-body"><strong>Tax tokens.</strong> The aggregator automatically detects buy/sell tax on fee-on-transfer tokens and adjusts slippage accordingly before executing your swap — no manual configuration needed. Once the transaction confirms, slippage resets to the default 0.5%, so you're never left with an inflated tolerance.</div>
+      </div>
+    `
+  },
+
+  'limit-orders': {
+    section: 'Limit Orders',
+    title: 'Limit Orders — Overview',
+    lead: 'Set a target price and let the protocol execute your trade when the market reaches it. Intent-based, non-custodial, and live on PulseChain.',
+    prev: { id: 'aggregator', label: 'Aggregator — Overview' },
+    next: { id: 'otc', label: 'Peer-To-Many OTC — Overview' },
+    content: `
+      <h2 id="how-it-works">How Limit Orders Work</h2>
+      <p>A limit order is an <strong>on-chain intent</strong> — you specify the exact price at which you want to buy or sell a token. Operator bots monitor the chain and execute your order the moment the market price crosses your target. The contract enforces your terms; the Operator cannot deviate.</p>
+      <p>You keep full custody of your tokens until the moment of execution. There is no lockup — orders can be cancelled at any time for gas only.</p>
+
+      <div class="callout info">
+        <div class="callout-icon">📋</div>
+        <div class="callout-body"><strong>Intent-based.</strong> The order is stored on-chain as an intent. Operators are permissionless executors — they earn a fee for executing but the contract ensures they can only execute exactly at your stated terms.</div>
+      </div>
+
+      <h2 id="creating">Creating a Limit Order</h2>
+      <ol class="steps">
+        <li><div class="step-body"><strong>Select the Swap tab</strong> on the CURV app, then switch to the <strong>Limit</strong> tab.</div></li>
+        <li><div class="step-body"><strong>Choose your token pair.</strong> Select the token you want to sell and the token you want to receive.</div></li>
+        <li><div class="step-body"><strong>Enter your target rate.</strong> Set the price at which you want the order to execute. The current market rate is shown as a reference. You can set a rate above or below market.</div></li>
+        <li><div class="step-body"><strong>Enter the sell amount.</strong> How many tokens you want to sell. Your wallet balance is shown.</div></li>
+        <li><div class="step-body"><strong>Set an expiry.</strong> Orders expire automatically at your chosen time — hours, days, or a custom date. Expired orders are automatically voided (no gas needed).</div></li>
+        <li><div class="step-body"><strong>Approve the contract.</strong> A one-time ERC-20 approval for the sell token is required. This only approves the exact amount of this order.</div></li>
+        <li><div class="step-body"><strong>Place the order.</strong> Confirm and sign on-chain. Your order is now live.</div></li>
+      </ol>
+
+      <h2 id="managing">Managing Orders</h2>
+      <p>Active orders are displayed in the Orders panel. Each order shows its status, your trigger price, and the fill price once executed.</p>
+      <table>
+        <thead><tr><th>Status</th><th>Meaning</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Open</strong></td><td>Waiting for market price to reach your trigger price</td></tr>
+          <tr><td><strong>Filled</strong></td><td>Executed — tokens received in your wallet at the fill price</td></tr>
+          <tr><td><strong>Cancelled</strong></td><td>Cancelled by you (gas only). ERC-20 tokens never left your wallet — the approval is simply voided. Native PLS is returned to your wallet.</td></tr>
+          <tr><td><strong>Expired</strong></td><td>Not filled before expiry. ERC-20 orders simply lapse — no action needed, tokens never left your wallet. Native PLS can be reclaimed from the expired order.</td></tr>
+        </tbody>
+      </table>
+      <p>To cancel an open order, click the order and select Cancel. This costs only gas.</p>
+
+      <div class="callout note">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body"><strong>Partial fills coming soon.</strong> Currently each order fills in full or not at all. Partial fills — where only a portion executes and the rest stays open — are planned for a future update.</div>
+      </div>
+    `
+  },
+
+  'otc': {
+    section: 'Peer-To-Many OTC',
+    title: 'Peer-To-Many OTC — Overview',
+    lead: 'Create a token sell offer that multiple buyers can fill simultaneously, at a fixed rate you set. No order book. No market maker.',
+    prev: { id: 'limit-orders', label: 'Limit Orders — Overview' },
+    next: { id: 'dca', label: 'Auto DCA — Overview' },
+    content: `
+      <h2 id="how-it-works">How OTC Works</h2>
+      <p>Peer-to-Many OTC lets a seller list tokens at a fixed price. Any number of buyers can fill the offer, each taking their desired portion — until the offer sells out or expires. This is different from traditional OTC, which pairs one seller with one buyer at a time.</p>
+      <p>Use cases include: project token sales, large position exits without moving the spot market, or community token distributions at a predetermined price.</p>
+
+      <div class="callout info">
+        <div class="callout-icon">🤝</div>
+        <div class="callout-body"><strong>Trustless escrow.</strong> Tokens are held in a smart contract for the duration of the offer — no human or third party has custody. Only buyers (to fill) and the seller (to cancel) can interact with the escrow. The contract enforces all terms without intermediaries.</div>
+      </div>
+
+      <h2 id="creating">Creating an OTC Offer</h2>
+      <ol class="steps">
+        <li><div class="step-body"><strong>Navigate to OTC</strong> from the CURV app homepage.</div></li>
+        <li><div class="step-body"><strong>Select your sell token.</strong> The token you want to sell. This goes into escrow when you create the offer.</div></li>
+        <li><div class="step-body"><strong>Select the buy token.</strong> The token you want to receive in return. Any active whitelisted token on CURV is available.</div></li>
+        <li><div class="step-body"><strong>Set your rate.</strong> Enter how many buy tokens you want per sell token. This is the fixed exchange rate for the entire offer.</div></li>
+        <li><div class="step-body"><strong>Set an expiry.</strong> After this time, any unfilled portion of your offer is automatically returned to you.</div></li>
+        <li><div class="step-body"><strong>Approve and create.</strong> Approve the contract to pull your sell tokens, then confirm the create transaction. Your offer is now public.</div></li>
+      </ol>
+
+      <h2 id="filling">Filling an OTC Offer</h2>
+      <p>Open offers are listed publicly on the OTC page. As a buyer:</p>
+      <ol class="steps">
+        <li><div class="step-body"><strong>Browse open offers.</strong> Filter by sell token or buy token to find relevant offers.</div></li>
+        <li><div class="step-body"><strong>Enter your fill amount.</strong> Choose how many tokens you want to buy. You can fill any portion of an open offer — no minimum.</div></li>
+        <li><div class="step-body"><strong>Approve and fill.</strong> Approve the buy token, then confirm the fill transaction. The sell tokens arrive in your wallet immediately in the same transaction.</div></li>
+      </ol>
+
+      <h2 id="fees">OTC Fees</h2>
+      <p>Buyers pay nothing. Sellers pay a protocol fee only on successful fills — deducted from the whitelisted tokens received. No trade, no fee.</p>
+      <table>
+        <thead><tr><th>Fee</th><th>Who pays</th><th>Amount</th></tr></thead>
+        <tbody>
+          <tr><td>Offer creation</td><td>Seller</td><td>Gas only</td></tr>
+          <tr><td>Successful fill</td><td>Seller</td><td>Protocol fee deducted from received tokens — only charged when a trade completes</td></tr>
+          <tr><td>Cancellation</td><td>Seller</td><td>Gas only — escrow returned immediately</td></tr>
+        </tbody>
+      </table>
+    `
+  },
+
+  'dca': {
+    section: 'Auto DCA — Queueit',
+    title: 'Auto DCA — Overview',
+    lead: 'Queueit lets you automate a dollar-cost averaging strategy entirely on-chain. Set your token, amount, and frequency once — the protocol handles the rest without any ongoing action from you. Runs until you pause, cancel, or your budget runs out.',
+    prev: { id: 'otc', label: 'Peer-To-Many OTC — Overview' },
+    next: { id: 'security', label: 'Security Overview' },
+    content: `
+      <h2 id="what-is-dca">What is Dollar-Cost Averaging?</h2>
+      <p>DCA is the strategy of buying a fixed amount of an asset at regular intervals — regardless of price. It removes emotion from investing, smooths out entry points over time, and has historically outperformed lump-sum buying in volatile markets over long horizons.</p>
+      <p>Queueit puts this on autopilot, fully on-chain, powered by CURV.</p>
+
+      <h2 id="creating">Creating a Plan</h2>
+      <ol class="steps">
+        <li><div class="step-body"><strong>Choose your target token.</strong> Pick from popular tokens (HEX, PLSX, INC, PRVX, WPLS, CURV) or search any PulseChain token by name or contract address. Custom tokens can be imported by pasting their address.</div></li>
+        <li><div class="step-body"><strong>Choose your funding token.</strong> The token you'll invest with: USDC, USDT, DAI, or PLS/WPLS.</div></li>
+        <li><div class="step-body"><strong>Set the amount per cycle.</strong> How much to invest each time the plan runs.</div></li>
+        <li><div class="step-body"><strong>Set the frequency.</strong> Hourly, daily, weekly, or monthly.</div></li>
+        <li><div class="step-body"><strong>Set an optional budget cap.</strong> Limits total lifetime spend. The plan auto-completes when the cap is reached — no manual cancellation needed. Once set, the cap can only be increased, never removed.</div></li>
+        <li><div class="step-body"><strong>Set slippage.</strong> Default 0.5%. For tax tokens, slippage is automatically adjusted to cover the buy tax — you'll see a warning with the exact rate applied.</div></li>
+        <li><div class="step-body"><strong>Approve and create.</strong> Approve the contract allowance, then confirm the plan creation. A creation fee is charged each time a new plan is created — currently ~$5 equivalent for stablecoin-funded plans (100,000 WPLS for PLS/WPLS plans). Both amounts are adjustable by the protocol. All future cycle executions cost you nothing — gas is paid by the keeper.</div></li>
+      </ol>
+
+      <div class="callout info">
+        <div class="callout-icon">🪙</div>
+        <div class="callout-body"><strong>Investing with PLS.</strong> Select PLS as your funding token and the contract automatically wraps it to WPLS at execution time. No manual wrapping step needed.</div>
+      </div>
+
+      <h2 id="managing">Managing Plans</h2>
+      <p>Your active plans appear on the DCA dashboard. Each plan card shows:</p>
+      <ul>
+        <li>Token pair and frequency</li>
+        <li>Total invested and total received</li>
+        <li>Budget used / budget cap progress</li>
+        <li>Approximate time until next execution</li>
+        <li>Full execution history with amounts in and out per cycle</li>
+      </ul>
+
+      <h3>Editing a plan</h3>
+      <p>Click <strong>Edit</strong> on any active plan to change the amount per cycle, frequency, budget cap, or slippage tolerance. Edits cost only gas — no additional fees. Your plan continues executing without interruption.</p>
+
+      <h3>Cancelling a plan</h3>
+      <p>Click <strong>Cancel</strong> to stop the plan permanently. This costs only gas. Any unspent approved allowance is automatically revoked by the contract — your funds remain in your wallet.</p>
+
+      <div class="callout note">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body"><strong>Completed plans.</strong> Plans with a budget cap complete automatically and move to the Completed section. No cancellation transaction needed.</div>
+      </div>
+
+      <h2 id="security">Security & Trust Model</h2>
+      <p>The DCA smart contract enforces all plan terms. Keeper bots are untrusted executors — they submit the execution transaction, but cannot deviate from your stated terms in any way.</p>
+      <table>
+        <thead><tr><th>Protection</th><th>How it's enforced</th></tr></thead>
+        <tbody>
+          <tr><td>Slippage limit</td><td>Contract measures wallet balance before and after swap; reverts if outcome is below minimum</td></tr>
+          <tr><td>Budget cap</td><td>Contract tracks cumulative spend and refuses to execute beyond your cap</td></tr>
+          <tr><td>Frequency</td><td>Contract stores last execution timestamp; rejects execution that arrives too early</td></tr>
+          <tr><td>Recipient</td><td>Purchased tokens go directly to your wallet in the same transaction — no intermediate custody</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="keeper">Keeper Network</h2>
+      <p>Keepers are bots that monitor the blockchain for DCA plans that are due, then submit the execution transaction. The keeper earns a portion of the platform fee on each successful execution.</p>
+      <p>Key properties of the keeper network:</p>
+      <ul>
+        <li><strong>Whitelisted keepers only</strong> — only approved addresses can execute plans, eliminating front-running of execution intents</li>
+        <li><strong>Gas limit</strong> — a fixed gas limit is applied to each execution transaction for reliability and network integrity</li>
+        <li><strong>Stuck tx detection</strong> — transactions not confirmed within 30 seconds are re-submitted with bumped fees</li>
+        <li><strong>Individual fallback</strong> — if one plan in a batch fails, the rest continue; the keeper retries the failed plan individually</li>
+        <li><strong>Timing jitter</strong> — execution time has a small random offset, preventing external correlation with your plan schedule</li>
+      </ul>
+
+      <h2 id="assets">Supported Assets</h2>
+      <p><strong>Funding tokens</strong> (what you invest with):</p>
+      <div class="token-grid">
+        <span class="token-pill"><span class="token-pill-dot"></span>USDC</span>
+        <span class="token-pill"><span class="token-pill-dot"></span>USDT</span>
+        <span class="token-pill"><span class="token-pill-dot"></span>DAI</span>
+        <span class="token-pill"><span class="token-pill-dot"></span>WPLS</span>
+        <span class="token-pill"><span class="token-pill-dot"></span>PLS (native)</span>
+      </div>
+      <p><strong>Target tokens</strong> (what you accumulate):</p>
+      <p>Any token listed on Switch/Piteas — hundreds of PulseChain assets, searchable by name or contract address. Popular targets:</p>
+      <div class="token-grid">
+        <span class="token-pill"><span class="token-pill-dot"></span>CURV</span>
+        <span class="token-pill"><span class="token-pill-dot"></span>HEX</span>
+        <span class="token-pill"><span class="token-pill-dot"></span>WPLS</span>
+        <span class="token-pill"><span class="token-pill-dot"></span>PLSX</span>
+        <span class="token-pill"><span class="token-pill-dot"></span>INC</span>
+        <span class="token-pill"><span class="token-pill-dot"></span>PRVX</span>
+        <span class="token-pill"><span class="token-pill-dot"></span>eHEX</span>
+        <span class="token-pill"><span class="token-pill-dot"></span>WETH</span>
+      </div>
+      <p>Fee-on-transfer ("tax") tokens are fully supported. Slippage is auto-adjusted at plan creation to account for the buy tax.</p>
+
+      <h2 id="fees">Fee Structure</h2>
+      <table>
+        <thead><tr><th>Fee</th><th>Amount</th><th>When charged</th></tr></thead>
+        <tbody>
+          <tr><td>Plan creation</td><td class="teal">~$5 equivalent</td><td>Once, at plan creation</td></tr>
+          <tr><td>Per-cycle platform fee</td><td class="teal">0.5% of cycle amount</td><td>Each execution</td></tr>
+          <tr><td>→ Keeper share</td><td>0.1% (20% of platform fee)</td><td>Paid to keeper in same tx</td></tr>
+          <tr><td>→ Protocol share</td><td>0.4% (80% of platform fee)</td><td>Sent to protocol treasury</td></tr>
+          <tr><td>Edit plan</td><td class="teal">Gas only</td><td>Any time</td></tr>
+          <tr><td>Cancel plan</td><td class="teal">Gas only</td><td>Any time</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout note">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body">On PulseChain, execution gas costs are a fraction of Ethereum mainnet. For most plan sizes the keeper gas cost is economically negligible — it is covered entirely by the keeper fee incentive.</div>
+      </div>
+    `
+  },
+
+  'security': {
+    section: 'Security',
+    title: 'Security Overview',
+    lead: 'Every CURV product is built on the principle that the protocol should enforce your intent — not trust any intermediary to honour it. Here is how that works across all dApps.',
+    prev: { id: 'dca', label: 'Auto DCA — Overview' },
+    next: { id: 'fees', label: 'Fee Reference' },
+    content: `
+      <h2 id="non-custodial">Non-Custodial by Design</h2>
+      <p>CURV never holds your tokens on your behalf. Depending on the dApp:</p>
+      <ul>
+        <li><strong>Aggregator / Swap</strong> — tokens move directly from your wallet to the destination in a single transaction. No intermediate custody.</li>
+        <li><strong>Limit Orders</strong> — fully non-custodial for ERC-20 tokens: your tokens never leave your wallet, only an approval is granted and it is voided if the order is cancelled or expires. Native PLS orders use a trustless escrow — only you (to cancel) or an Operator (to fill at your exact terms) can interact with it.</li>
+        <li><strong>OTC</strong> — trustless escrow. Tokens are held in a smart contract for the duration of the offer — no human or third party has custody. Only buyers (to fill) and the seller (to cancel) can interact with the escrow. The contract enforces all terms without intermediaries. The protocol has no admin key to extract funds.</li>
+        <li><strong>Auto DCA</strong> — funds stay in your wallet. The contract has an approved allowance to pull your funding token on each cycle — nothing more. Each execution pulls only what's needed for that cycle.</li>
+      </ul>
+
+      <h2 id="smart-contract">Smart Contract Enforcement</h2>
+      <p>For DCA and Limit Orders, all plan/order terms are stored on-chain and enforced atomically in the execution transaction. This means:</p>
+      <ul>
+        <li>Keepers (DCA) and Operators (Limit Orders) cannot exceed your slippage tolerance</li>
+        <li>Keepers cannot execute a DCA cycle early — the frequency interval is checked on-chain</li>
+        <li>Keepers and Operators cannot send tokens anywhere other than your wallet</li>
+        <li>Keepers cannot execute after expiry or when a budget cap is reached; Operators cannot fill an expired order</li>
+      </ul>
+      <p>If any condition fails, the entire transaction reverts. The Keeper or Operator gains nothing and your funds are unaffected.</p>
+
+      <h2 id="mev">MEV & Front-Running Protection</h2>
+      <p>CURV's DCA product employs two complementary layers of MEV defence:</p>
+      <div class="callout info">
+        <div class="callout-icon">🔐</div>
+        <div class="callout-body">
+          <strong>Layer 1 — Keeper whitelist.</strong> Only approved keeper addresses can submit DCA execution transactions. An MEV bot cannot front-run your intent because it cannot call the execution function at all.<br><br>
+          <strong>Layer 2 — Slippage enforcement.</strong> The contract verifies the output amount on-chain. At the default 0.5% slippage, a sandwich attack must move the price more than 0.5% to profit — making the attack economically irrational on any reasonably liquid pair.
+        </div>
+      </div>
+
+      <h2 id="approvals">Token Approvals</h2>
+      <p>When creating a DCA plan, the approval amount is calculated to cover <strong>all active plans you have for the same funding token</strong> — not just the new one. This is because ERC-20 <code>approve()</code> sets (not adds) the allowance, so approving only the new plan's budget would overwrite the allowance covering your existing plans and leave them underfunded.</p>
+      <p>If all your plans for that token are budget-capped, you approve the exact combined amount required. If you have any unlimited plan (no budget cap) on the same token, the approval falls back to <code>max uint256</code> — standard ERC-20 practice for open-ended recurring contracts. The contract can only pull funds when a valid, due plan exists.</p>
+      <p>You can revoke approvals at any time via any ERC-20 approval manager. Cancelling a plan removes it from the contract's active set, reducing future allowance requirements on your next approval.</p>
+
+      <div class="callout warn">
+        <div class="callout-icon">⚠️</div>
+        <div class="callout-body"><strong>Always verify.</strong> Only connect to <a href="https://app.0xcurv.win" target="_blank">app.0xcurv.win</a>. CURV will never ask you to approve a contract via DM, social media, or email.</div>
+      </div>
+
+      <h2 id="audits">Audits</h2>
+      <table>
+        <thead><tr><th>Product</th><th>Audit Status</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Aggregator &amp; Limit Orders</strong></td>
+            <td>Powered by the Switch protocol. Smart contract infrastructure is audited — refer to the Switch team for full audit documentation.</td>
+          </tr>
+          <tr>
+            <td><strong>Peer-To-Many OTC</strong></td>
+            <td>Forked from audited Bistro protocol contracts. Core escrow logic retains its original audit coverage.</td>
+          </tr>
+          <tr>
+            <td><strong>Auto DCA — Queueit</strong></td>
+            <td>Currently in Beta. An independent third-party audit is planned prior to full public launch. Use with appropriate caution during this phase.</td>
+          </tr>
+        </tbody>
+      </table>
+    `
+  },
+
+  'fees': {
+    section: 'Fees',
+    title: 'Fee Reference',
+    lead: 'A complete reference of all fees across CURV dApps. Most interactions cost gas only.',
+    prev: { id: 'security', label: 'Security Overview' },
+    next: null,
+    content: `
+      <h2 id="aggregator-fees">Aggregator</h2>
+      <p>The aggregator displays a live protocol fee in the swap UI before you confirm. As a routing aggregator it cannot avoid the underlying DEX liquidity provider fees — these are factored into the quoted rate. The UI always shows your guaranteed minimum output so you know exactly what you'll receive.</p>
+      <table>
+        <thead><tr><th>Action</th><th>Fee</th></tr></thead>
+        <tbody>
+          <tr><td>Swap</td><td>Protocol fee (shown live in UI) + underlying DEX LP fees (built into rate). Minimum output displayed before confirmation.</td></tr>
+          <tr><td>Token approval</td><td>Gas only (one-time per token)</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="limit-order-fees">Limit Orders</h2>
+      <table>
+        <thead><tr><th>Action</th><th>Fee</th></tr></thead>
+        <tbody>
+          <tr><td>Create order</td><td>Gas only</td></tr>
+          <tr><td>Fill (execution)</td><td>Small protocol fee deducted from received tokens</td></tr>
+          <tr><td>Cancel</td><td>Gas only</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="otc-fees">Peer-To-Many OTC</h2>
+      <table>
+        <thead><tr><th>Action</th><th>Who pays</th><th>Fee</th></tr></thead>
+        <tbody>
+          <tr><td>Create offer</td><td>Seller</td><td>Gas only</td></tr>
+          <tr><td>Fill offer</td><td>Seller</td><td>Protocol fee deducted from tokens received — only on successful fills. Buyers pay gas only.</td></tr>
+          <tr><td>Cancel offer</td><td>Seller</td><td>Gas only — escrow returned immediately</td></tr>
+        </tbody>
+      </table>
+
+      <h2 id="dca-fees">Auto DCA — Queueit</h2>
+      <table>
+        <thead><tr><th>Fee</th><th>Amount</th><th>Timing</th></tr></thead>
+        <tbody>
+          <tr><td>Plan creation</td><td class="teal">~$5 equivalent (stablecoins) · 100,000 WPLS (PLS/WPLS plans) — protocol-adjustable</td><td>Per plan created</td></tr>
+          <tr><td>Per-cycle platform fee</td><td class="teal">0.5% of cycle amount (protocol-adjustable)</td><td>Each execution</td></tr>
+          <tr><td>&nbsp;&nbsp;Keeper share</td><td>0.1% (protocol-adjustable)</td><td>Paid to keeper in same tx</td></tr>
+          <tr><td>&nbsp;&nbsp;Protocol share</td><td>0.4% (protocol-adjustable)</td><td>Sent to treasury</td></tr>
+          <tr><td>Edit plan</td><td class="teal">Gas only</td><td>Any time</td></tr>
+          <tr><td>Cancel plan</td><td class="teal">Gas only</td><td>Any time</td></tr>
+          <tr><td>Budget cap increase</td><td class="teal">Gas only + new approval</td><td>Any time</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout note">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body">
+          <strong>Execution gas is paid by the keeper, not you.</strong> After plan creation, you pay no gas for any DCA execution — the keeper covers it and is compensated by the 0.1% keeper fee built into the platform fee.
+        </div>
+      </div>
+
+      <h2 id="gas">Gas on PulseChain</h2>
+      <p>PulseChain gas costs are significantly lower than Ethereum mainnet — typically fractions of a cent per transaction. Even frequent DCA plans (hourly) are economically viable at low investment amounts that would be impractical on Ethereum.</p>
+    `
+  }
+};
+
+// ─── ROUTER ──────────────────────────────────────────────────────────────────
+
+let currentPageId = 'introduction';
+
+function getHashPage() {
+  const hash = window.location.hash.replace('#', '');
+  if (!hash) return 'introduction';
+  const [pageId] = hash.split('/');
+  return PAGES[pageId] ? pageId : 'introduction';
+}
+
+function navigate(pageId, anchorId) {
+  currentPageId = pageId;
+  const hash = anchorId ? `#${pageId}/${anchorId}` : `#${pageId}`;
+  history.pushState(null, '', hash);
+  render(pageId);
+  if (anchorId) {
+    setTimeout(() => {
+      const el = document.getElementById(anchorId);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 60);
+  } else {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  closeSidebar();
+}
+
+window.navigate = navigate;
+
+function render(pageId) {
+  const page = PAGES[pageId];
+  if (!page) return;
+
+  // Update sidebar active states
+  document.querySelectorAll('.sidebar-item, .sidebar-sub-item').forEach(el => {
+    el.classList.remove('active');
+  });
+  // Mark the correct item active — match by onclick containing the pageId
+  document.querySelectorAll('.sidebar-item').forEach(el => {
+    const fn = el.getAttribute('onclick') || '';
+    if (fn.includes(`'${pageId}'`) && !fn.includes(',')) {
+      el.classList.add('active');
+    }
+  });
+
+  // Render breadcrumb
+  const breadcrumb = `
+    <div class="breadcrumb">
+      <a onclick="navigate('introduction')" style="cursor:pointer;">Docs</a>
+      <span>›</span>
+      <span>${page.section}</span>
+      ${page.section !== page.title ? `<span>›</span><span>${page.title.replace(page.section + ' — ', '')}</span>` : ''}
+    </div>
+  `;
+
+  // Render page nav
+  const prevBtn = page.prev
+    ? `<div class="page-nav-btn" onclick="navigate('${page.prev.id}')"><div class="page-nav-label">← Previous</div><div class="page-nav-title">${page.prev.label}</div></div>`
+    : '<div></div>';
+  const nextBtn = page.next
+    ? `<div class="page-nav-btn next" onclick="navigate('${page.next.id}')"><div class="page-nav-label">Next →</div><div class="page-nav-title">${page.next.label}</div></div>`
+    : '<div></div>';
+
+  document.getElementById('content').innerHTML = `
+    ${breadcrumb}
+    <h1>${page.title}</h1>
+    <p class="lead">${page.lead}</p>
+    ${page.content}
+    <div class="page-nav">${prevBtn}${nextBtn}</div>
+  `;
+
+  // Build right rail from h2 headings
+  buildRail();
+}
+
+function buildRail() {
+  const headings = document.querySelectorAll('#content h2');
+  const railEl = document.getElementById('rail-items');
+  if (headings.length === 0) { railEl.innerHTML = ''; return; }
+
+  railEl.innerHTML = Array.from(headings).map(h => {
+    const id = h.id || h.textContent.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+    if (!h.id) h.id = id;
+    return `<a class="rail-item" onclick="scrollToId('${id}')" style="cursor:pointer;">${h.textContent}</a>`;
+  }).join('');
+}
+
+window.scrollToId = function(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+};
+
+// ─── SIDEBAR TOGGLE ──────────────────────────────────────────────────────────
+
+function toggleSection(id) {
+  const sec = document.getElementById(id);
+  sec.classList.toggle('collapsed');
+}
+window.toggleSection = toggleSection;
+
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebarOverlay').classList.remove('open');
+}
+
+document.getElementById('hamburgerBtn').addEventListener('click', () => {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('sidebarOverlay').classList.toggle('open');
+});
+document.getElementById('sidebarOverlay').addEventListener('click', closeSidebar);
+
+// ─── INIT ────────────────────────────────────────────────────────────────────
+
+window.addEventListener('popstate', () => {
+  render(getHashPage());
+  window.scrollTo(0, 0);
+});
+
+render(getHashPage());
+
+// Rail scroll spy
+window.addEventListener('scroll', () => {
+  const headings = document.querySelectorAll('#content h2');
+  let current = null;
+  headings.forEach(h => {
+    if (h.getBoundingClientRect().top < 120) current = h.id;
+  });
+  document.querySelectorAll('.rail-item').forEach(el => {
+    const fn = el.getAttribute('onclick') || '';
+    const isActive = current && fn.includes(`'${current}'`);
+    el.classList.toggle('active', isActive);
+  });
+}, { passive: true });
+</script>
+</body>
+</html>
