@@ -669,6 +669,8 @@
       </div>
       <div class="sidebar-items">
         <a class="sidebar-item" onclick="navigate('security')">Security Overview</a>
+        <a class="sidebar-sub-item" onclick="navigate('security','audits')">Audits</a>
+        <a class="sidebar-sub-item" onclick="navigate('security','contracts')">Contract Addresses</a>
       </div>
     </div>
 
@@ -1079,6 +1081,38 @@ const PAGES = {
           <tr>
             <td><strong>Auto DCA — Queueit</strong></td>
             <td>Currently in Beta. An independent third-party audit is planned prior to full public launch. Use with appropriate caution during this phase.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2 id="contracts">Contract Addresses</h2>
+      <p>All CURV contracts are deployed on PulseChain (Chain ID 369). You can verify any transaction or contract on <a href="https://scan.pulsechain.com" target="_blank">scan.pulsechain.com</a>.</p>
+      <table>
+        <thead><tr><th>Product</th><th>Contract</th><th>Address</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Aggregator</strong></td>
+            <td>SwitchRouter</td>
+            <td><a href="https://scan.pulsechain.com/address/0x99999d19eC98F936934e029e63D1C0A127a15207" target="_blank"><code>0x9999…5207</code></a></td>
+          </tr>
+          <tr>
+            <td rowspan="2"><strong>Limit Orders</strong></td>
+            <td>SwitchLimitOrder (ERC-20)</td>
+            <td><a href="https://scan.pulsechain.com/address/0x79925587bE77C25b292C0ecA6FEdD3A3f07916F9" target="_blank"><code>0x7992…16F9</code></a></td>
+          </tr>
+          <tr>
+            <td>SwitchPLSFlow (native PLS)</td>
+            <td><a href="https://scan.pulsechain.com/address/0x79D1Ce697509D75D79c6cA8f9232ee6ca6Df379a" target="_blank"><code>0x79D1…379a</code></a></td>
+          </tr>
+          <tr>
+            <td><strong>Peer-To-Many OTC</strong></td>
+            <td>CurvOTC</td>
+            <td><a href="https://scan.pulsechain.com/address/0x0510A895608E6B5E6024D6597401a5e6B1263d89" target="_blank"><code>0x0510…3d89</code></a></td>
+          </tr>
+          <tr>
+            <td><strong>Auto DCA — Queueit</strong></td>
+            <td>CurvDCA</td>
+            <td><em>Beta — contract address not yet published</em></td>
           </tr>
         </tbody>
       </table>
