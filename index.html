@@ -804,21 +804,11 @@ Click a card to open the dApp
         <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px;">
             <div>
                 <h2 style="color:#dfe2eb;font-size:1.55rem;font-weight:800;letter-spacing:-0.5px;margin:0 0 4px;font-family:'Space Grotesk',sans-serif;">Treasury Holdings</h2>
-                <p style="color:#0cf3c9;font-size:0.68rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin:0;font-family:'Space Grotesk',sans-serif;">CURV</p>
+                <p style="color:rgba(223,226,235,0.35);font-size:0.68rem;letter-spacing:2.5px;text-transform:uppercase;margin:0;font-weight:600;font-family:'Space Grotesk',sans-serif;">Gnosis Safe &middot; PulseChain</p>
             </div>
             <p style="font-size:0.68rem;color:rgba(223,226,235,0.3);font-family:'Courier New',monospace;background:rgba(255,255,255,0.05);padding:4px 10px;border-radius:6px;margin-top:4px;white-space:nowrap;border:1px solid rgba(12,243,201,0.08);">0xd0AB&hellip;a488</p>
         </div>
-        <div style="padding:18px 20px;border-radius:12px;background:rgba(34,45,43,0.25);backdrop-filter:blur(12px);border:1px solid rgba(12,243,201,0.1);margin-bottom:20px;position:relative;overflow:hidden;">
-            <div style="position:absolute;top:-20px;right:-20px;width:80px;height:80px;background:rgba(12,243,201,0.07);filter:blur(30px);border-radius:50%;pointer-events:none;"></div>
-            <p style="color:rgba(223,226,235,0.35);font-size:0.68rem;letter-spacing:2.5px;text-transform:uppercase;margin:0 0 10px;font-weight:600;font-family:'Space Grotesk',sans-serif;">Gnosis Safe &middot; PulseChain</p>
-            <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;">
-                <span id="treasuryAmount" style="color:#0cf3c9;font-size:1.5rem;font-weight:800;font-family:'Courier New',monospace;letter-spacing:-0.5px;">&mdash;</span>
-                <span style="color:rgba(223,226,235,0.3);font-size:0.85rem;font-weight:600;">CURV</span>
-                <span id="treasuryPercent" style="color:rgba(223,226,235,0.45);font-size:0.78rem;font-weight:600;background:rgba(12,243,201,0.06);padding:2px 9px;border-radius:4px;border:1px solid rgba(12,243,201,0.1);">&mdash;% of supply</span>
-            </div>
-        </div>
-        <p style="color:rgba(223,226,235,0.3);font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;font-weight:600;margin:0 2px 6px;font-family:'Space Grotesk',sans-serif;">Active Allocations</p>
-        <div id="treasuryHoldingsList"><div class="treasury-loading">Loading balances&hellip;</div></div>
+        <div id="treasuryHoldingsList" style="margin-top:16px;"><div class="treasury-loading">Loading balances&hellip;</div></div>
     </div>
 </div>
 
@@ -944,10 +934,10 @@ Click a card to open the dApp
         const avatarColor = sym => TOKEN_COLORS[sym] || '#555e6a';
         const SYMBOL_OVERRIDES = { '0x57fde0a71132198bbeC939b98976993d8d89d225': 'eHEX' };
         try {
-            const [plsRes, tokenList, supplyRes, piteasData] = await Promise.all([
+            const [plsRes, tokenList, statsRes, piteasData] = await Promise.all([
                 fetch(RPC, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'eth_getBalance', params: [WALLET, 'latest'] }) }).then(r => r.json()),
                 fetch(`https://api.scan.pulsechain.com/api/v2/addresses/${WALLET}/token-balances`, { cache: 'no-store' }).then(r => r.json()),
-                fetch(RPC, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ jsonrpc: '2.0', id: 2, method: 'eth_call', params: [{ to: '0x591c914BC5c878cC398AF67681C388FaC8bdaf4e', data: '0x18160ddd' }, 'latest'] }) }).then(r => r.json()),
+                fetch('https://api.scan.pulsechain.com/api/v2/stats').then(r => r.json()).catch(() => null),
                 fetch('https://raw.githubusercontent.com/piteasio/app-tokens/main/piteas-tokenlist.json').then(r => r.json()).catch(() => null)
             ]);
             const logoMap = {};
@@ -955,8 +945,7 @@ Click a card to open the dApp
                 piteasData.tokens.forEach(t => { if (t.address && t.logoURI) logoMap[t.address.toLowerCase()] = t.logoURI; });
             }
             const PLS_LOGO = logoMap['0xa1077a294dde1b09bb078844df40758a5d0f9a27'] || '';
-            let totalSupply = 0n;
-            if (supplyRes?.result && supplyRes.result !== '0x') totalSupply = BigInt(supplyRes.result);
+            const plsPrice = statsRes?.coin_price ? parseFloat(statsRes.coin_price) : 0;
             const rows = [];
             const plsRaw = BigInt(plsRes.result || '0x0');
             if (plsRaw > 0n) rows.push({ symbol: 'PLS', amount: fmtUnits(plsRaw, 18), raw: plsRaw, isCurv: false, addr: 'pls-native' });
@@ -972,18 +961,13 @@ Click a card to open the dApp
                 });
             }
             if (rows.length === 0) { el.innerHTML = '<div class="treasury-loading">No balances found.</div>'; return; }
-            const curvRow = rows.find(r => r.isCurv);
-            if (curvRow && totalSupply > 0n) {
-                document.getElementById('treasuryAmount').textContent = curvRow.amount;
-                document.getElementById('treasuryPercent').textContent = (Number(curvRow.raw * 10000n / totalSupply) / 100).toFixed(2) + '% of supply';
-            }
             el.innerHTML = rows.map(r => {
                 const col = avatarColor(r.symbol);
                 const ltr = r.symbol.slice(0, 2);
                 const logo = r.symbol === 'PLS' ? PLS_LOGO : (logoMap[r.addr] || '');
                 const avatarHtml = logo
-                    ? `<img src="${logo}" alt="${r.symbol}" style="width:40px;height:40px;border-radius:50%;object-fit:contain;border:1px solid rgba(12,243,201,0.12);background:rgba(34,45,43,0.4);flex-shrink:0;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div style="display:none;width:40px;height:40px;border-radius:50%;background:${col}18;border:1px solid ${col}35;align-items:center;justify-content:center;font-size:0.72rem;font-weight:800;color:${col};flex-shrink:0;letter-spacing:-0.5px;font-family:'Space Grotesk',sans-serif;">${ltr}</div>`
-                    : `<div style="display:flex;width:40px;height:40px;border-radius:50%;background:${col}18;border:1px solid ${col}35;align-items:center;justify-content:center;font-size:0.72rem;font-weight:800;color:${col};flex-shrink:0;letter-spacing:-0.5px;font-family:'Space Grotesk',sans-serif;">${ltr}</div>`;
+                    ? `<img src="${logo}" alt="${r.symbol}" style="width:40px;height:40px;border-radius:10px;object-fit:contain;border:1px solid rgba(12,243,201,0.12);background:rgba(34,45,43,0.4);flex-shrink:0;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div style="display:none;width:40px;height:40px;border-radius:10px;background:${col}18;border:1px solid ${col}35;align-items:center;justify-content:center;font-size:0.72rem;font-weight:800;color:${col};flex-shrink:0;letter-spacing:-0.5px;font-family:'Space Grotesk',sans-serif;">${ltr}</div>`
+                    : `<div style="display:flex;width:40px;height:40px;border-radius:10px;background:${col}18;border:1px solid ${col}35;align-items:center;justify-content:center;font-size:0.72rem;font-weight:800;color:${col};flex-shrink:0;letter-spacing:-0.5px;font-family:'Space Grotesk',sans-serif;">${ltr}</div>`;
                 return `<div style="display:flex;align-items:center;justify-content:space-between;padding:11px 8px;border-radius:10px;transition:background 0.18s;" onmouseover="this.style.background='rgba(34,45,43,0.35)'" onmouseout="this.style.background='transparent'">
                     <div style="display:flex;align-items:center;gap:13px;">
                         ${avatarHtml}
